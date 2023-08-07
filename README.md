@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-![tmux](./Pictures/ricing/nvim.png)
+![tmux](./Pictures/ricing/tmux.png)
 
 ![Neovim](./Pictures/ricing/nvim.png)
 
