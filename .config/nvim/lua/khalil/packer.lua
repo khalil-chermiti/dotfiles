@@ -108,6 +108,8 @@ return require('packer').startup({
         require("colorizer").setup()
       end
     }
+
+    use "lukas-reineke/indent-blankline.nvim"
   end,
 
   config = {
