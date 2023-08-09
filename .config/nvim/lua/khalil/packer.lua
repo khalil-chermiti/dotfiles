@@ -42,10 +42,20 @@ return require('packer').startup({
     }
 
     -- autotags
-    use "windwp/nvim-ts-autotag"
+    use {
+      "windwp/nvim-ts-autotag",
+      config = function()
+        require("nvim-ts-autotag").setup {}
+      end
+    }
 
     -- vim pairs
-    use { "windwp/nvim-autopairs" }
+    use {
+      "windwp/nvim-autopairs",
+      config = function()
+        require("nvim-autopairs").setup {}
+      end
+    }
 
     -- lsp
     use {
@@ -73,10 +83,20 @@ return require('packer').startup({
     use "rafamadriz/friendly-snippets"
 
     -- git signs
-    use "lewis6991/gitsigns.nvim"
+    use {
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup()
+      end
+    }
 
     -- toggle-term
-    use "akinsho/toggleterm.nvim"
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require("toggleterm").setup()
+      end
+    }
 
     -- rainbow parentheses
     use "HiPhish/nvim-ts-rainbow2"
@@ -110,6 +130,20 @@ return require('packer').startup({
     }
 
     use "lukas-reineke/indent-blankline.nvim"
+
+    use "f-person/git-blame.nvim"
+
+    use {
+      "NeogitOrg/neogit",
+      requires = {
+        "nvim-lua/plenary.nvim",         -- required
+        "nvim-telescope/telescope.nvim", -- optional
+        "sindrets/diffview.nvim",        -- optional
+      },
+      config = function()
+        require("neogit").setup()
+      end
+    }
   end,
 
   config = {

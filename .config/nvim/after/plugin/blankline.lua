@@ -6,6 +6,7 @@ require("indent_blankline").setup {
     "TelescopePrompt",
     "TelescopeResults",
     "mason",
+    "packer",
     "",
   },
   buftype_exclude = { "terminal" },
