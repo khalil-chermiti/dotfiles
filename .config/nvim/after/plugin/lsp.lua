@@ -67,7 +67,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 
   -- format buffer on save with default formatter
-  lsp.buffer_autoformat()
+  -- lsp.buffer_autoformat()
 end)
 
 -- set sign icons

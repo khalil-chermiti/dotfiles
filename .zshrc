@@ -65,3 +65,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/khalil'
+
+# show ASCII ART
+figlet -f smslant "Happy  Coding" | lolcat

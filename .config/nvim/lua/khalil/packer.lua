@@ -42,20 +42,10 @@ return require('packer').startup({
     }
 
     -- autotags
-    use {
-      "windwp/nvim-ts-autotag",
-      config = function()
-        require("nvim-ts-autotag").setup {}
-      end
-    }
+    use { "windwp/nvim-ts-autotag" }
 
     -- vim pairs
-    use {
-      "windwp/nvim-autopairs",
-      config = function()
-        require("nvim-autopairs").setup {}
-      end
-    }
+    use { "windwp/nvim-autopairs" }
 
     -- lsp
     use {
@@ -83,20 +73,10 @@ return require('packer').startup({
     use "rafamadriz/friendly-snippets"
 
     -- git signs
-    use {
-      "lewis6991/gitsigns.nvim",
-      config = function()
-        require("gitsigns").setup()
-      end
-    }
+    use { "lewis6991/gitsigns.nvim" }
 
     -- toggle-term
-    use {
-      "akinsho/toggleterm.nvim",
-      config = function()
-        require("toggleterm").setup()
-      end
-    }
+    use { "akinsho/toggleterm.nvim" }
 
     -- rainbow parentheses
     use "HiPhish/nvim-ts-rainbow2"
@@ -139,10 +119,7 @@ return require('packer').startup({
         "nvim-lua/plenary.nvim",         -- required
         "nvim-telescope/telescope.nvim", -- optional
         "sindrets/diffview.nvim",        -- optional
-      },
-      config = function()
-        require("neogit").setup()
-      end
+     }
     }
   end,
 
