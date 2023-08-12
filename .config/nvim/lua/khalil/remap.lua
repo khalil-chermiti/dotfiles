@@ -24,3 +24,13 @@ vim.keymap.set("n", "<C-k>", "<C-w>k") -- switch to bottom tab
 vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
 vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
 vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")
+
+-- moving lines up and down
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<CR>==")
+
+vim.keymap.set("i", "<A-j>", "<Esc><cmd>m .+1<CR>==gi")
+vim.keymap.set("i", "<A-k>", "<Esc><cmd>m .-2<CR>==gi")
+
+vim.keymap.set("v", "<A-j>", ":m'>+<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m-2<CR>gv=gv")
