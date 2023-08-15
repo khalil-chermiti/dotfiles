@@ -119,8 +119,11 @@ return require('packer').startup({
         "nvim-lua/plenary.nvim",         -- required
         "nvim-telescope/telescope.nvim", -- optional
         "sindrets/diffview.nvim",        -- optional
-     }
+      }
     }
+
+    -- which key
+    use "folke/which-key.nvim"
   end,
 
   config = {

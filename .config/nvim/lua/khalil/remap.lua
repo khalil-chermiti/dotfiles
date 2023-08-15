@@ -1,36 +1,52 @@
--- toggling nvim tree
-vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
-vim.keymap.set("n", "<leader>ef", vim.cmd.NvimTreeFocus)
+local keymaps = {
+  explorer = {
+    { mode = "n", keymap = "<leader>ee", action = "<cmd>NvimTreeToggle<cr>", desc = "toggle" },
+    { mode = "n", keymap = "<leader>ef", action = "<cmd>NvimTreeFocus<cr>",  desc = "focus" },
+  },
 
--- switching buffers
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineCyclePrev<CR>")
-vim.keymap.set("n", "<leader>bc", "<cmd>BufferLinePick<CR>")
-vim.keymap.set("n", "<leader>c", "<cmd>Bdelete<CR>")
+  buffer = {
+    { mode = "n", keymap = "<leader>bn", action = "<cmd>BufferLineCycleNext<cr>", desc = "buffer next" },
+    { mode = "n", keymap = "<leader>bp", action = "<cmd>BufferLineCyclePrev<cr>", desc = "buffer prev" },
+    { mode = "n", keymap = "<leader>bc", action = "<cmd>BufferLinePick<cr>",      desc = "buffer pick" },
+    { mode = "n", keymap = "<leader>c",  action = "<cmd>Bdelete<CR>",             desc = "buffer close" },
+  },
 
--- resizing windows
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>")
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>")
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<CR>")
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<CR>")
+  resize = {
+    { mode = "n", keymap = "<C-up>",    action = "<cmd>resize +2<cr>",          desc = "h +2" },
+    { mode = "n", keymap = "<C-down>",  action = "<cmd>resize -2<cr>",          desc = "h -2" },
+    { mode = "n", keymap = "<C-left>",  action = "<cmd>vertical resize +2<cr>", desc = "v +2" },
+    { mode = "n", keymap = "<C-right>", action = "<cmd>vertical resize -2<cr>", desc = "v -2" },
+  },
 
--- switching tabs
-vim.keymap.set("n", "<C-l>", "<C-w>l") -- switch to right tab
-vim.keymap.set("n", "<C-h>", "<C-w>h") -- switch to left tab
-vim.keymap.set("n", "<C-j>", "<C-w>j") -- switch to top tab
-vim.keymap.set("n", "<C-k>", "<C-w>k") -- switch to bottom tab
+  navigate = {
+    { mode = "n", keymap = "<C-l>", action = "<C-w>l", desc = "pane left" },
+    { mode = "n", keymap = "<C-h>", action = "<C-w>h", desc = "pane right" },
+    { mode = "n", keymap = "<C-j>", action = "<C-w>j", desc = "pane up" },
+    { mode = "n", keymap = "<C-k>", action = "<C-w>k", desc = "pane down" },
+  },
 
--- toggleterm remap
-vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
-vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
-vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")
+  terminal = {
+    { mode = "n", keymap = "<leader>tf", action = "<cmd>ToggleTerm direction=float<cr>",      desc = "float" },
+    { mode = "n", keymap = "<leader>tv", action = "<cmd>ToggleTerm direction=vertical<cr>",   desc = "vertical tab" },
+    { mode = "n", keymap = "<leader>th", action = "<cmd>ToggleTerm direction=horizontal<cr>", desc = "horizontal tab" },
+  },
 
--- moving lines up and down
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<CR>==")
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<CR>==")
+  text = {
+    { mode = "n", keymap = "<A-j>", action = "<cmd>m .+1<cr>==",        desc = "line down" },
+    { mode = "n", keymap = "<A-k>", action = "<cmd>m .-2<cr>==",        desc = "line up" },
+    { mode = "i", keymap = "<A-j>", action = "<Esc><cmd>m .+1<cr>==gi", desc = "line down" },
+    { mode = "i", keymap = "<A-k>", action = "<Esc><cmd>m .-2<cr>==gi", desc = "line up" },
+    { mode = "v", keymap = "<A-j>", action = ":m'>+<cr>gv=gv",          desc = "line down" },
+    { mode = "v", keymap = "<A-k>", action = ":m-2<cr>gv=gv",           desc = "line up" },
+  }
+}
 
-vim.keymap.set("i", "<A-j>", "<Esc><cmd>m .+1<CR>==gi")
-vim.keymap.set("i", "<A-k>", "<Esc><cmd>m .-2<CR>==gi")
+-- save keymaps to env to be used later by whichkey
+_G.keymaps = keymaps;
 
-vim.keymap.set("v", "<A-j>", ":m'>+<CR>gv=gv")
-vim.keymap.set("v", "<A-k>", ":m-2<CR>gv=gv")
+-- load keymaps
+for _, mapping_group in pairs(keymaps) do
+  for _, mapping in pairs(mapping_group) do
+    vim.keymap.set(mapping.mode, mapping.keymap, mapping.action)
+  end
+end
