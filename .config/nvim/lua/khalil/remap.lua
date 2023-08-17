@@ -38,6 +38,12 @@ local keymaps = {
     { mode = "i", keymap = "<A-k>", action = "<Esc><cmd>m .-2<cr>==gi", desc = "line up" },
     { mode = "v", keymap = "<A-j>", action = ":m'>+<cr>gv=gv",          desc = "line down" },
     { mode = "v", keymap = "<A-k>", action = ":m-2<cr>gv=gv",           desc = "line up" },
+  },
+
+  true_zen = {
+    { mode = "n", keymap = "<leader>zf", action = "<cmd>TZFocus<cr>",      desc = "focus" },
+    { mode = "n", keymap = "<leader>za", action = "<cmd>TZAtaraxis<cr>",   desc = "ataraxis" },
+    { mode = "n", keymap = "<leader>zm", action = "<cmd>TZMinimalist<cr>", desc = "minimalist" },
   }
 }
 

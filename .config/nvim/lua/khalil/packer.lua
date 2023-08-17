@@ -124,6 +124,22 @@ return require('packer').startup({
 
     -- which key
     use "folke/which-key.nvim"
+
+    -- vim surround
+    use "tpope/vim-surround"
+
+    -- vim marks
+    use "chentoast/marks.nvim"
+
+    -- trueZen viewer
+    use "Pocco81/true-zen.nvim"
+
+    -- twilight
+    use "folke/twilight.nvim"
+
+    -- fugitive
+    use "tpope/vim-fugitive"
+
   end,
 
   config = {

@@ -53,6 +53,13 @@ wk.register(
       g = "live grep",
       h = "search help",
       s = "search git"
+    },
+
+    z = {
+      name = "true zen",
+      a = "ataraxis",
+      f = "focus",
+      m = "minimalist"
     }
   }
   ,
