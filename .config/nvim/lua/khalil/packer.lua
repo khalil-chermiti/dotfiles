@@ -139,12 +139,11 @@ return require('packer').startup({
 
     -- fugitive
     use "tpope/vim-fugitive"
-
   end,
 
   config = {
+    open_fn = require('packer.util').float,
     display = {
-      open_fn = require('packer.util').float,
     }
   }
 })
