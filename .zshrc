@@ -49,6 +49,9 @@ alias suspend="systemctl suspend"
 alias c="clear"
 alias switch-jdk="sudo update-alternatives --config java"
 
+# show only file name when dealing with long paths in git
+alias gss="git status --porcelain | cut -c 3- | xargs basename -a"
+
 # setting most as pager instead of less
 export PAGER="most"
 
@@ -85,3 +88,7 @@ alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/kh
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export FLUTTER_INSTALL="/opt/flutter"
+export PATH="$FLUTTER_INSTALL/bin:$PATH"
+
