@@ -61,8 +61,6 @@ lsp.set_sign_icons({
   info = '»'
 })
 
-lsp.skip_server_setup({ 'jdtls' })
-
 lsp.setup()
 
 -- setting up cmp

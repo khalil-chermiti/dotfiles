@@ -63,11 +63,6 @@ return require('packer').startup({
       }
     }
 
-    -- java language server
-    use "mfussenegger/nvim-jdtls"
-    use 'mfussenegger/nvim-dap'
-    use 'nvim-lua/plenary.nvim'
-
     -- needed to enable luasnip snippets
     use "saadparwaiz1/cmp_luasnip"
     use "rafamadriz/friendly-snippets"
