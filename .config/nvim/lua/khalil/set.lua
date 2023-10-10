@@ -49,3 +49,7 @@ vim.opt.timeoutlen = 300
 vim.cmd("set cmdheight=0")
 
 vim.cmd.colorscheme("onedark_vivid")
+
+-- remap tab to Ctrl + j for copilot
+vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
+vim.cmd("let g:copilot_no_tab_map = v:true")

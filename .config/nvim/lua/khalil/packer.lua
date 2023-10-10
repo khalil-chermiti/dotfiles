@@ -134,6 +134,12 @@ return require('packer').startup({
 
     -- fugitive
     use "tpope/vim-fugitive"
+
+    -- neorg
+    use {
+      "nvim-neorg/neorg",
+      requires = "nvim-lua/plenary.nvim",
+    }
   end,
 
   config = {

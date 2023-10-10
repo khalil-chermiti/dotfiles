@@ -52,8 +52,11 @@ alias switch-jdk="sudo update-alternatives --config java"
 # show only file name when dealing with long paths in git
 alias gss="git status --porcelain | cut -c 3- | xargs basename -a"
 
+alias copy="xclip -sel clip"
+
 # setting most as pager instead of less
 export PAGER="most"
+
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
