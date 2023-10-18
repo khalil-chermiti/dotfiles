@@ -39,7 +39,7 @@ alias t2="exa -a --tree -L 2 --icons --group-directories-first -I 'node_modules'
 alias t3="exa -a --tree -L 3 --icons --group-directories-first -I 'node_modules'" 
 alias l="exa -lg --icons"
 alias la="exa -lag --icons"
-alias li="exa --icons"
+alias ls="exa --icons"
 alias cat="batcat"
 alias extract='tar -zxvf'
 alias compress="tar -czvf"
@@ -88,10 +88,11 @@ alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/kh
 # bun completions
 [ -s "/home/khalil/.oh-my-zsh/completions/_bun" ] && source "/home/khalil/.oh-my-zsh/completions/_bun"
 
-# bun
+# bun path
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# flutter path
 export FLUTTER_INSTALL="/opt/flutter"
 export PATH="$FLUTTER_INSTALL/bin:$PATH"
 

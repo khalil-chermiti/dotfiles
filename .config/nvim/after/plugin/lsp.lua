@@ -2,13 +2,25 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').lazy_load()
 
+
 -- ********** lsp zero config **********
 
 lsp.ensure_installed({
   'tsserver',
   'eslint',
-  'lua_ls'
+  'lua_ls',
+  'jsonls'
 })
+
+-- set auto completion for json using schema plugin
+require('lspconfig').jsonls.setup {
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {

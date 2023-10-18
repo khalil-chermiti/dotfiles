@@ -53,3 +53,6 @@ vim.cmd.colorscheme("onedark_vivid")
 -- remap tab to Ctrl + j for copilot
 vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
 vim.cmd("let g:copilot_no_tab_map = v:true")
+
+-- disable auto commenting when returning to line
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])

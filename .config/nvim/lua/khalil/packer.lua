@@ -140,6 +140,9 @@ return require('packer').startup({
       "nvim-neorg/neorg",
       requires = "nvim-lua/plenary.nvim",
     }
+
+    -- schemastore for json completion
+    use "b0o/schemastore.nvim"
   end,
 
   config = {
