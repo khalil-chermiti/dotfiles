@@ -58,6 +58,8 @@ return require('packer').startup({
 
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },     -- Required
+        { 'hrsh7th/cmp-path' },     -- Optional
+        { 'hrsh7th/cmp-buffer' },   -- Optional
         { 'hrsh7th/cmp-nvim-lsp' }, -- Required
         { 'L3MON4D3/LuaSnip' },     -- Required
       }
@@ -143,6 +145,9 @@ return require('packer').startup({
 
     -- schemastore for json completion
     use "b0o/schemastore.nvim"
+
+    -- lsp for vscode like code completion
+    use "onsails/lspkind.nvim"
   end,
 
   config = {

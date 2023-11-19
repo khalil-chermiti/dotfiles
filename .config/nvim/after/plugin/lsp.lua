@@ -2,7 +2,6 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').lazy_load()
 
-
 -- ********** lsp zero config **********
 
 lsp.ensure_installed({
@@ -59,7 +58,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", '<leader>lf', function() vim.lsp.buf.format() end, opts)
   vim.keymap.set("n", "<leader>lm", function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  -- vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, opts)
 
   -- format buffer on save with default formatter
   -- lsp.buffer_autoformat()
@@ -77,13 +77,34 @@ lsp.setup()
 
 -- setting up cmp
 cmp.setup({
+
+  window = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
+  },
+
+
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. (strings[1] or "") .. " "
+      kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+      return kind
+    end,
+  },
+
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' } -- needed to enable luasnip
-  },
-  window = {
-    completion = cmp.config.window.bordered({ border = "single" }),
-    documentation = cmp.config.window.bordered({ border = "single" })
+    { name = 'luasnip' }, -- needed to enable luasnip
+    { name = 'buffer' },
+    { name = 'path' },
   },
 
   snippet = {

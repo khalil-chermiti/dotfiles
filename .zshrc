@@ -6,7 +6,7 @@ echo "  .--------------.
       '----- ( *.*) 
              o_(\")(\")" | lolcat
 
-#figlet -f small "Happy  Coding" | lolcat
+# figlet -f small "Yo Yo Yo it's humpday" | lolcat
 
 #fm6000 --say "Happy Coding!" --dog -c "random"
 

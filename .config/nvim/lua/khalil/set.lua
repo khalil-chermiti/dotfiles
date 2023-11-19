@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 
+
 -- disable language provider support (lua and vimscript plugins only)
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -14,6 +15,8 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.pumheight = 10
+
 
 vim.opt.smartindent = true
 
@@ -40,6 +43,13 @@ vim.opt.updatetime = 50
 vim.opt.fillchars = {
   eob = ' ',
   vert = ' '
+}
+
+-- disable line diagnostics
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = true,
 }
 
 -- set keymap sequence timeout

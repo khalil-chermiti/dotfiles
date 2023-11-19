@@ -56,3 +56,5 @@ for _, mapping_group in pairs(keymaps) do
     vim.keymap.set(mapping.mode, mapping.keymap, mapping.action)
   end
 end
+
+return keymaps;
