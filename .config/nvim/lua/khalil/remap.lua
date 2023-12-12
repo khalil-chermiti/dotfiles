@@ -44,7 +44,13 @@ local keymaps = {
     { mode = "n", keymap = "<leader>zf", action = "<cmd>TZFocus<cr>",      desc = "focus" },
     { mode = "n", keymap = "<leader>za", action = "<cmd>TZAtaraxis<cr>",   desc = "ataraxis" },
     { mode = "n", keymap = "<leader>zm", action = "<cmd>TZMinimalist<cr>", desc = "minimalist" },
-  }
+  },
+
+  -- TODO add remap for harpoon
+  -- harpoon = {
+  --   { mode = "n", keymap = "<leader>ha", action = "<cmd>lua require('harpoon.mark').add_file()<cr>",      desc = "focus" },
+  --   { mode = "n", keymap = "<leader>ht", action = "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",      desc = "focus" },
+  -- }
 }
 
 -- save keymaps to env to be used later by whichkey

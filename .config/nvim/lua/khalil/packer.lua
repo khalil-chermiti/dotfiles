@@ -148,6 +148,11 @@ return require('packer').startup({
 
     -- lsp for vscode like code completion
     use "onsails/lspkind.nvim"
+
+    use { "catppuccin/nvim", as = "catppuccin" }
+
+    -- harpoon
+    -- use "ThePrimeagen/harpoon"
   end,
 
   config = {

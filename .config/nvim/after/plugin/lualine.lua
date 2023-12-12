@@ -20,7 +20,7 @@ require("lualine").setup {
     component_separators = '',
     globalstatus = true,
 
-    theme = 'onedark'
+    theme = 'catppuccin'
   },
 
   sections = {
