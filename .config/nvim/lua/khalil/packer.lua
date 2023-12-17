@@ -5,26 +5,8 @@ return require('packer').startup({
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- telescope for nvim
-    use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.2',
-      requires = { { 'nvim-lua/plenary.nvim' } }
-    }
 
-    -- tree-sitter
-    use(
-      'nvim-treesitter/nvim-treesitter',
-      { run = ':TSUpdate' }
-    )
-
-    -- lualine	
-    use {
-      'nvim-lualine/lualine.nvim',
-      -- requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-
-    -- wilder
-    use { 'gelguy/wilder.nvim' }
+    -- ***** vim *****
 
     -- nvim-tree
     use {
@@ -41,11 +23,74 @@ return require('packer').startup({
       requires = 'nvim-tree/nvim-web-devicons'
     }
 
-    -- autotags
-    use { "windwp/nvim-ts-autotag" }
+    -- lualine	
+    use 'nvim-lualine/lualine.nvim'
 
-    -- vim pairs
-    use { "windwp/nvim-autopairs" }
+    -- wilder
+    use 'gelguy/wilder.nvim'
+
+
+    -- vim marks
+    use "chentoast/marks.nvim"
+
+    -- pane navigation integration with tmux
+    use "christoomey/vim-tmux-navigator"
+
+    -- which key
+    use "folke/which-key.nvim"
+
+    -- vim surround
+    use "tpope/vim-surround"
+
+
+
+
+
+    -- ***** utils *****
+
+    -- toggle-term
+    use "akinsho/toggleterm.nvim"
+
+    -- telescope for nvim
+    use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.2',
+      requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+
+    -- neorg
+    use {
+      "nvim-neorg/neorg",
+      requires = "nvim-lua/plenary.nvim",
+    }
+
+
+
+
+
+    -- **** UI ****
+
+    -- catppuccino theme
+    use { "catppuccin/nvim", as = "catppuccin" }
+
+    -- one dark pro theme
+    use "olimorris/onedarkpro.nvim"
+
+    -- trueZen viewer
+    use "Pocco81/true-zen.nvim"
+
+    -- twilight
+    use "folke/twilight.nvim"
+
+    -- Buffer delete but keeps layout intact
+    use 'famiu/bufdelete.nvim'
+
+    -- ui
+    use 'stevearc/dressing.nvim'
+
+
+
+
+    -- ***** code , completion , formatting , linting , etc *****
 
     -- lsp
     use {
@@ -65,21 +110,33 @@ return require('packer').startup({
       }
     }
 
+    -- schemastore for json completion
+    use "b0o/schemastore.nvim"
+
+    -- lsp for vscode like code completion
+    use "onsails/lspkind.nvim"
+
     -- needed to enable luasnip snippets
     use "saadparwaiz1/cmp_luasnip"
     use "rafamadriz/friendly-snippets"
 
-    -- git signs
-    use { "lewis6991/gitsigns.nvim" }
+    -- tree-sitter
+    use(
+      'nvim-treesitter/nvim-treesitter',
+      { run = ':TSUpdate' }
+    )
 
-    -- toggle-term
-    use { "akinsho/toggleterm.nvim" }
+    -- formatting
+    use "stevearc/conform.nvim"
 
-    -- rainbow parentheses
-    use "HiPhish/nvim-ts-rainbow2"
+    -- linting
+    use "mfussenegger/nvim-lint"
 
-    -- one dark pro theme
-    use "olimorris/onedarkpro.nvim"
+    -- autotags
+    use "windwp/nvim-ts-autotag"
+
+    -- vim pairs
+    use "windwp/nvim-autopairs"
 
     -- lunarvim commenting plugin
     use {
@@ -89,14 +146,11 @@ return require('packer').startup({
       end
     }
 
-    -- pane navigation integration with tmux
-    use "christoomey/vim-tmux-navigator"
+    -- rainbow parentheses
+    use "HiPhish/nvim-ts-rainbow2"
 
-    -- Buffer delete but keeps layout intact
-    use 'famiu/bufdelete.nvim'
-
-    -- ui
-    use { 'stevearc/dressing.nvim' }
+    -- indent lines
+    use "lukas-reineke/indent-blankline.nvim"
 
     -- css colors
     use {
@@ -106,10 +160,13 @@ return require('packer').startup({
       end
     }
 
-    use "lukas-reineke/indent-blankline.nvim"
 
-    use "f-person/git-blame.nvim"
 
+
+
+    -- ***** Git *****
+
+    -- neogit
     use {
       "NeogitOrg/neogit",
       requires = {
@@ -119,46 +176,16 @@ return require('packer').startup({
       }
     }
 
-    -- which key
-    use "folke/which-key.nvim"
-
-    -- vim surround
-    use "tpope/vim-surround"
-
-    -- vim marks
-    use "chentoast/marks.nvim"
-
-    -- trueZen viewer
-    use "Pocco81/true-zen.nvim"
-
-    -- twilight
-    use "folke/twilight.nvim"
-
     -- fugitive
     use "tpope/vim-fugitive"
 
-    -- neorg
-    use {
-      "nvim-neorg/neorg",
-      requires = "nvim-lua/plenary.nvim",
-    }
+    -- git blame
+    use "f-person/git-blame.nvim"
 
-    -- schemastore for json completion
-    use "b0o/schemastore.nvim"
+    -- git signs
+    use "lewis6991/gitsigns.nvim"
 
-    -- lsp for vscode like code completion
-    use "onsails/lspkind.nvim"
 
-    use { "catppuccin/nvim", as = "catppuccin" }
-
-    -- harpoon
-    -- use "ThePrimeagen/harpoon"
-
-    -- formatting
-    use "stevearc/conform.nvim"
-
-    -- linting
-    use "mfussenegger/nvim-lint"
   end,
 
   config = {
