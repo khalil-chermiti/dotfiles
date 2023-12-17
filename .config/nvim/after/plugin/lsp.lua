@@ -6,9 +6,8 @@ require('luasnip.loaders.from_vscode').lazy_load()
 
 lsp.ensure_installed({
   'tsserver',
-  'eslint',
   'lua_ls',
-  'jsonls'
+  'jsonls',
 })
 
 -- set auto completion for json using schema plugin
@@ -80,12 +79,14 @@ cmp.setup({
 
   window = {
     completion = {
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      winhighlight = "Normal:CmpNormal,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
     },
+    documentation = {
+      winhighlight = "Normal:CmpDocNormal",
+    }
   },
-
 
   formatting = {
     fields = { "kind", "abbr", "menu" },

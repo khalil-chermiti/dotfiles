@@ -52,6 +52,7 @@ alias switch-jdk="sudo update-alternatives --config java"
 # show only file name when dealing with long paths in git
 alias gss="git status --porcelain | cut -c 3- | xargs basename -a"
 
+# pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
 
 # setting most as pager instead of less
@@ -75,15 +76,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# add gradle to path
-export PATH=$PATH:/opt/gradle/gradle-7.6.2/bin
 
 # managing dotenv files
 alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/khalil'
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
 # bun completions
 [ -s "/home/khalil/.oh-my-zsh/completions/_bun" ] && source "/home/khalil/.oh-my-zsh/completions/_bun"
@@ -92,7 +87,6 @@ alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/kh
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# flutter path
-export FLUTTER_INSTALL="/opt/flutter"
-export PATH="$FLUTTER_INSTALL/bin:$PATH"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

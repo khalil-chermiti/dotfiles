@@ -153,6 +153,12 @@ return require('packer').startup({
 
     -- harpoon
     -- use "ThePrimeagen/harpoon"
+
+    -- formatting
+    use "stevearc/conform.nvim"
+
+    -- linting
+    use "mfussenegger/nvim-lint"
   end,
 
   config = {
