@@ -60,6 +60,7 @@ return require('packer').startup({
     -- neorg
     use {
       "nvim-neorg/neorg",
+      run = ":Neorg sync-parsers",
       requires = "nvim-lua/plenary.nvim",
     }
 

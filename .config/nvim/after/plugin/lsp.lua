@@ -55,13 +55,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("n", "<leader>lR", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", '<leader>lf', function() vim.lsp.buf.format() end, opts)
+  -- vim.keymap.set("n", '<leader>lf', function() vim.lsp.buf.format() end, opts)
   vim.keymap.set("n", "<leader>lm", function() vim.diagnostic.open_float() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  -- vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, opts)
-
-  -- format buffer on save with default formatter
-  -- lsp.buffer_autoformat()
 end)
 
 -- set sign icons

@@ -22,11 +22,11 @@ conform.setup({
   -- },
 })
 
--- <leader> fd : format document
-vim.keymap.set({ "n", "v" }, "<leader>fd", function()
+vim.keymap.set({ "n", "v" }, "<leader>lf", function()
   conform.format({
     lsp_fallback = true,
     async = false,
     timeout_ms = 500,
   })
-end, { desc = "format file/block" })
+end, { desc = "format" })
+
