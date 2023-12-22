@@ -53,12 +53,12 @@ vim.diagnostic.config {
 }
 
 -- set keymap sequence timeout
-vim.opt.timeoutlen = 300
-
--- remove ugly cmd padding
 vim.cmd("set cmdheight=0")
 
-vim.cmd.colorscheme("onedark_vivid")
+-- copy to system clipboard
+vim.cmd("set clipboard+=unnamedplus")
+
+-- vim.cmd.colorscheme("onedark_vivid")
 
 -- remap tab to Ctrl + j for copilot
 vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
