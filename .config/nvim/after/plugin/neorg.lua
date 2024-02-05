@@ -3,7 +3,12 @@ require("neorg").setup({
 		["core.defaults"] = {},
 		["core.concealer"] = {
 			config = {
-        icon_preset = "varied"
+				icon_preset = "varied",
+				icons = {
+					code_block = {
+						conceal = true,
+					},
+				},
 			},
 		},
 		["core.dirman"] = {

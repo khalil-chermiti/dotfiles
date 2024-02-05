@@ -58,7 +58,7 @@ vim.cmd("set cmdheight=0")
 -- copy to system clipboard
 vim.cmd("set clipboard+=unnamedplus")
 
--- vim.cmd.colorscheme("onedark_vivid")
+vim.cmd.colorscheme("onedark_vivid")
 
 -- remap tab to Ctrl + j for copilot
 vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')

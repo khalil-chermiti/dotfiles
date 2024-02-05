@@ -75,7 +75,9 @@ cmp.setup({
 
   window = {
     completion = {
-      winhighlight = "Normal:CmpNormal,FloatBorder:Pmenu,Search:None",
+      -- toggle this line to activate line highlight for completion window
+      -- winhighlight = "Normal:CmpNormal,FloatBorder:Pmenu,Search:None",
+      winhighlight = "FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
     },
