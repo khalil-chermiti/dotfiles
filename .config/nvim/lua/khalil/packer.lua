@@ -1,205 +1,191 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
-return require('packer').startup({
-  function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+return require("packer").startup({
+	function(use)
+		-- Packer can manage itself
+		use("wbthomason/packer.nvim")
 
+		-- ***** vim *****
 
-    -- ***** vim *****
+		-- nvim-tree
+		use({
+			"nvim-tree/nvim-tree.lua",
+			requires = {
+				"nvim-tree/nvim-web-devicons", -- optional
+			},
+		})
 
-    -- nvim-tree
-    use {
-      'nvim-tree/nvim-tree.lua',
-      requires = {
-        'nvim-tree/nvim-web-devicons', -- optional
-      },
-    }
+		-- bufferline
+		use({
+			"akinsho/bufferline.nvim",
+			tag = "*",
+			requires = "nvim-tree/nvim-web-devicons",
+		})
 
-    -- bufferline
-    use {
-      'akinsho/bufferline.nvim',
-      tag = "*",
-      requires = 'nvim-tree/nvim-web-devicons'
-    }
+		-- lualine
+		use("nvim-lualine/lualine.nvim")
 
-    -- lualine	
-    use 'nvim-lualine/lualine.nvim'
+		-- wilder
+		use("gelguy/wilder.nvim")
 
-    -- wilder
-    use 'gelguy/wilder.nvim'
+		-- vim marks
+		use("chentoast/marks.nvim")
 
+		-- pane navigation integration with tmux
+		use("christoomey/vim-tmux-navigator")
 
-    -- vim marks
-    use "chentoast/marks.nvim"
+		-- which key
+		use("folke/which-key.nvim")
 
-    -- pane navigation integration with tmux
-    use "christoomey/vim-tmux-navigator"
+		-- vim surround
+		use("tpope/vim-surround")
 
-    -- which key
-    use "folke/which-key.nvim"
+		-- ***** utils *****
 
-    -- vim surround
-    use "tpope/vim-surround"
+		-- toggle-term
+		use("akinsho/toggleterm.nvim")
 
+		-- telescope for nvim
+		use({
+			"nvim-telescope/telescope.nvim",
+			tag = "0.1.2",
+			requires = { { "nvim-lua/plenary.nvim" } },
+		})
 
+		-- neorg
+		use({
+			"nvim-neorg/neorg",
+			run = ":Neorg sync-parsers",
+			requires = "nvim-lua/plenary.nvim",
+		})
 
+		-- **** UI ****
 
+		-- catppuccino theme
+		use({ "catppuccin/nvim", as = "catppuccin" })
 
-    -- ***** utils *****
+		-- one dark pro theme
+		use("olimorris/onedarkpro.nvim")
 
-    -- toggle-term
-    use "akinsho/toggleterm.nvim"
+		-- trueZen viewer
+		use("Pocco81/true-zen.nvim")
 
-    -- telescope for nvim
-    use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.2',
-      requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+		-- twilight
+		use("folke/twilight.nvim")
 
-    -- neorg
-    use {
-      "nvim-neorg/neorg",
-      run = ":Neorg sync-parsers",
-      requires = "nvim-lua/plenary.nvim",
-    }
+		-- Buffer delete but keeps layout intact
+		use("famiu/bufdelete.nvim")
 
+		-- ui
+		use("stevearc/dressing.nvim")
 
+		-- ***** code , completion , formatting , linting , etc *****
 
+		-- lsp
+		use({
+			"VonHeikemen/lsp-zero.nvim",
+			requires = {
+				-- LSP Support
+				{ "neovim/nvim-lspconfig" }, -- Required
+				{ "williamboman/mason.nvim" }, -- Optional
+				{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
+				-- Autocompletion
+				{ "hrsh7th/nvim-cmp" }, -- Required
+				{ "hrsh7th/cmp-path" }, -- Optional
+				{ "hrsh7th/cmp-buffer" }, -- Optional
+				{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+				{ "L3MON4D3/LuaSnip" }, -- Required
+			},
+		})
 
-    -- **** UI ****
+		-- metals for scala
+		use({
+			"scalameta/nvim-metals",
+			requires = {
+				"nvim-lua/plenary.nvim",
+			},
+		})
 
-    -- catppuccino theme
-    use { "catppuccin/nvim", as = "catppuccin" }
+		-- schemastore for json completion
+		use("b0o/schemastore.nvim")
 
-    -- one dark pro theme
-    use "olimorris/onedarkpro.nvim"
+		-- lsp for vscode like code completion
+		use("onsails/lspkind.nvim")
 
-    -- trueZen viewer
-    use "Pocco81/true-zen.nvim"
+		-- needed to enable luasnip snippets
+		use("saadparwaiz1/cmp_luasnip")
+		use("rafamadriz/friendly-snippets")
 
-    -- twilight
-    use "folke/twilight.nvim"
+		-- tree-sitter
+		use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
-    -- Buffer delete but keeps layout intact
-    use 'famiu/bufdelete.nvim'
+		-- formatting
+		use("stevearc/conform.nvim")
 
-    -- ui
-    use 'stevearc/dressing.nvim'
+		-- linting
+		use("mfussenegger/nvim-lint")
 
+		-- autotags
+		use("windwp/nvim-ts-autotag")
 
+		-- vim pairs
+		use("windwp/nvim-autopairs")
 
+		-- lunarvim commenting plugin
+		use({
+			"numToStr/Comment.nvim",
+			config = function()
+				require("Comment").setup()
+			end,
+		})
 
-    -- ***** code , completion , formatting , linting , etc *****
+		-- rainbow parentheses
+		use("HiPhish/nvim-ts-rainbow2")
 
-    -- lsp
-    use {
-      'VonHeikemen/lsp-zero.nvim',
-      requires = {
-        -- LSP Support
-        { 'neovim/nvim-lspconfig' },             -- Required
-        { 'williamboman/mason.nvim' },           -- Optional
-        { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+		-- indent lines
+		use("lukas-reineke/indent-blankline.nvim")
 
-        -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },     -- Required
-        { 'hrsh7th/cmp-path' },     -- Optional
-        { 'hrsh7th/cmp-buffer' },   -- Optional
-        { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-        { 'L3MON4D3/LuaSnip' },     -- Required
-      }
-    }
+		-- css colors
+		use({
+			"norcalli/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup()
+			end,
+		})
 
-    -- metals for scala
-    use({
-      "scalameta/nvim-metals",
-      requires = {
-        "nvim-lua/plenary.nvim",
-      },
-    })
+		-- ***** Git *****
 
-    -- schemastore for json completion
-    use "b0o/schemastore.nvim"
+		-- neogit
+		use({
+			"NeogitOrg/neogit",
+			requires = {
+				"nvim-lua/plenary.nvim", -- required
+				"nvim-telescope/telescope.nvim", -- optional
+				"sindrets/diffview.nvim", -- optional
+			},
+		})
 
-    -- lsp for vscode like code completion
-    use "onsails/lspkind.nvim"
+		-- fugitive
+		use("tpope/vim-fugitive")
 
-    -- needed to enable luasnip snippets
-    use "saadparwaiz1/cmp_luasnip"
-    use "rafamadriz/friendly-snippets"
+		-- git blame
+		use("f-person/git-blame.nvim")
 
-    -- tree-sitter
-    use(
-      'nvim-treesitter/nvim-treesitter',
-      { run = ':TSUpdate' }
-    )
+		-- git signs
+		use("lewis6991/gitsigns.nvim")
 
-    -- formatting
-    use "stevearc/conform.nvim"
+		-- use({
+		-- 	"nvimdev/lspsaga.nvim",
+		-- after = "nvim-lspconfig",
+		-- 	config = function()
+		-- 		require("lspsaga").setup()
+		-- 	end,
+ -- })
+	end,
 
-    -- linting
-    use "mfussenegger/nvim-lint"
-
-    -- autotags
-    use "windwp/nvim-ts-autotag"
-
-    -- vim pairs
-    use "windwp/nvim-autopairs"
-
-    -- lunarvim commenting plugin
-    use {
-      'numToStr/Comment.nvim',
-      config = function()
-        require('Comment').setup()
-      end
-    }
-
-    -- rainbow parentheses
-    use "HiPhish/nvim-ts-rainbow2"
-
-    -- indent lines
-    use "lukas-reineke/indent-blankline.nvim"
-
-    -- css colors
-    use {
-      'norcalli/nvim-colorizer.lua',
-      config = function()
-        require("colorizer").setup()
-      end
-    }
-
-
-
-
-
-    -- ***** Git *****
-
-    -- neogit
-    use {
-      "NeogitOrg/neogit",
-      requires = {
-        "nvim-lua/plenary.nvim",         -- required
-        "nvim-telescope/telescope.nvim", -- optional
-        "sindrets/diffview.nvim",        -- optional
-      }
-    }
-
-    -- fugitive
-    use "tpope/vim-fugitive"
-
-    -- git blame
-    use "f-person/git-blame.nvim"
-
-    -- git signs
-    use "lewis6991/gitsigns.nvim"
-
-
-  end,
-
-  config = {
-    open_fn = require('packer.util').float,
-    display = {
-    }
-  }
+	config = {
+		open_fn = require("packer.util").float,
+		display = {},
+	},
 })
