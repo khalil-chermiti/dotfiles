@@ -39,7 +39,7 @@ vim.opt.updatetime = 50
 -- remove vertical split and end of buffer indicator
 vim.opt.fillchars = {
 	eob = " ",
-	vert = " ",
+	vert = "│",
 }
 
 -- disable line diagnostics

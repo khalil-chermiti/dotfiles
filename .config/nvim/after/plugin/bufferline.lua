@@ -6,7 +6,7 @@ require 'bufferline'.setup({
       {
         filetype = "NvimTree",
         text = "NvimTree",
-        separator = false,
+        separator = true,
         text_align = "center"
       }
     },
@@ -17,12 +17,11 @@ require 'bufferline'.setup({
     diagnostics_update_in_insert = false,
 
     indicator = {
-      icon = '▎',
       style = "icon"
     },
 
     -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
-    separator_style = "thick",
+    separator_style = "thin",
     show_close_icon = false,
     show_buffer_close_icons = false,
   },

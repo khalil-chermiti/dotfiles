@@ -1,6 +1,6 @@
 local keymaps = {
   explorer = {
-    { mode = "n", keymap = "<leader>ee", action = "<cmd>NvimTreeToggle<cr>", desc = "toggle" },
+    { mode = "n", keymap = "<leader>eo", action = "<cmd>NvimTreeToggle<cr>", desc = "toggle" },
     { mode = "n", keymap = "<leader>ef", action = "<cmd>NvimTreeFocus<cr>",  desc = "focus" },
   },
 
@@ -9,6 +9,12 @@ local keymaps = {
     { mode = "n", keymap = "<leader>bp", action = "<cmd>BufferLineCyclePrev<cr>", desc = "buffer prev" },
     { mode = "n", keymap = "<leader>bc", action = "<cmd>BufferLinePick<cr>",      desc = "buffer pick" },
     { mode = "n", keymap = "<leader>c",  action = "<cmd>Bdelete<CR>",             desc = "buffer close" },
+  },
+
+  tabs= {
+    { mode = "n", keymap = "<leader>Tn", action = "<cmd>tabNext<cr>",      desc = "next tab" },
+    { mode = "n", keymap = "<leader>Tp", action = "<cmd>tabprevious<cr>",      desc = "prev tab" },
+    { mode = "n", keymap = "<leader>Tc", action = "<cmd>tabclose<cr>",     desc = "close tab" },
   },
 
   resize = {
@@ -30,6 +36,7 @@ local keymaps = {
     { mode = "n", keymap = "<leader>tv", action = "<cmd>ToggleTerm direction=vertical<cr>",   desc = "vertical tab" },
     { mode = "n", keymap = "<leader>th", action = "<cmd>ToggleTerm direction=horizontal<cr>", desc = "horizontal tab" },
   },
+
 
   text = {
     { mode = "n", keymap = "<A-j>", action = "<cmd>m .+1<cr>==",        desc = "line down" },

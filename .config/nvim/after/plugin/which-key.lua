@@ -19,6 +19,13 @@ wk.register(
       v = "vertical"
     },
 
+    T = {
+      name = "Tabs",
+      p = "prev tab",
+      n = "next tab",
+      c = "close tab"
+    },
+
     c = "close buffer",
 
     b = {
