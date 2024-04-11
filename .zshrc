@@ -95,7 +95,7 @@ function fvim () {
         print $0 "\t" path;
     }' | fzf --keep-right --border=sharp --reverse --margin 1,5% --delimiter="\t" --with-nth 2 \
         --preview 'batcat --style=numbers --color=always --line-range :20 {1}' \
-        --height=25 -e --prompt="  " --pointer="->" | cut -f1)
+        --height=25 --prompt="  " --pointer="->" | cut -f1)
 
     if [[ -n "$file" ]]; then
         nvim "$file"
