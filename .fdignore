@@ -1,0 +1,68 @@
+# Directories
+node_modules/
+.git/
+.svn/
+dist/
+build/
+bin/
+obj/
+out/
+tmp/
+vendor/
+__pycache__/
+target/
+
+# File extensions
+*.o
+*.jar
+*.obj
+*.class
+*.pyc
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.backup
+*.exe
+*.dll
+*.so
+*.dylib
+*.zip
+*.pdf
+*.tar.gz
+*.rar
+.DS_Store
+
+# Media file extensions
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+
+# Videos
+*.mp4
+*.mov
+*.wmv
+*.flv
+*.avi
+*.mkv
+*.mpeg
+*.mpg
+
+# Audio
+*.mp3
+*.wav
+*.aac
+*.flac
+*.m4a
+*.ogg
+
+# Vector Graphics
+*.svg
+

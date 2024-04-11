@@ -19,8 +19,6 @@ require("lualine").setup {
     section_separators = '',
     component_separators = '',
     globalstatus = true,
-
-    theme = 'catppuccin'
   },
 
   sections = {

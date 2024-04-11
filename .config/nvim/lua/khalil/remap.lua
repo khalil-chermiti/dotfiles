@@ -13,7 +13,7 @@ local keymaps = {
 
   tabs= {
     { mode = "n", keymap = "<leader>Tn", action = "<cmd>tabNext<cr>",      desc = "next tab" },
-    { mode = "n", keymap = "<leader>Tp", action = "<cmd>tabprevious<cr>",      desc = "prev tab" },
+    { mode = "n", keymap = "<leader>Tp", action = "<cmd>tabprevious<cr>",  desc = "prev tab" },
     { mode = "n", keymap = "<leader>Tc", action = "<cmd>tabclose<cr>",     desc = "close tab" },
   },
 
@@ -52,6 +52,10 @@ local keymaps = {
     { mode = "n", keymap = "<leader>za", action = "<cmd>TZAtaraxis<cr>",   desc = "ataraxis" },
     { mode = "n", keymap = "<leader>zm", action = "<cmd>TZMinimalist<cr>", desc = "minimalist" },
   },
+
+  noice = {
+    {mode = "n" , keymap = "<leader>nd" , action = "<cmd>NoiceDismiss<CR>", desc = "dismiss noice messages"}
+  }
 }
 
 -- save keymaps to env to be used later by whichkey

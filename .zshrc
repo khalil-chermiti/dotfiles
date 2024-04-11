@@ -49,11 +49,58 @@ alias suspend="systemctl suspend"
 alias c="clear"
 alias switch-jdk="sudo update-alternatives --config java"
 
+alias tmns="tmux new -s"
+alias tmls="tmux list-sessions"
+
 # show only file name when dealing with long paths in git
 alias gss="git status --porcelain | cut -c 3- | xargs basename -a"
 
 # pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
+
+# docker aliases
+alias docker-ps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}'"
+
+
+# search for directory using fd and open it using vim
+function dvim() {
+    local depth=${1:-5}  # Default depth is 3 if no argument provided
+
+    local dir=$(fd -E node_modules -E dist -t d | awk -F/ -v depth="$depth" '{
+        start = NF - depth + 1;
+        if (start < 1) start = 1;
+        path = $(start);
+        for (i = start + 1; i <= NF; i++) {
+            path = path "/" $i;
+        }
+        print $0 "\t" path;
+    }' | fzf --keep-right --border=sharp --reverse --margin 1,10% --delimiter="\t" --with-nth 2 \
+        --height=20 --prompt="  " --pointer="->" | cut -f1)
+
+    if [[ -n "$dir" ]]; then
+        nvim "$dir"
+    fi
+}
+
+function fvim () {
+    local depth=${1:-3}  # Default depth is 3 if no argument provided
+
+    local file=$(fd -t f | awk -F/ -v depth="$depth" '{
+        start = NF - depth + 1;
+        if (start < 1) start = 1;
+        path = $(start);
+        for (i = start + 1; i <= NF; i++) {
+            path = path "/" $i;
+        }
+        print $0 "\t" path;
+    }' | fzf --keep-right --border=sharp --reverse --margin 1,5% --delimiter="\t" --with-nth 2 \
+        --preview 'batcat --style=numbers --color=always --line-range :20 {1}' \
+        --height=25 -e --prompt="  " --pointer="->" | cut -f1)
+
+    if [[ -n "$file" ]]; then
+        nvim "$file"
+    fi
+}
 
 # setting most as pager instead of less
 export PAGER="most"

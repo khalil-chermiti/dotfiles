@@ -7,6 +7,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("lspconfig").lua_ls.setup({
 	-- ... other configs
 	settings = {
+
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
@@ -79,23 +80,40 @@ lsp.set_sign_icons({
 
 lsp.setup()
 
+-- `/` cmdline setup.
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
+})
+
 -- setting up cmp
 cmp.setup({
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-		["<C-y>"] = cmp.mapping.select_next_item({ behavior = "select" }),
+		["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
+		["<Tab>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 		["<C-e>"] = cmp.mapping.abort(),
+
 		["<C-Space>"] = cmp.mapping(function()
 			if cmp.visible() then
 				cmp.select_prev_item({ behavior = "insert" })
-			else
-				cmp.complete()
-			end
-		end),
-		["<C-n>"] = cmp.mapping(function()
-			if cmp.visible() then
-				cmp.select_next_item({ behavior = "insert" })
 			else
 				cmp.complete()
 			end
@@ -104,14 +122,19 @@ cmp.setup({
 
 	window = {
 		completion = {
-			-- toggle this line to activate line highlight for completion window
-			-- winhighlight = "Normal:CmpNormal,FloatBorder:Pmenu,Search:None",
-			winhighlight = "FloatBorder:Pmenu,Search:None",
+			-- activate line highlight for completion window
+			winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+
+			-- disable line highlight for completion window
+			-- winhighlight = "FloatBorder:Pmenu,Search:None",
 			col_offset = -3,
 			side_padding = 0,
+			border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 		},
 		documentation = {
 			winhighlight = "Normal:CmpDocNormal",
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			maxwidth = 0,
 		},
 	},
 

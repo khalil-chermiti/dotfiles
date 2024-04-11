@@ -1,7 +1,6 @@
 term xterm-256color
 
 font_family jetbrainsmono nerd font
-# font_family FiraCode Nerd Font 
 # font_family Hack Nerd Font 
 
 font_size 14.0
@@ -10,7 +9,7 @@ font_size 14.0
 # modify_font strikethrough_position 2px
 
 
-hide_window_decorations no
+hide_window_decorations yes
 window_padding_width 2 5 0 5
 window_border_width 0
 
@@ -22,6 +21,6 @@ tab_title_template  " {index} {title} "
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME

@@ -28,8 +28,6 @@ vim.opt.undofile = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
-vim.opt.termguicolors = true
-
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
@@ -55,11 +53,13 @@ vim.cmd("set cmdheight=0")
 -- copy to system clipboard
 vim.cmd("set clipboard+=unnamedplus")
 
-vim.cmd.colorscheme("onedark_vivid")
-
 -- remap tab to Ctrl + j for copilot
 vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
 vim.cmd("let g:copilot_no_tab_map = v:true")
 
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+
+vim.cmd.colorscheme("onedark_dark")
+vim.cmd.colorscheme("onedark_dark")
+

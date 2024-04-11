@@ -36,9 +36,6 @@ local plugins = {
 	-- lualine
 	"nvim-lualine/lualine.nvim",
 
-	-- wilder
-	"gelguy/wilder.nvim",
-
 	-- vim marks
 	"chentoast/marks.nvim",
 
@@ -56,24 +53,15 @@ local plugins = {
 	-- toggle-term
 	"akinsho/toggleterm.nvim",
 
-	-- telescope for nvim
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "0.1.2",
-		dependencies = { { "nvim-lua/plenary.nvim" } },
-	},
-
 	-- neorg
 	{
 		"nvim-neorg/neorg",
 		build = ":Neorg sync-parsers",
 		dependencies = "nvim-lua/plenary.nvim",
+		version = "^7",
 	},
 
 	-- **** UI ****
-
-	-- catppuccino theme
-	{ "catppuccin/nvim", as = "catppuccin" },
 
 	-- one dark pro theme
 	"olimorris/onedarkpro.nvim",
@@ -102,8 +90,9 @@ local plugins = {
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
-	{ "hrsh7th/cmp-path" }, -- Optional
-	{ "hrsh7th/cmp-buffer" }, -- Optional
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-cmdline" },
 
 	-- metals for scala
 	{
@@ -131,9 +120,6 @@ local plugins = {
 
 	-- linting
 	"mfussenegger/nvim-lint",
-
-	-- autoversions
-	-- "windwp/nvim-ts-autoversion",
 
 	-- vim pairs
 	"windwp/nvim-autopairs",
@@ -181,8 +167,26 @@ local plugins = {
 	-- git signs
 	"lewis6991/gitsigns.nvim",
 
-	-- github copilot
-	"github/copilot.vim",
+	-- noice
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			routes = {
+				{
+					filter = { event = "notify", find = "No information available" },
+					opts = { skip = true },
+				},
+			},
+			presets = {
+				lsp_doc_border = true,
+			},
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	},
 }
 
 require("lazy").setup(plugins, {})
