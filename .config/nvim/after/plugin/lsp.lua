@@ -123,10 +123,11 @@ cmp.setup({
 	window = {
 		completion = {
 			-- activate line highlight for completion window
-			winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+			-- winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
 
 			-- disable line highlight for completion window
-			-- winhighlight = "FloatBorder:Pmenu,Search:None",
+			winhighlight = "FloatBorder:Pmenu,Search:None",
+
 			col_offset = -3,
 			side_padding = 0,
 			border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
@@ -154,6 +155,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- needed to enable luasnip
+
 		{ name = "buffer" },
 		{ name = "path" },
 	},

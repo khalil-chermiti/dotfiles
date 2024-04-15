@@ -54,12 +54,16 @@ vim.cmd("set cmdheight=0")
 vim.cmd("set clipboard+=unnamedplus")
 
 -- remap tab to Ctrl + j for copilot
-vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
-vim.cmd("let g:copilot_no_tab_map = v:true")
+-- vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
+-- vim.cmd("let g:copilot_no_tab_map = v:true")
 
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
-vim.cmd.colorscheme("onedark_dark")
-vim.cmd.colorscheme("onedark_dark")
+vim.g.vimtex_compiler_latexmk = {
+	["out_dir"] = "build",
+}
 
+
+vim.cmd.colorscheme("onedark_vivid")
+vim.cmd.colorscheme("onedark_vivid")

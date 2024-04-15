@@ -3,7 +3,7 @@ term xterm-256color
 font_family jetbrainsmono nerd font
 # font_family Hack Nerd Font 
 
-font_size 14.0
+font_size 13.0
 # modify_font underline_position 9
 # modify_font underline_thickness 200%
 # modify_font strikethrough_position 2px
@@ -21,6 +21,6 @@ tab_title_template  " {index} {title} "
 
 
 # BEGIN_KITTY_THEME
-# One Dark
+# Dark One Nuanced
 include current-theme.conf
 # END_KITTY_THEME

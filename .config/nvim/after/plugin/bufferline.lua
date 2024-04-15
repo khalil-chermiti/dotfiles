@@ -22,7 +22,7 @@ require("bufferline").setup({
 
 		-- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
 		separator_style = "thin",
-		show_close_icon = false,
-		show_buffer_close_icons = false,
+		show_close_icon = true,
+		show_buffer_close_icons = true,
 	},
 })
