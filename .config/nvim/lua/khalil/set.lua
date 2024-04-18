@@ -64,6 +64,5 @@ vim.g.vimtex_compiler_latexmk = {
 	["out_dir"] = "build",
 }
 
-
 vim.cmd.colorscheme("onedark_vivid")
 vim.cmd.colorscheme("onedark_vivid")
