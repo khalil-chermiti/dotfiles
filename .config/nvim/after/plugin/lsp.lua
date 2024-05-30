@@ -5,9 +5,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Fix Undefined global 'vim'
 require("lspconfig").lua_ls.setup({
-	-- ... other configs
 	settings = {
-
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
@@ -25,6 +23,7 @@ require("mason-lspconfig").setup({
 		"tsserver",
 		"lua_ls",
 		"jsonls",
+		"jdtls",
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -41,33 +40,34 @@ require("lspconfig").jsonls.setup({
 	},
 })
 
+-- setting java
+require("java").setup()
+require("lspconfig").jdtls.setup({})
+
 -- lsp remap
 lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
 	local opts = { buffer = bufnr, remap = false }
 
-	vim.keymap.set("n", "<leader>ld", function()
-		vim.lsp.buf.definition()
-	end, opts)
-	vim.keymap.set("n", "<leader>la", function()
-		vim.lsp.buf.code_action()
-	end, opts)
-	vim.keymap.set("n", "<leader>lr", function()
-		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("n", "<leader>lR", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>lh", function()
-		vim.lsp.buf.hover()
-	end, opts)
-	-- vim.keymap.set("n", '<leader>lf', function() vim.lsp.buf.format() end, opts)
-	vim.keymap.set("n", "<leader>lm", function()
-		vim.diagnostic.open_float()
-	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
+	vim.keymap.set("n", "<leader>ld", function() vim.lsp.buf.definition() end, opts)
+
+	vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+
+	vim.keymap.set("n", "<leader>lR", function() vim.lsp.buf.rename() end, opts)
+
+	vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end , opts)
+
+  vim.keymap.set('n', '<leader>li', function() vim.lsp.buf.implementation() end, opts)
+
+	vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
+
+	vim.keymap.set("n", "<leader>lm", function() vim.diagnostic.open_float() end, opts)
+
+	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+  vim.keymap.set('n', '<leader>gp', function() vim.diagnostic.goto_prev() end, opts)
+
+  vim.keymap.set('n', '<leader>gn', function() vim.diagnostic.goto_next() end, opts)
 end)
 
 -- set sign icons
@@ -120,6 +120,8 @@ cmp.setup({
 		end),
 	},
 
+	preselect = "item",
+
 	window = {
 		completion = {
 			-- activate line highlight for completion window
@@ -139,6 +141,15 @@ cmp.setup({
 		},
 	},
 
+	-- formatting = {
+	-- 	fields = { "abbr", "kind", "menu" },
+	-- 	format = require("lspkind").cmp_format({
+	-- 		mode = "symbol", -- show only symbol annotations
+	-- 		maxwidth = 50, -- prevent the popup from showing more than provided characters
+	-- 		ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+	-- 	}),
+	-- },
+
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -153,10 +164,9 @@ cmp.setup({
 	},
 
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" }, -- needed to enable luasnip
-
+		{ name = "nvim_lsp", priority = 10000 },
 		{ name = "buffer" },
+		{ name = "luasnip" }, -- needed to enable luasnip
 		{ name = "path" },
 	},
 
@@ -166,3 +176,4 @@ cmp.setup({
 		end,
 	},
 })
+

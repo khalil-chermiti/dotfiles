@@ -1,7 +1,6 @@
 local keymaps = {
   explorer = {
-    { mode = "n", keymap = "<leader>eo", action = "<cmd>NvimTreeToggle<cr>", desc = "toggle" },
-    { mode = "n", keymap = "<leader>ef", action = "<cmd>NvimTreeFocus<cr>",  desc = "focus" },
+    { mode = "n", keymap = "<leader>e", action = "<cmd>NvimTreeToggle<cr>", desc = "toggle" },
   },
 
   buffer = {
@@ -31,12 +30,20 @@ local keymaps = {
     { mode = "n", keymap = "<C-k>", action = "<C-w>k", desc = "pane down" },
   },
 
-  terminal = {
-    { mode = "n", keymap = "<leader>tf", action = "<cmd>ToggleTerm direction=float<cr>",      desc = "float" },
-    { mode = "n", keymap = "<leader>tv", action = "<cmd>ToggleTerm direction=vertical<cr>",   desc = "vertical tab" },
-    { mode = "n", keymap = "<leader>th", action = "<cmd>ToggleTerm direction=horizontal<cr>", desc = "horizontal tab" },
-  },
+  -- terminal = {
+  --   { mode = "n", keymap = "<leader>tf", action = "<cmd>ToggleTerm direction=float<cr>",      desc = "float" },
+  --   { mode = "n", keymap = "<leader>tv", action = "<cmd>ToggleTerm direction=vertical<cr>",   desc = "vertical tab" },
+  --   { mode = "n", keymap = "<leader>th", action = "<cmd>ToggleTerm direction=horizontal<cr>", desc = "horizontal tab" },
+  -- },
 
+  trouble = {
+    { mode = "n", keymap = "<leader>tt", action = "<cmd>TroubleToggle<cr>",                 desc = "trouble toggle" },
+    { mode = "n", keymap = "<leader>tw", action = "<cmd>Trouble workspace_diagnostics<cr>", desc = "trouble workspace diagnostics" },
+    { mode = "n", keymap = "<leader>td", action = "<cmd>Trouble document_diagnostics<cr>",  desc = "trouble document diagnostics" },
+    { mode = "n", keymap = "<leader>tq", action = "<cmd>Trouble quickfix<cr>",              desc = "trouble quickfix" },
+    { mode = "n", keymap = "<leader>tr", action = "<cmd>Trouble lsp_references<cr>",        desc = "trouble lsp references" },
+    { mode = "n", keymap = "<leader>ti", action = "<cmd>Trouble lsp_implementations<cr>",   desc = "trouble lsp implementations" },
+  },
 
   text = {
     { mode = "n", keymap = "<A-j>", action = "<cmd>m .+1<cr>==",        desc = "line down" },
@@ -54,9 +61,11 @@ local keymaps = {
   },
 
   noice = {
-    {mode = "n" , keymap = "<leader>nd" , action = "<cmd>NoiceDismiss<CR>", desc = "dismiss noice messages"}
+    {mode = "n" , keymap = "<leader>n" , action = "<cmd>NoiceDismiss<CR>", desc = "dismiss noice messages"}
   }
 }
+
+
 
 -- save keymaps to env to be used later by whichkey
 _G.keymaps = keymaps;

@@ -32,6 +32,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
+
 vim.opt.updatetime = 50
 
 -- remove vertical split and end of buffer indicator
@@ -42,7 +43,7 @@ vim.opt.fillchars = {
 
 -- disable line diagnostics
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 	signs = true,
 	underline = true,
 })
@@ -54,8 +55,8 @@ vim.cmd("set cmdheight=0")
 vim.cmd("set clipboard+=unnamedplus")
 
 -- remap tab to Ctrl + j for copilot
--- vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
--- vim.cmd("let g:copilot_no_tab_map = v:true")
+vim.cmd('imap <silent><script><expr> <C-j> copilot#Accept("")')
+vim.cmd("let g:copilot_no_tab_map = v:true")
 
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
