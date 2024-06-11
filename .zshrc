@@ -130,6 +130,9 @@ alias config='/usr/bin/git --git-dir=/home/khalil/dotfiles/ --work-tree=/home/kh
 # bun completions
 [ -s "/home/khalil/.oh-my-zsh/completions/_bun" ] && source "/home/khalil/.oh-my-zsh/completions/_bun"
 
+#flutter
+export PATH="$HOME/flutter/flutter/bin:$PATH"
+
 # bun path
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

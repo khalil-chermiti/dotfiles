@@ -32,7 +32,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-
 vim.opt.updatetime = 50
 
 -- remove vertical split and end of buffer indicator
@@ -45,7 +44,8 @@ vim.opt.fillchars = {
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
-	underline = true,
+	underline = false,
+  update_in_insert = true,
 })
 
 -- set keymap sequence timeout
@@ -60,10 +60,6 @@ vim.cmd("let g:copilot_no_tab_map = v:true")
 
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
-
-vim.g.vimtex_compiler_latexmk = {
-	["out_dir"] = "build",
-}
 
 vim.cmd.colorscheme("onedark_vivid")
 vim.cmd.colorscheme("onedark_vivid")
