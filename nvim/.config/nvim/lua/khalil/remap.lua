@@ -82,6 +82,9 @@ local keymaps = {
 -- save keymaps to env to be used later by whichkey
 _G.keymaps = keymaps
 
+local options = { noremap = true }
+vim.keymap.set("i", "jj", "<Esc>", options)
+
 -- load keymaps
 for _, mapping_group in pairs(keymaps) do
 	for _, mapping in pairs(mapping_group) do

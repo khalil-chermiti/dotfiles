@@ -20,7 +20,7 @@ require("lspconfig").lua_ls.setup({
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"tsserver",
+		"ts_ls",
 		"lua_ls",
 		"jsonls",
 		"jdtls",
