@@ -80,7 +80,7 @@ local keymaps = {
 }
 
 -- save keymaps to env to be used later by whichkey
-_G.keymaps = keymaps
+-- _G.keymaps = keymaps
 
 local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)

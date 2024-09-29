@@ -30,3 +30,6 @@ alias compress="tar -czvf"
 # pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
 
+eval `ssh-agent` &> /dev/null
+ssh-add ~/.ssh/github &> /dev/null
+
