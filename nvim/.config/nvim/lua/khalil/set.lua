@@ -59,5 +59,5 @@ vim.cmd("let g:copilot_enabled = v:false")
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
-vim.cmd.colorscheme("github_dark_dimmed")
-vim.cmd.colorscheme("github_dark_dimmed")
+vim.cmd.colorscheme("github_dark_default")
+vim.cmd.colorscheme("github_dark_default")
