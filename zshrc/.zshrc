@@ -1,10 +1,12 @@
 # show ASCII ART
-# echo "  .--------------.
-#   | happy coding |
-#   '--------------'
-#       ^      (\\_(\\
-#       '----- ( *.*) 
-#              o_(\")(\")" | lolcat
+echo "  .--------------.
+  | happy coding |
+  '--------------'
+      ^      (\\_(\\
+      '----- ( *.*) 
+             o_(\")(\")" | lolcat
+
+# fastfetch --config examples/8 
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -30,6 +32,11 @@ alias compress="tar -czvf"
 # pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
 
-eval `ssh-agent` &> /dev/null
-ssh-add ~/.ssh/github &> /dev/null
+alias sessions="tmux list-sessions"
+alias attach="tmux attach -t "
+alias detach="tmux detach -s "
+alias create="tmux new-session -s "
+alias remove="tmux kill-session -t "
 
+
+[ -f "/home/khalil/.ghcup/env" ] && . "/home/khalil/.ghcup/env" # ghcup-env

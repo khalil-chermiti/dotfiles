@@ -35,8 +35,8 @@ vim.opt.updatetime = 50
 
 -- remove vertical split and end of buffer indicator
 vim.opt.fillchars = {
-  eob = " ",
-  vert = "│",
+	eob = " ",
+	vert = "│",
 }
 
 vim.opt.foldmethod = "expr"
@@ -59,5 +59,5 @@ vim.cmd("let g:copilot_enabled = v:false")
 -- disable auto commenting when returning to line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
-vim.cmd.colorscheme("github_dark_default")
-vim.cmd.colorscheme("github_dark_default")
+vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("catppuccin")
