@@ -22,9 +22,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias l="exa -lg"
-alias la="exa -lag"
-alias ls="exa"
+alias l="exa -lg --icons"
+alias la="exa -lag --icons"
+alias ls="exa --icons"
 alias cat="bat"
 alias extract='tar -zxvf'
 alias compress="tar -czvf"
