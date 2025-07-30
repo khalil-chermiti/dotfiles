@@ -1,10 +1,10 @@
 # show ASCII ART
-echo "  .--------------.
-  | happy coding |
-  '--------------'
-      ^      (\\_(\\
-      '----- ( *.*) 
-             o_(\")(\")" | lolcat
+# echo "  .--------------.
+#   | happy coding |
+#   '--------------'
+#       ^      (\\_(\\
+#       '----- ( *.*) 
+#              o_(\")(\")" | lolcat
 
 # fastfetch --config examples/8 
 
@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Path to your oh-my-zsh installation.
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   zsh-autosuggestions
@@ -39,4 +39,21 @@ alias create="tmux new-session -s "
 alias remove="tmux kill-session -t "
 
 
-[ -f "/home/khalil/.ghcup/env" ] && . "/home/khalil/.ghcup/env" # ghcup-env
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/khalil/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/khalil/.opam/opam-init/init.zsh' ]] || source '/home/khalil/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+source <(kubectl completion zsh)

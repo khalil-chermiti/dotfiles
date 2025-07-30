@@ -108,6 +108,31 @@ local plugins = {
 	-- ui
 	"stevearc/dressing.nvim",
 
+	-- catppuccin
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+	-- snacks
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
+	},
+
 	-- ***** code , completion , formatting , linting , etc *****
 
 	-- lsp
@@ -130,7 +155,8 @@ local plugins = {
 	-- lsp for vscode like code completion
 	"onsails/lspkind.nvim",
 
-	"mfussenegger/nvim-jdtls",
+	-- "mfussenegger/nvim-jdtls",
+	"nvim-java/nvim-java",
 
 	-- needed to enable luasnip snippets
 	"saadparwaiz1/cmp_luasnip",
@@ -152,12 +178,12 @@ local plugins = {
 	"mfussenegger/nvim-lint",
 
 	-- vim pairs
-	{
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup({})
+	-- 	end,
+	-- },
 
 	-- lunarvim commenting plugin
 	{
@@ -287,7 +313,6 @@ local plugins = {
 			},
 		},
 	},
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
 
 require("lazy").setup(plugins, {})
