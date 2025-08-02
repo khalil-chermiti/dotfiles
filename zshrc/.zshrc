@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Path to your oh-my-zsh installation.
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   zsh-autosuggestions
@@ -57,3 +57,4 @@ export PATH="/home/khalil/.rd/bin:$PATH"
 # END opam configuration
 
 source <(kubectl completion zsh)
+
