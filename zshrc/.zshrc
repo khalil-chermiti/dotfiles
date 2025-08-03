@@ -32,13 +32,6 @@ alias compress="tar -czvf"
 # pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
 
-alias sessions="tmux list-sessions"
-alias attach="tmux attach -t "
-alias detach="tmux detach -s "
-alias create="tmux new-session -s "
-alias remove="tmux kill-session -t "
-
-
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
