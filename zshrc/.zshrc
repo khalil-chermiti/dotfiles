@@ -32,6 +32,9 @@ alias compress="tar -czvf"
 # pipe STDOUT to pipe alias to copy it
 alias copy="xclip -sel clip"
 
+alias k="kubectl"
+alias d="docker"
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -51,3 +54,10 @@ export PATH="/home/khalil/.rd/bin:$PATH"
 
 source <(kubectl completion zsh)
 
+# pnpm
+export PNPM_HOME="/home/khalil/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

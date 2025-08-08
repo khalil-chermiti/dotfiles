@@ -11,7 +11,7 @@ return {
     toggle = { map = LazyVim.safe_keymap_set },
     words = { enabled = true },
     dashboard = { enabled = false },
-    explorer = { enabled = true },
+    explorer = { enabled = false},
 
     picker = {
       sources = {
