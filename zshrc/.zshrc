@@ -35,6 +35,18 @@ alias copy="xclip -sel clip"
 alias k="kubectl"
 alias d="docker"
 
+alias hist='history | \
+  fzf --height 40% \
+      --border \
+      --border-label=" COMMAND HISTORY " \
+      --prompt=" Search history > " \
+      --reverse \
+      --tac \
+      --color=border:bright-black | \
+  sed -e "s/^ *[0-9]* *//" | \
+  tr -d "\n" | \
+  xclip -selection clipboard'
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -61,3 +73,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# zoxide
+eval "$(zoxide init zsh)"
