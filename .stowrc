@@ -1,0 +1,28 @@
+# ~/.stowrc
+
+# Default target is home directory
+# Most packages will link relative to ~
+
+# Alacritty configs
+alacritty target=~
+
+# i3 configs
+i3 target=~
+
+# Kitty configs
+kitty target=~
+
+# Neovim configs
+nvim target=~
+
+# Polybar configs
+polybar target=~
+
+# Tmux config
+tmux target=~
+
+# Zsh config
+zshrc target=~
+
+# Local scripts (maps ~/dotfiles/local/.local -> ~/.local)
+local target=~

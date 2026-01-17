@@ -1,0 +1,9 @@
+#!/bin/sh
+
+THEME=$(gsettings get org.gnome.desktop.interface color-scheme)
+
+if echo "$THEME" | grep -q dark; then
+  ln -sf ~/.config/alacritty/alacritty-dark.toml ~/.config/alacritty/alacritty.toml
+else
+  ln -sf ~/.config/alacritty/alacritty-light.toml ~/.config/alacritty/alacritty.toml
+fi
