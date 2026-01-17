@@ -1,10 +1,10 @@
 # show ASCII ART
-# echo "  .--------------.
-#   | happy coding |
-#   '--------------'
-#       ^      (\\_(\\
-#       '----- ( *.*) 
-#              o_(\")(\")" | lolcat
+echo "  .--------------.
+  | happy coding |
+  '--------------'
+      ^      (\\_(\\
+      '----- ( *.*) 
+             o_(\")(\")" | lolcat
 
 # fastfetch --config examples/8 
 
@@ -18,6 +18,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting 
   F-Sy-H 
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -25,15 +26,32 @@ source $ZSH/oh-my-zsh.sh
 alias l="exa -lg --icons"
 alias la="exa -lag --icons"
 alias ls="exa --icons"
+alias ll="exa -lgh --icons"
+
+# pring tree of level 1 if no argument is given else print tree of given level
+lt() {
+  if [ $# -eq 0 ]; then
+    exa -T --level=1 --icons
+  else
+    exa -T --level=$1 --icons
+  fi
+}
+
 alias cat="bat"
+
 alias extract='tar -zxvf'
 alias compress="tar -czvf"
 
 # pipe STDOUT to pipe alias to copy it
-alias copy="xclip -sel clip"
+alias clip="xclip -sel clip"
 
 alias k="kubectl"
 alias d="docker"
+
+alias ta="tmux attach -t"
+alias td="tmux detach -s"
+alias tn="tmux new -s"
+alias ts="tmux list-sessions"
 
 alias hist='history | \
   fzf --height 40% \
@@ -47,23 +65,6 @@ alias hist='history | \
   tr -d "\n" | \
   xclip -selection clipboard'
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/home/khalil/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-[[ ! -r '/home/khalil/.opam/opam-init/init.zsh' ]] || source '/home/khalil/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-# END opam configuration
-
 source <(kubectl completion zsh)
 
 # pnpm
@@ -76,3 +77,33 @@ esac
 
 # zoxide
 eval "$(zoxide init zsh)"
+alias cd='z'
+
+# bun completions
+[ -s "/home/khalil/.bun/_bun" ] && source "/home/khalil/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# adding go to path
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/workspace/go/gopath/bin
+export GOPATH=$HOME/workspace/go/gopath
+
+
+# # vi mode for zsh
+# bindkey -v
+#
+# #vi mode indicator in prompt
+# function zle-line-init zle-keymap-select {
+#     RPS1="${${KEYMAP/vicmd/N }/(main|viins)/I }"
+#     RPS2=$RPS1
+#     zle reset-prompt
+# }
+#
+# zle -N zle-line-init
+# zle -N zle-keymap-select
+#
+export PATH="$HOME/.local/bin:$PATH"
+

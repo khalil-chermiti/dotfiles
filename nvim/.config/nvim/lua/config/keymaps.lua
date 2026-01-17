@@ -4,5 +4,6 @@
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Map jj to Escape" })
 
 vim.keymap.del("n", "<leader>l")
-vim.keymap.del("n", "<leader>K")
 vim.keymap.del("n", "<leader>L")
+vim.keymap.del("n", "<leader>K")
+

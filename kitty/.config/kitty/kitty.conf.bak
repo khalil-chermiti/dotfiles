@@ -6,18 +6,19 @@ italic_font      auto
 bold_italic_font auto
 
 
-font_size 12
+font_size 14
 modify_font cell_height 115%
 
 hide_window_decorations no 
-window_padding_width 2 5 0 5
+window_padding_width 0 0 0 0
 window_border_width 0 
 
 background_opacity 1
 
 linux_display_server x11
 
+
 # BEGIN_KITTY_THEME
-# Tokyo Night Moon
+# Atom One Light
 include current-theme.conf
 # END_KITTY_THEME
