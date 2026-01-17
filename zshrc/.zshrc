@@ -91,6 +91,13 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/workspace/go/gopath/bin
 export GOPATH=$HOME/workspace/go/gopath
 
+# adding local script to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# Run Alacritty theme switcher if available
+if [ -x "$HOME/.local/bin/alacritty-theme" ]; then
+  "$HOME/.local/bin/alacritty-theme" >/dev/null 2>&1
+fi
 
 # # vi mode for zsh
 # bindkey -v
@@ -105,5 +112,4 @@ export GOPATH=$HOME/workspace/go/gopath
 # zle -N zle-line-init
 # zle -N zle-keymap-select
 #
-export PATH="$HOME/.local/bin:$PATH"
 
