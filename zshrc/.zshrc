@@ -23,10 +23,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias l="exa -lg --icons"
-alias la="exa -lag --icons"
-alias ls="exa --icons"
-alias ll="exa -lgh --icons"
+alias l="eza -lg --icons"
+alias la="eza -lag --icons"
+alias ls="eza --icons"
+alias ll="eza -lgh --icons"
 
 # pring tree of level 1 if no argument is given else print tree of given level
 lt() {
