@@ -176,6 +176,15 @@ wk.add({
 
 	{
 		mode = { "n", "v" },
+		{ "<leader>c", group = "conform" },
+		{ "<leader>ct", desc = "toggle autoformat" },
+		{ "<leader>cn", desc = "conform info" },
+		{ "<leader>cf", desc = "format buffer" },
+		{ "<leader>cF", desc = "format injected langs" },
+	},
+
+	{
+		mode = { "n", "v" },
 		{ "<leader>q", "<cmd>q<cr>", desc = "Quit" },
 		{ "<leader>w", "<cmd>w<cr>", desc = "Write" },
 	},
