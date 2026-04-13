@@ -9,11 +9,11 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
 		require("blink.cmp").setup({
 
-      keymap = {
-        preset = "enter",
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-      },
+			keymap = {
+				preset = "enter",
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+			},
 
 			appearance = {
 				nerd_font_variant = "mono",
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 
 			completion = {
 				documentation = { auto_show = false },
-        list = { selection = { preselect = false, auto_insert = false } },
+				list = { selection = { preselect = true, auto_insert = false } },
 			},
 
 			sources = {
@@ -33,4 +33,3 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 		})
 	end,
 })
-

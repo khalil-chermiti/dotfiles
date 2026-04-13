@@ -3,8 +3,6 @@ require("conform").setup({
 
 		lua = { "stylua" },
 
-		-- go = { "goimports", "gofmt" }, fixed below as suggested by JudgeGregg (https://gitlab.com/tduyng/tduyng.gitlab.io/issues/18) - see more #formatters-by-filetype
-
 		go = { "goimports", "gofmt", stop_after_first = true },
 
 		python = { "ruff_format", "black", stop_after_first = true },

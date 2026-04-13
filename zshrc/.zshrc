@@ -99,6 +99,11 @@ if [ -x "$HOME/.local/bin/alacritty-theme" ]; then
   "$HOME/.local/bin/alacritty-theme" >/dev/null 2>&1
 fi
 
+# load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # # vi mode for zsh
 # bindkey -v
 #

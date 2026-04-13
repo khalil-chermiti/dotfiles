@@ -8,7 +8,7 @@ require("bufferline").setup({
 				separator = true,
 				text_align = "center",
 			},
-      
+
 			{
 				filetype = "Oil",
 				text = "Oil",
@@ -16,7 +16,6 @@ require("bufferline").setup({
 				text_align = "center",
 			},
 		},
-    
 
 		always_show_bufferline = true,
 		enforce_regular_tabs = true,

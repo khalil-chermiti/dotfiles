@@ -55,12 +55,12 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "0"
-
--- fill chars
-opt.fillchars = {
-  eob = " ",
-  vert = "│",
-}
+--
+-- -- fill chars
+-- opt.fillchars = {
+-- 	eob = " ",
+-- 	vert = "│",
+-- }
 
 -- system clipboard
 vim.opt.clipboard:append("unnamedplus")
@@ -74,15 +74,3 @@ vim.cmd("set cmdheight=0")
 -- globals
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "size"
-
--- ui2
--- local ok_ui2, ui2 = pcall(require, "vim._core.ui2")
--- if ok_ui2 and type(ui2.enable) == "function" then
---   ui2.enable({
---     enable = true,
---     msg = {
---       targets = "cmd",
---       timeout = 4000,
---     },
---   })
--- end

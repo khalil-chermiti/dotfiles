@@ -23,37 +23,56 @@ vim.keymap.set("v", "<A-k>", ":m-2<cr>gv=gv", { desc = "line up" })
 
 -- buffer
 
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "buffer next", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", { desc = "buffer prev", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>bc", "<cmd>BufferLinePick<cr>",      { desc = "buffer pick", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>bd", "<cmd>Bdelete<CR>",             { desc = "buffer close", noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>bn",
+	"<cmd>BufferLineCycleNext<cr>",
+	{ desc = "buffer next", noremap = true, silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader>bp",
+	"<cmd>BufferLineCyclePrev<cr>",
+	{ desc = "buffer prev", noremap = true, silent = true }
+)
+vim.keymap.set("n", "<leader>bc", "<cmd>BufferLinePick<cr>", { desc = "buffer pick", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bd", "<cmd>Bdelete<CR>", { desc = "buffer close", noremap = true, silent = true })
 
 -- Inlay Hints
-vim.keymap.set("n", "<leader>lH", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", { desc = "enable inlay hints" })
+vim.keymap.set(
+	"n",
+	"<leader>lH",
+	"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+	{ desc = "enable inlay hints" }
+)
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(event)
-        local opts = { buffer = event.buf }
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(event)
+		local opts = { buffer = event.buf }
 
-        -- Navigation
-        vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
-        
-        -- Actions & Editing
-        vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opts)
-        
-        -- Documentation & Help
-        vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, opts)
-        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-        
-        -- Diagnostics
-        vim.keymap.set("n", "<leader>lm", vim.diagnostic.open_float, opts)
-        vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev, opts)
-        vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next, opts)
-    end,
+		-- Navigation
+		vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
+
+		-- Actions & Editing
+		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opts)
+
+		-- Documentation & Help
+		vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, opts)
+		vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
+		-- Diagnostics
+		vim.keymap.set("n", "<leader>lm", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "<leader>gp", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, opts)
+		vim.keymap.set("n", "<leader>gn", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, opts)
+	end,
 })
 
 -- telescope
@@ -66,7 +85,17 @@ vim.keymap.set("n", "<leader>fs", builtin.git_files)
 
 -- trouble
 vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
-vim.keymap.set("n", "<leader>ti", "<cmd>Trouble lsp_implementations toggle focus=false<cr>", { desc = "Trouble Implementations" })
+vim.keymap.set(
+	"n",
+	"<leader>ti",
+	"<cmd>Trouble lsp_implementations toggle focus=false<cr>",
+	{ desc = "Trouble Implementations" }
+)
 vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics" })
 vim.keymap.set("n", "<leader>tq", "<cmd>Trouble qflist toggle<cr>", { desc = "Trouble Quickfix" })
 
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Window Left" })
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Window Down" })
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Window Up" })
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Window Right" })
+vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Window Previous" })
