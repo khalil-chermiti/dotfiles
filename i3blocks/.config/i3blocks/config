@@ -1,0 +1,37 @@
+# Global properties
+separator=true
+separator_block_width=20
+color=#ECEFF4
+
+[brightness]
+label=☀ 
+# This command gets current/max and turns it into a %
+command=brightnessctl g | awk -v max=$(brightnessctl m) '{print int($1/max*100)"%"}'
+interval=once
+signal=10
+color=#88C0D0
+
+[volume]
+label=♪ 
+command=pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -n1
+interval=once
+signal=10
+color=#81A1C1
+
+[wifi]
+label=󰖩  
+# Displays SSID and Signal Strength
+command=nmcli -t -f ACTIVE,SSID,SIGNAL dev wifi | grep '^yes' | cut -d: -f2,3 | sed 's/:/ /'
+interval=10
+color=#A3BE8C
+
+[battery]
+label=⚡ 
+command=cat /sys/class/power_supply/BAT0/capacity | awk '{print $1"%"}'
+interval=30
+color=#EBCB8B
+
+[time]
+command=date '+%Y-%m-%d %I:%M %p'
+interval=5
+color=#ECEFF4
