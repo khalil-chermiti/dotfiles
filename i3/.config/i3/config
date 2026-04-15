@@ -27,7 +27,7 @@ set $nord11 #BF616A
 # GENERAL
 #==============================================================================
 
-font pango:JetBrains Mono 10
+font pango:JetBrains Mono 12
 floating_modifier $mod
 
 focus_follows_mouse no
@@ -35,13 +35,15 @@ focus_wrapping no
 mouse_warping output
 
 default_border pixel 2
+for_window [class="^.*"] border pixel 2
 default_floating_border pixel 2
-hide_edge_borders smart
+hide_edge_borders on
 
-gaps inner 10
-gaps outer 5
+gaps inner 5
+gaps outer 2
 smart_gaps on
 smart_borders on
+
 
 #==============================================================================
 # COLORS
@@ -58,7 +60,6 @@ client.background       $nord0
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+o exec dmenu_run
-bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/powermenu.sh
 bindsym $mod+q kill
 
 
@@ -161,35 +162,55 @@ bindsym $mod+Shift+underscore move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+ccedilla move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+agrave move container to workspace $ws10; workspace $ws10
 
-##################################### Media & System OSD ##########################################
+##################################### Media & System ##########################################
 
-# Volume with robust notifications
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5%; VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\\d+%' | head -n1); dunstify -r 2593 'Volume' \"${VOL}\""
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5%; VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\\d+%' | head -n1); dunstify -r 2593 'Volume' \"${VOL}\""
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle; MUTED=$(pactl get-sink-mute @DEFAULT_SINK@ | grep yes); if [ \"$MUTED\" ]; then dunstify -r 2593 'Volume Muted'; else dunstify -r 2593 'Volume Unmuted'; fi"
+# Volume with 100% cap and instant bar update
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5%; [ $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -n1) -gt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ 100%; pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute        exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -RTMIN+10 i3blocks"
 
-# Mic mute
-bindsym XF86AudioMicMute exec --no-startup-id "pactl set-source-mute @DEFAULT_SOURCE@ toggle; MUTED=$(pactl get-source-mute @DEFAULT_SOURCE@ | grep yes); if [ \"$MUTED\" ]; then dunstify -r 2594 'Mic Muted'; else dunstify -r 2594 'Mic Unmuted'; fi"
+# Brightness with instant bar update
+bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl set +5%; pkill -RTMIN+10 i3blocks"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 5%-; pkill -RTMIN+10 i3blocks"
 
-# Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl set +5%; BR=$(brightnessctl g); dunstify -r 2595 'Brightness' \"${BR}%\""
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 5%-; BR=$(brightnessctl g); dunstify -r 2595 'Brightness' \"${BR}%\""
+# Screenshot
+bindsym F10 exec --no-startup-id flameshot gui
 
 ##################################### Bar #############################################
 
 bar {
-    status_command i3status
+    status_command i3blocks
     position top
+
+    # This directly controls the tray icon size
+    height 22
+    
+    # This keeps workspaces on the left
+    strip_workspace_numbers yes
+    
+    colors {
+        background $nord0
+        statusline $nord4
+        separator  $nord1
+
+        # Highlight active workspace with Nord8 (Light Blue)
+        #                  border  | backgr | text
+        focused_workspace  $nord8    $nord8   $nord0
+        active_workspace   $nord1    $nord1   $nord6
+        inactive_workspace $nord0    $nord0   $nord4
+        urgent_workspace   $nord11   $nord11  $nord6
+    }
 }
 
 ##################################### Autostart #######################################
 
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper.png
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xss-lock -- ~/.config/i3/scripts/lock.sh
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
-exec --no-startup-id setxkbmap -layout us -option caps:escape
+exec --no-startup-id setxkbmap -layout fr
 exec --no-startup-id xset r rate 300 50
