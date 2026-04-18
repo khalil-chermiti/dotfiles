@@ -1,5 +1,0 @@
-require("gitsigns").setup({ signcolumn = false })
-require("Comment").setup({})
-require("todo-comments").setup({})
-require("toggleterm").setup({})
-require("which-key").setup({})
