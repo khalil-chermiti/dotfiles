@@ -20,7 +20,6 @@ vim.keymap.set("i", "<A-k>", "<Esc><cmd>m .-2<cr>==gi", { desc = "line up" })
 vim.keymap.set("v", "<A-j>", ":m'>+<cr>gv=gv", { desc = "line down" })
 vim.keymap.set("v", "<A-k>", ":m-2<cr>gv=gv", { desc = "line up" })
 
-
 -- Inlay Hints
 vim.keymap.set(
 	"n",
@@ -33,6 +32,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(event)
 		local opts = { buffer = event.buf }
+
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+		vim.notify("LSP attached: " .. client.name, "info", {
+			title = "LSP Info",
+		})
 
 		-- Navigation
 		vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
@@ -60,11 +65,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- telescope
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files)
-vim.keymap.set("n", "<leader>fb", builtin.buffers)
-vim.keymap.set("n", "<leader>fg", builtin.live_grep)
-vim.keymap.set("n", "<leader>fh", builtin.help_tags)
-vim.keymap.set("n", "<leader>fs", builtin.git_files)
+
+vim.keymap.set("n", "<leader>ff", function()
+  builtin.find_files({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fb", function()
+  builtin.buffers({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fg", function()
+  builtin.git_files({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fs", function()
+  builtin.live_grep() -- keep preview (default behavior)
+end)
+
+vim.keymap.set("n", "<leader>fc", function()
+  builtin.git_status({ previewer = false })
+end)
 
 -- buffers
 vim.keymap.set("n", "<leader>bb", builtin.buffers)
@@ -91,23 +111,23 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotr
 
 vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update Plugins" })
 
-require('gitsigns').setup{
-  on_attach = function(bufnr)
-    local gitsigns = require('gitsigns')
+require("gitsigns").setup({
+	on_attach = function(bufnr)
+		local gitsigns = require("gitsigns")
 
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
 
-    -- Hunk actions
-    map('n', '<leader>hs', gitsigns.stage_hunk)
-    map('n', '<leader>hr', gitsigns.reset_hunk)
-    map('n', '<leader>hp', gitsigns.preview_hunk)
+		-- Hunk actions
+		map("n", "<leader>hs", gitsigns.stage_hunk)
+		map("n", "<leader>hr", gitsigns.reset_hunk)
+		map("n", "<leader>hp", gitsigns.preview_hunk)
 
-    -- Buffer actions
-    map('n', '<leader>hS', gitsigns.stage_buffer)
-    map('n', '<leader>hR', gitsigns.reset_buffer)
-  end
-}
+		-- Buffer actions
+		map("n", "<leader>hS", gitsigns.stage_buffer)
+		map("n", "<leader>hR", gitsigns.reset_buffer)
+	end,
+})

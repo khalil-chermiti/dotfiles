@@ -29,6 +29,7 @@ local plugins = {
   { src = "https://github.com/mbbill/undotree" },
   { src = "https://github.com/tpope/vim-fugitive" },
   { src = "https://github.com/rebelot/kanagawa.nvim" },
+  { src = "https://github.com/rcarriga/nvim-notify" },
 }
 
 vim.pack.add(plugins)

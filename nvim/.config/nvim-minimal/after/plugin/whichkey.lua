@@ -160,9 +160,9 @@ wk.add({
 	{ "<leader>f", group = "telescope" },
 	{ "<leader>ff", desc = "find files" },
 	{ "<leader>fb", desc = "find buffers" },
-	{ "<leader>fg", desc = "live grep" },
-	{ "<leader>fh", desc = "search help" },
-	{ "<leader>fs", desc = "search git" },
+	{ "<leader>fs", desc = "live grep" },
+	{ "<leader>fg", desc = "search git" },
+	{ "<leader>fc", desc = "search changes" },
 
 	{ "<leader>t", group = "trouble" },
 	{ "<leader>td", desc = "diagnostics" },
