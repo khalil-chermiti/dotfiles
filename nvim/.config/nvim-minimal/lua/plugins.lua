@@ -2,6 +2,7 @@ local plugins = {
 	-- dependencies
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
 
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
