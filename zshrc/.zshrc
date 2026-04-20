@@ -119,3 +119,6 @@ alias vs="NVIM_APPNAME=nvim-minimal nvim"
 # zle -N zle-line-init
 # zle -N zle-keymap-select
 #
+
+# opencode
+export PATH=/home/khalil/.opencode/bin:$PATH

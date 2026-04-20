@@ -1,7 +1,6 @@
 local wk = require("which-key")
 
 local defaults = {
-
 	preset = "modern",
 
 	delay = function(ctx)
@@ -31,6 +30,7 @@ local defaults = {
 			enabled = true,
 			suggestions = 20,
 		},
+
 		presets = {
 			operators = true,
 			motions = true,
@@ -43,7 +43,6 @@ local defaults = {
 	},
 
 	win = {
-
 		no_overlap = true,
 
 		padding = { 1, 2 },
@@ -127,6 +126,7 @@ local defaults = {
 			F12 = "󱊶",
 		},
 	},
+
 	show_help = true,
 	show_keys = true,
 
@@ -179,17 +179,34 @@ wk.add({
 		{ "<leader>cF", desc = "format injected langs" },
 	},
 
+	{
+		mode = "n",
+		{ "<leader>p", group = "pack" },
+		{ "<leader>pu", "<cmd>lua vim.pack.update()<cr>", desc = "Update Plugins" },
+	},
 
-  {
-    mode = "n",
-    { "<leader>p", group = "pack" },
-    { "<leader>pu", "<cmd>lua vim.pack.update()<cr>", desc = "Update Plugins" },
-  },
+	{
+		mode = "n",
+		{ "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" },
+	},
 
-  {
-    mode = "n",
-    { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" },
-  },
+	{
+		mode = "n",
+		{ "<leader>b", group = "buffers" },
+		{ "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+		{ "<leader>bd", "<cmd>bd<cr>", desc = "Buffer Delete" },
+	},
+
+	{
+		mode = "n",
+		{ "<leader>hs", desc = "Stage Hunk" },
+		{ "<leader>h", group = "gitsigns" },
+		{ "<leader>hr", desc = "Reset Hunk" },
+
+		{ "<leader>hp", desc = "Preview Hunk" },
+		{ "<leader>hS", desc = "Stage Buffer" },
+		{ "<leader>hR", desc = "Reset Buffer" },
+	},
 
 	{
 		mode = { "n", "v" },

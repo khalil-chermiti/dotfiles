@@ -66,6 +66,10 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "<leader>fs", builtin.git_files)
 
+-- buffers
+vim.keymap.set("n", "<leader>bb", builtin.buffers)
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")
+
 -- trouble
 vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
 vim.keymap.set(
@@ -86,3 +90,24 @@ vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Window 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
 
 vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update Plugins" })
+
+require('gitsigns').setup{
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Hunk actions
+    map('n', '<leader>hs', gitsigns.stage_hunk)
+    map('n', '<leader>hr', gitsigns.reset_hunk)
+    map('n', '<leader>hp', gitsigns.preview_hunk)
+
+    -- Buffer actions
+    map('n', '<leader>hS', gitsigns.stage_buffer)
+    map('n', '<leader>hR', gitsigns.reset_buffer)
+  end
+}
