@@ -2,7 +2,7 @@ local plugins = {
 	-- dependencies
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-  { src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
+	{ src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
 
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
@@ -18,7 +18,6 @@ local plugins = {
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 	{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 	{ src = "https://github.com/f-person/git-blame.nvim" },
-	{ src = "https://github.com/github/copilot.vim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim" },
 
@@ -27,10 +26,14 @@ local plugins = {
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
-  { src = "https://github.com/mbbill/undotree" },
-  { src = "https://github.com/tpope/vim-fugitive" },
-  { src = "https://github.com/rebelot/kanagawa.nvim" },
-  { src = "https://github.com/rcarriga/nvim-notify" },
+	{ src = "https://github.com/mbbill/undotree" },
+	{ src = "https://github.com/tpope/vim-fugitive" },
+	{ src = "https://github.com/rebelot/kanagawa.nvim" },
+	{ src = "https://github.com/rcarriga/nvim-notify" },
+
+  { src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
+	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" },
+  { src = "https://github.com/zbirenbaum/copilot.lua" },
 }
 
 vim.pack.add(plugins)

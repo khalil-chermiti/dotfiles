@@ -1,23 +1,18 @@
 require("blink.cmp").setup({
 	keymap = {
-		-- Set to 'none' to avoid conflicts with your custom mappings
 		preset = "none",
 
 		["<Enter>"] = { "accept", "fallback" },
 
-		-- Tab and Shift-Tab navigation
-		["<Tab>"] = { "select_next", "fallback" },
-		["<S-Tab>"] = { "select_prev", "fallback" },
-
-		-- Traditional arrow keys (keeping these as well)
 		["<Up>"] = { "select_prev", "fallback" },
 		["<Down>"] = { "select_next", "fallback" },
 
-		-- Documentation toggle and navigation
-		-- Use <C-f> to scroll down, <C-b> to scroll up
-		["<C-space>"] = { "show_documentation", "hide_documentation", "fallback" },
+		["<C-l>"] = { "show_documentation", "hide_documentation", "fallback" },
+		["<C-h>"] = { "show_documentation", "hide_documentation", "fallback" },
 		["<C-k>"] = { "scroll_documentation_up", "fallback" },
 		["<C-j>"] = { "scroll_documentation_down", "fallback" },
+
+    ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
 	},
 
 	appearance = {
@@ -26,14 +21,13 @@ require("blink.cmp").setup({
 	},
 
 	completion = {
-		-- Documentation settings
 		documentation = {
 			auto_show = false,
-			-- auto_show_delay_ms = 200,
+			auto_show_delay_ms = 200,
 			window = {
 				-- border = "rounded",
-				-- max_width = 80,
-				-- max_height = 20,
+				max_width = 80,
+				max_height = 40,
 			},
 		},
 		list = { selection = { preselect = true, auto_insert = false } },
@@ -45,10 +39,14 @@ require("blink.cmp").setup({
 				},
 				components = {
 					label_description = {
-						-- width = { max = 20 },
+						width = { max = 20 },
 						text = function(ctx)
 							return ctx.label_description or ""
 						end,
+					},
+
+					label = {
+						width = { max = 20 },
 					},
 				},
 			},
