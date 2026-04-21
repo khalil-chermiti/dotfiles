@@ -1,9 +1,20 @@
 #!/bin/sh
 
+# Get current GNOME color scheme
 THEME=$(gsettings get org.gnome.desktop.interface color-scheme)
 
 if echo "$THEME" | grep -q dark; then
-  ln -sf ~/.config/alacritty/alacritty-dark.toml ~/.config/alacritty/alacritty.toml
+    # Alacritty Switch
+    ln -sf ~/.config/alacritty/alacritty-dark.toml ~/.config/alacritty/alacritty.toml
+    
+    # Tmux Switch
+    ln -sf ~/.config/tmux/tmux-dark.conf ~/.tmux.conf
 else
-  ln -sf ~/.config/alacritty/alacritty-light.toml ~/.config/alacritty/alacritty.toml
+    # Alacritty Switch
+    ln -sf ~/.config/alacritty/alacritty-light.toml ~/.config/alacritty/alacritty.toml
+    
+    # Tmux Switch
+    ln -sf ~/.config/tmux/tmux-light.conf ~/.tmux.conf
 fi
+
+tmux source-file ~/.tmux.conf

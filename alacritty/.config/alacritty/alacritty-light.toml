@@ -24,32 +24,33 @@ style = "Italic"
 style = "Bold Italic"
 
 [font.offset]
-y = 3  # ~115% cell height
+y = 3 
 
+# Kanagawa Lotus (Light) Theme Colors
 [colors.primary]
-background = "#ffffff"
-foreground = "#2e3436"
+background = "#f2ecbc" # Lotus White (Warm paper)
+foreground = "#545464" # Lotus Ink
 
 [colors.cursor]
-text = "#ffffff"
-cursor = "#2e3436"
+text   = "#f2ecbc"
+cursor = "#545464"
 
 [colors.normal]
-black   = "#2e3436"
-red     = "#cc0000"
-green   = "#4e9a06"
-yellow  = "#c4a000"
-blue    = "#3465a4"
-magenta = "#75507b"
-cyan    = "#06989a"
-white   = "#d3d7cf"
+black   = "#1f1f28" # Sumi Ink
+red     = "#c8405a" # Light Autumn Red
+green   = "#6f894a" # Autumn Green
+yellow  = "#77713f" # Boatmen Yellow
+blue    = "#4d699b" # Crystal Blue
+magenta = "#b35b79" # Oni Violet
+cyan    = "#597b75" # Wave Aqua
+white   = "#d5cea3" # Old White
 
 [colors.bright]
-black   = "#555753"
-red     = "#ef2929"
-green   = "#8ae234"
-yellow  = "#fce94f"
-blue    = "#729fcf"
-magenta = "#ad7fa8"
-cyan    = "#34e2e2"
-white   = "#eeeeec"
+black   = "#a6a69c" # Village Gray
+red     = "#e82424" # Samurai Red
+green   = "#98bb6c" # Autumn Green (Bright)
+yellow  = "#e6c384" # Carp Yellow
+blue    = "#7fb4ca" # Sky Blue
+magenta = "#938aa9" # Spring Violet
+cyan    = "#7aa89f" # Wave Blue
+white   = "#545464" # Lotus Ink (Contrast)

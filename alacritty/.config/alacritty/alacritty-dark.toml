@@ -24,28 +24,33 @@ style = "Italic"
 style = "Bold Italic"
 
 [font.offset]
-y = 3  # ~115% cell height
+y = 3 
 
+# Kanagawa Dark (Dragon/Wave)
 [colors.primary]
-background = "#1e1e1e"
-foreground = "#d3d7cf"
+background = "#1f1f28" # Sumi Ink 1
+foreground = "#dcd7ba" # Fuji White
+
+[colors.cursor]
+text   = "#1f1f28"
+cursor = "#dcd7ba"
 
 [colors.normal]
-black   = "#2e3436"
-red     = "#cc0000"
-green   = "#4e9a06"
-yellow  = "#c4a000"
-blue    = "#3465a4"
-magenta = "#75507b"
-cyan    = "#06989a"
-white   = "#d3d7cf"
+black   = "#090618" # Sumi Ink 0
+red     = "#c34043" # Autumn Red
+green   = "#76946a" # Boatmen Green
+yellow  = "#c0a36e" # Carp Yellow
+blue    = "#7e9cd8" # Crystal Blue
+magenta = "#957fb8" # Oni Violet
+cyan    = "#6a9589" # Wave Aqua
+white   = "#c8c093" # Old White
 
 [colors.bright]
-black   = "#555753"
-red     = "#ef2929"
-green   = "#8ae234"
-yellow  = "#fce94f"
-blue    = "#729fcf"
-magenta = "#ad7fa8"
-cyan    = "#34e2e2"
-white   = "#eeeeec"
+black   = "#727169" # Village Gray
+red     = "#e82424" # Samurai Red
+green   = "#98bb6c" # Autumn Green
+yellow  = "#e6c384" # Ronin Yellow
+blue    = "#7fb4ca" # Sky Blue
+magenta = "#938aa9" # Spring Violet
+cyan    = "#7aa89f" # Wave Blue
+white   = "#dcd7ba" # Fuji White
