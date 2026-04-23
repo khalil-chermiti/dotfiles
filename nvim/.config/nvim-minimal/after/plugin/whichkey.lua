@@ -208,6 +208,12 @@ wk.add({
 		{ "<leader>hR", desc = "Reset Buffer" },
 	},
 
+	-- slash nvim command
+	{
+		mode = "n",
+		{ "<leader>s", desc = "Flash" },
+	},
+
 	{
 		mode = { "n", "v" },
 		{ "<leader>q", "<cmd>q<cr>", desc = "Quit" },

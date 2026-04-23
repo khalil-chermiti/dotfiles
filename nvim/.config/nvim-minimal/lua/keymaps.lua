@@ -67,23 +67,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>ff", function()
-  builtin.find_files({ previewer = false })
+	builtin.find_files({ previewer = false })
 end)
 
 vim.keymap.set("n", "<leader>fb", function()
-  builtin.buffers({ previewer = false })
+	builtin.buffers({ previewer = false })
 end)
 
 vim.keymap.set("n", "<leader>fg", function()
-  builtin.git_files({ previewer = false })
+	builtin.git_files({ previewer = false })
 end)
 
 vim.keymap.set("n", "<leader>fs", function()
-  builtin.live_grep() -- keep preview (default behavior)
+	builtin.live_grep() -- keep preview (default behavior)
 end)
 
 vim.keymap.set("n", "<leader>fc", function()
-  builtin.git_status({ previewer = false })
+	builtin.git_status({ previewer = false })
 end)
 
 -- buffers
@@ -131,3 +131,8 @@ require("gitsigns").setup({
 		map("n", "<leader>hR", gitsigns.reset_buffer)
 	end,
 })
+
+-- flash keympaps
+vim.keymap.set("n", "s", function()
+	require("flash").jump()
+end, { desc = "Flash" })

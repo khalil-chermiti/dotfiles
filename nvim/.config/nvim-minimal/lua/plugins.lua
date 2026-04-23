@@ -34,6 +34,7 @@ local plugins = {
   { src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" },
   { src = "https://github.com/zbirenbaum/copilot.lua" },
+  { src = "https://github.com/folke/flash.nvim" },
 }
 
 vim.pack.add(plugins)
