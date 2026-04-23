@@ -79,7 +79,7 @@ vim.keymap.set("n", "<leader>fg", function()
 end)
 
 vim.keymap.set("n", "<leader>fs", function()
-	builtin.live_grep() -- keep preview (default behavior)
+	builtin.live_grep()
 end)
 
 vim.keymap.set("n", "<leader>fc", function()
