@@ -5,6 +5,10 @@ local plugins = {
 	{ src = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" },
 
 	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
+	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
@@ -25,10 +29,10 @@ local plugins = {
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 
-  { src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
+	{ src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" },
-  { src = "https://github.com/zbirenbaum/copilot.lua" },
-  { src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/zbirenbaum/copilot.lua" },
+	{ src = "https://github.com/folke/flash.nvim" },
 }
 
 vim.pack.add(plugins)
