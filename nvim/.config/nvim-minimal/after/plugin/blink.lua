@@ -12,7 +12,7 @@ require("blink.cmp").setup({
 		["<C-k>"] = { "scroll_documentation_up", "fallback" },
 		["<C-j>"] = { "scroll_documentation_down", "fallback" },
 
-    ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+		["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
 	},
 
 	appearance = {
@@ -21,6 +21,11 @@ require("blink.cmp").setup({
 	},
 
 	completion = {
+		accept = {
+			auto_brackets = {
+				enabled = false,
+			},
+		},
 		documentation = {
 			auto_show = false,
 			auto_show_delay_ms = 200,
@@ -32,6 +37,7 @@ require("blink.cmp").setup({
 		},
 		list = { selection = { preselect = true, auto_insert = false } },
 		menu = {
+			auto_show = true,
 			draw = {
 				columns = {
 					{ "kind_icon", "label", "label_description", gap = 1 },
@@ -52,10 +58,28 @@ require("blink.cmp").setup({
 			},
 		},
 	},
+	cmdline = {
+		enabled = true,
+		completion = {
+			menu = { auto_show = false},
+			list = {
+				selection = {
+					preselect = true,
+					auto_insert = true,
+				},
+			},
+		},
+	},
 
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 	},
 
 	fuzzy = { implementation = "prefer_rust_with_warning" },
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+	callback = function()
+		require("blink.cmp").show()
+	end,
 })

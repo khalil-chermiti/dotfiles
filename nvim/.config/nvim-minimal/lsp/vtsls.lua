@@ -22,14 +22,17 @@ return {
 			},
 			typescript = {
 				completion = {
-					-- This ensures the 'label_detail' or 'label_description' is populated
 					importModuleSpecifierPreference = "non-relative",
 				},
+
+				suggest = {
+					completeFunctionCalls = true,
+				},
 			},
-		},
-		typescript = {
-			suggest = {
-				completeFunctionCalls = true,
+			javascript = {
+				suggest = {
+					completeFunctionCalls = true,
+				},
 			},
 		},
 	},

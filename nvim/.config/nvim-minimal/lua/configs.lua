@@ -60,7 +60,7 @@ opt.foldcolumn = "0"
 opt.fillchars = {
 	eob = " ",
 	vert = "│",
-  horiz = "─",
+	horiz = "─",
 }
 
 -- system clipboard
@@ -76,12 +76,37 @@ vim.cmd("set cmdheight=0")
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "size"
 
-vim.opt.statusline = table.concat({
-  " %t",                 -- filename
-  " [%{mode()}]",        -- mode
-  " %{reg_recording() == '' ? '' : '@' .. reg_recording()}", -- show recording register
-  "%=",                  -- right align from here
-  " %l:%c",              -- line:column
-  " %p%% ",              -- percentage
-})
+local function get_diagnostics()
+	local diagnostics = {
+		{ severity = vim.diagnostic.severity.ERROR, sign = "✘ " },
+		{ severity = vim.diagnostic.severity.WARN, sign = " " },
+		{ severity = vim.diagnostic.severity.INFO, sign = "󰋽 " },
+		{ severity = vim.diagnostic.severity.HINT, sign = "󰌵 " },
+	}
 
+	local parts = {}
+	for _, entry in ipairs(diagnostics) do
+		local count = #vim.diagnostic.get(0, { severity = entry.severity })
+		if count > 0 then
+			table.insert(parts, entry.sign .. count)
+		end
+	end
+
+	return #parts > 0 and (" " .. table.concat(parts, " ") .. " ") or ""
+end
+
+-- Make the function global so the statusline can see it
+_G.get_diagnostics = get_diagnostics
+
+vim.opt.statusline = table.concat({
+	" %t", -- filename
+	" [%{mode()}]", -- mode
+	" %m", -- modified flag
+	" %{reg_recording() == '' ? '' : '@' .. reg_recording()}", -- recording macro
+	"%=", -- right align
+	"%{%v:lua.get_diagnostics()%}", -- LSP DIAGNOSTICS
+	" %l:%c", -- line:column
+	" %p%% ", -- percentage
+})
+-- activate quickfix filter
+vim.cmd("packadd cfilter")
