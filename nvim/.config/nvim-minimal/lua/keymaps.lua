@@ -80,7 +80,9 @@ vim.keymap.set("n", "<leader>fc", function()
 end)
 
 -- buffers
-vim.keymap.set("n", "<leader>bb", builtin.buffers)
+vim.keymap.set("n", "<leader>bb", function()
+	builtin.buffers({ previewer = false })
+end)
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")
 
 -- trouble

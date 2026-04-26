@@ -61,11 +61,18 @@ require("blink.cmp").setup({
 	cmdline = {
 		enabled = true,
 		completion = {
-			menu = { auto_show = false },
+			menu = {
+				auto_show = true,
+				draw = {
+					columns = {
+						{ "label", "label_description" },
+					},
+				},
+			},
 			list = {
 				selection = {
 					preselect = true,
-					auto_insert = true,
+					auto_insert = false,
 				},
 			},
 		},

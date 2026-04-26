@@ -38,15 +38,6 @@ wk.add({
 	{ "<leader>ti", desc = "implementations" },
 
 	{
-		mode = { "n", "v" },
-		{ "<leader>c", group = "conform" },
-		{ "<leader>ct", desc = "toggle autoformat" },
-		{ "<leader>cn", desc = "conform info" },
-		{ "<leader>cf", desc = "format buffer" },
-		{ "<leader>cF", desc = "format injected langs" },
-	},
-
-	{
 		mode = "n",
 		{ "<leader>p", group = "pack" },
 		{ "<leader>pu", desc = "Update Plugins" },
@@ -75,15 +66,8 @@ wk.add({
 		{ "<leader>hR", desc = "Reset Buffer" },
 	},
 
-	-- slash nvim command
 	{
 		mode = "n",
 		{ "<leader>s", desc = "Flash" },
-	},
-
-	{
-		mode = { "n", "v" },
-		{ "<leader>q", "<cmd>q<cr>", desc = "Quit" },
-		{ "<leader>w", "<cmd>w<cr>", desc = "Write" },
 	},
 })
