@@ -32,6 +32,7 @@ local plugins = {
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" },
 	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 	{ src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 }
 
 vim.pack.add(plugins)
