@@ -14,7 +14,6 @@ local plugins = {
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/tpope/vim-surround" },
-	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/numToStr/Comment.nvim" },

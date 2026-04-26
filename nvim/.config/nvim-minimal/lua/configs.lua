@@ -122,7 +122,7 @@ end
 _G.get_diagnostics = get_diagnostics
 
 vim.opt.statusline = table.concat({
-	" %t", -- filename
+	" %f", -- filename
 	" [%{mode()}]", -- mode
 	" %m", -- modified flag
 	" %{reg_recording() == '' ? '' : '@' .. reg_recording()}", -- recording macro

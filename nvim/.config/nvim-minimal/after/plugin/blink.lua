@@ -52,7 +52,7 @@ require("blink.cmp").setup({
 					},
 
 					label = {
-						width = { max = 20 },
+						width = { max = 50 },
 					},
 				},
 			},
@@ -61,7 +61,7 @@ require("blink.cmp").setup({
 	cmdline = {
 		enabled = true,
 		completion = {
-			menu = { auto_show = false},
+			menu = { auto_show = false },
 			list = {
 				selection = {
 					preselect = true,

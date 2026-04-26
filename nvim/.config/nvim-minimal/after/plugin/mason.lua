@@ -1,9 +1,10 @@
 -- 1. Ensure Mason binaries are in the system path
-vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+-- vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 
 -- 2. Standard Mason setup
 require("mason").setup({})
 require("mason-lspconfig").setup()
+
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
@@ -11,7 +12,6 @@ require("mason-tool-installer").setup({
 		"yamlls",
 		"vtsls",
 		"biome",
-		"tailwindcss-language-server",
 	},
 })
 
@@ -39,4 +39,22 @@ vim.lsp.config("vtsls", {
 	},
 })
 
-vim.lsp.enable({ "lua_ls", "vtsls", "yamlls", "biome", "tailwindcss-language-server" })
+-- vim.lsp.config("tailwindcss", {
+-- 	root_dir = vim.fs.root(0, {
+-- 		"tailwind.config.js",
+-- 		"tailwind.config.ts",
+-- 		"postcss.config.js",
+-- 		"package.json",
+-- 		".git",
+-- 	}),
+-- 	settings = {
+-- 		tailwindCSS = {
+-- 			-- Optional: explicitly tell it not to scan certain massive folders
+-- 			files = {
+-- 				exclude = { "**/.git/**", "**/node_modules/**", "**/.nuxt/**" },
+-- 			},
+-- 		},
+-- 	},
+-- })
+
+vim.lsp.enable({ "lua_ls", "vtsls", "yamlls", "biome", "tailwindcss" })
