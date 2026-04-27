@@ -1,7 +1,5 @@
 local actions = require("telescope.actions")
 
-require("telescope").setup {}
--- press q to quit
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -14,10 +12,11 @@ require("telescope").setup({
 			"--column",
 			"--smart-case",
 		},
-		prompt_prefix = "   ",
+		-- prompt_prefix = "   ",
+		prompt_prefix = "  ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
-		initial_mode = "insert",
+		initial_mode = "normal",
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",

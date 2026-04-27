@@ -4,7 +4,6 @@ local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)
 
 -- Explorer
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "toggle explorer" })
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "open oil" })
 
 -- Resize
@@ -21,23 +20,6 @@ vim.keymap.set("i", "<A-k>", "<Esc><cmd>m .-2<cr>==gi", { desc = "line up" })
 vim.keymap.set("v", "<A-j>", ":m'>+<cr>gv=gv", { desc = "line down" })
 vim.keymap.set("v", "<A-k>", ":m-2<cr>gv=gv", { desc = "line up" })
 
--- buffer
-
-vim.keymap.set(
-	"n",
-	"<leader>bn",
-	"<cmd>BufferLineCycleNext<cr>",
-	{ desc = "buffer next", noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>bp",
-	"<cmd>BufferLineCyclePrev<cr>",
-	{ desc = "buffer prev", noremap = true, silent = true }
-)
-vim.keymap.set("n", "<leader>bc", "<cmd>BufferLinePick<cr>", { desc = "buffer pick", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>bd", "<cmd>Bdelete<CR>", { desc = "buffer close", noremap = true, silent = true })
-
 -- Inlay Hints
 vim.keymap.set(
 	"n",
@@ -47,7 +29,6 @@ vim.keymap.set(
 )
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(event)
 		local opts = { buffer = event.buf }
 
@@ -77,11 +58,32 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- telescope
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files)
-vim.keymap.set("n", "<leader>fb", builtin.buffers)
-vim.keymap.set("n", "<leader>fg", builtin.live_grep)
-vim.keymap.set("n", "<leader>fh", builtin.help_tags)
-vim.keymap.set("n", "<leader>fs", builtin.git_files)
+
+vim.keymap.set("n", "<leader>ff", function()
+	builtin.find_files({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fb", function()
+	builtin.buffers({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fg", function()
+	builtin.git_files({ previewer = false })
+end)
+
+vim.keymap.set("n", "<leader>fs", function()
+	builtin.live_grep()
+end)
+
+vim.keymap.set("n", "<leader>fc", function()
+	builtin.git_status({ previewer = false })
+end)
+
+-- buffers
+vim.keymap.set("n", "<leader>bb", function()
+	builtin.buffers({ previewer = false })
+end)
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")
 
 -- trouble
 vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
@@ -99,3 +101,33 @@ vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Window Down"
 vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Window Up" })
 vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Window Right" })
 vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Window Previous" })
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
+
+vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update Plugins" })
+
+require("gitsigns").setup({
+	on_attach = function(bufnr)
+		local gitsigns = require("gitsigns")
+
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
+
+		-- Hunk actions
+		map("n", "<leader>hs", gitsigns.stage_hunk)
+		map("n", "<leader>hr", gitsigns.reset_hunk)
+		map("n", "<leader>hp", gitsigns.preview_hunk)
+
+		-- Buffer actions
+		map("n", "<leader>hS", gitsigns.stage_buffer)
+		map("n", "<leader>hR", gitsigns.reset_buffer)
+	end,
+})
+
+-- flash keympaps
+vim.keymap.set("n", "s", function()
+	require("flash").jump()
+end, { desc = "Flash" })

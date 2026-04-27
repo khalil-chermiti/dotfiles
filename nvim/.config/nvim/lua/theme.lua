@@ -1,5 +1,5 @@
-local dark_theme = "onedark"
-local light_theme = "onelight"
+local dark_theme = "kanagawa-wave"
+local light_theme = "kanagawa-lotus"
 
 local function apply_theme()
 	local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme"):gsub("%s+", "")

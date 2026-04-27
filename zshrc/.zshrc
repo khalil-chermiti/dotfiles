@@ -6,8 +6,6 @@ echo "  .--------------.
       '----- ( *.*) 
              o_(\")(\")" | lolcat
 
-# fastfetch --config examples/8 
-
 export ZSH="$HOME/.oh-my-zsh"
 
 # Path to your oh-my-zsh installation.
@@ -46,24 +44,11 @@ alias compress="tar -czvf"
 alias clip="xclip -sel clip"
 
 alias k="kubectl"
-alias d="docker"
 
 alias ta="tmux attach -t"
 alias td="tmux detach -s"
 alias tn="tmux new -s"
 alias ts="tmux list-sessions"
-
-alias hist='history | \
-  fzf --height 40% \
-      --border \
-      --border-label=" COMMAND HISTORY " \
-      --prompt=" Search history > " \
-      --reverse \
-      --tac \
-      --color=border:bright-black | \
-  sed -e "s/^ *[0-9]* *//" | \
-  tr -d "\n" | \
-  xclip -selection clipboard'
 
 source <(kubectl completion zsh)
 
@@ -104,7 +89,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias vs="NVIM_APPNAME=nvim-minimal nvim"
+alias v="nvim"
 
 # # vi mode for zsh
 # bindkey -v

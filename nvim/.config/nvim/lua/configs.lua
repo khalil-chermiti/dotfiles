@@ -55,15 +55,16 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "0"
---
--- -- fill chars
--- opt.fillchars = {
--- 	eob = " ",
--- 	vert = "│",
--- }
+
+-- fill chars
+opt.fillchars = {
+	eob = " ",
+	vert = "│",
+	horiz = "─",
+}
 
 -- system clipboard
-vim.opt.clipboard:append("unnamedplus")
+opt.clipboard:append("unnamedplus")
 
 -- cmd
 -- vim.cmd("set cmdheight=0")
@@ -74,3 +75,61 @@ vim.cmd("set cmdheight=0")
 -- globals
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "size"
+
+vim.diagnostic.config({
+  severity_sort = true,
+  update_in_insert = false,
+  float = {
+    border = 'rounded',
+    source = 'if_many',
+  },
+  underline = true,
+  virtual_text = {
+    spacing = 2,
+    source = 'if_many',
+    prefix = '●',
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = 'E',
+      [vim.diagnostic.severity.WARN] = 'W',
+      [vim.diagnostic.severity.INFO] = 'I',
+      [vim.diagnostic.severity.HINT] = 'H',
+    },
+  },
+})
+
+local function get_diagnostics()
+	local diagnostics = {
+		{ severity = vim.diagnostic.severity.ERROR, sign = "✘ " },
+		{ severity = vim.diagnostic.severity.WARN, sign = " " },
+		{ severity = vim.diagnostic.severity.INFO, sign = "󰋽 " },
+		{ severity = vim.diagnostic.severity.HINT, sign = "󰌵 " },
+	}
+
+	local parts = {}
+	for _, entry in ipairs(diagnostics) do
+		local count = #vim.diagnostic.get(0, { severity = entry.severity })
+		if count > 0 then
+			table.insert(parts, entry.sign .. count)
+		end
+	end
+
+	return #parts > 0 and (" " .. table.concat(parts, " ") .. " ") or ""
+end
+
+-- Make the function global so the statusline can see it
+_G.get_diagnostics = get_diagnostics
+
+vim.opt.statusline = table.concat({
+	" %f", -- filename
+	" [%{mode()}]", -- mode
+	" %m", -- modified flag
+	" %{reg_recording() == '' ? '' : '@' .. reg_recording()}", -- recording macro
+	"%=", -- right align
+	"%{%v:lua.get_diagnostics()%}", -- LSP DIAGNOSTICS
+	" %l:%c", -- line:column
+	" %p%% ", -- percentage
+})
+-- activate quickfix filter
+vim.cmd("packadd cfilter")
