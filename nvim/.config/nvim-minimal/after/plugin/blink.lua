@@ -35,7 +35,7 @@ require("blink.cmp").setup({
 				max_height = 40,
 			},
 		},
-		list = { selection = { preselect = true, auto_insert = false } },
+		list = { selection = { preselect = true, auto_insert = true } },
 		menu = {
 			auto_show = true,
 			draw = {
@@ -72,7 +72,7 @@ require("blink.cmp").setup({
 			list = {
 				selection = {
 					preselect = true,
-					auto_insert = false,
+					auto_insert = true,
 				},
 			},
 		},
