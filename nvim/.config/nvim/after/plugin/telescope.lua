@@ -16,7 +16,7 @@ require("telescope").setup({
 		prompt_prefix = "  ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
-		initial_mode = "normal",
+		initial_mode = "insert",
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
@@ -55,4 +55,3 @@ require("telescope").setup({
 		},
 	},
 })
-

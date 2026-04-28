@@ -1,14 +1,13 @@
 # show ASCII ART
-echo "  .--------------.
-  | happy coding |
-  '--------------'
+echo "  .---------------.
+  | HAPPY CODING! |
+  '---------------'
       ^      (\\_(\\
-      '----- ( *.*) 
-             o_(\")(\")" | lolcat
+      |_____ ( *.*) 
+             o_(\")(\")" | lolcat -r
 
 export ZSH="$HOME/.oh-my-zsh"
 
-# Path to your oh-my-zsh installation.
 ZSH_THEME="robbyrussell"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -21,36 +20,26 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias l="eza -lg --icons"
-alias la="eza -lag --icons"
-alias ls="eza --icons"
-alias ll="eza -lgh --icons"
-
-# pring tree of level 1 if no argument is given else print tree of given level
-lt() {
-  if [ $# -eq 0 ]; then
-    exa -T --level=1 --icons
-  else
-    exa -T --level=$1 --icons
-  fi
-}
+alias l="eza -lg --icons=always"
+alias la="eza -lag --icons=always"
+alias ls="eza --icons=always"
+alias ll="eza -lgh --icons=always"
 
 alias cat="bat"
 
 alias extract='tar -zxvf'
 alias compress="tar -czvf"
 
-# pipe STDOUT to pipe alias to copy it
 alias clip="xclip -sel clip"
 
-alias k="kubectl"
+# alias ta="tmux attach -t"
+# alias td="tmux detach -s"
+# alias tn="tmux new -s"
+# alias ts="tmux list-sessions"
 
-alias ta="tmux attach -t"
-alias td="tmux detach -s"
-alias tn="tmux new -s"
-alias ts="tmux list-sessions"
+alias v="nvim"
 
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
 # pnpm
 export PNPM_HOME="/home/khalil/.local/share/pnpm"
@@ -63,18 +52,6 @@ esac
 # zoxide
 eval "$(zoxide init zsh)"
 alias cd='z'
-
-# bun completions
-[ -s "/home/khalil/.bun/_bun" ] && source "/home/khalil/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# adding go to path
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/workspace/go/gopath/bin
-export GOPATH=$HOME/workspace/go/gopath
 
 # adding local script to path
 export PATH="$HOME/.local/bin:$PATH"
@@ -89,21 +66,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias v="nvim"
-
-# # vi mode for zsh
-# bindkey -v
-#
-# #vi mode indicator in prompt
-# function zle-line-init zle-keymap-select {
-#     RPS1="${${KEYMAP/vicmd/N }/(main|viins)/I }"
-#     RPS2=$RPS1
-#     zle reset-prompt
-# }
-#
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-#
-
-# opencode
-export PATH=/home/khalil/.opencode/bin:$PATH

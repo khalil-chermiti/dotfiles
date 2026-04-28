@@ -13,7 +13,7 @@ vim.g.loaded_python3_provider = 0
 -- ui
 opt.number = true
 opt.relativenumber = false
-opt.cursorline = false
+opt.cursorline = true
 opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.pumheight = 10
@@ -57,46 +57,44 @@ opt.foldlevelstart = 99
 opt.foldcolumn = "0"
 
 -- fill chars
-opt.fillchars = {
-	eob = " ",
-	vert = "│",
-	horiz = "─",
-}
+-- opt.fillchars = {
+-- 	eob = " ",
+-- 	vert = "│",
+-- 	horiz = "─",
+-- }
 
 -- system clipboard
 opt.clipboard:append("unnamedplus")
 
 -- cmd
--- vim.cmd("set cmdheight=0")
-vim.cmd.filetype("plugin indent on")
-
 vim.cmd("set cmdheight=0")
+vim.cmd.filetype("plugin indent on")
 
 -- globals
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "size"
 
 vim.diagnostic.config({
-  severity_sort = true,
-  update_in_insert = false,
-  float = {
-    border = 'rounded',
-    source = 'if_many',
-  },
-  underline = true,
-  virtual_text = {
-    spacing = 2,
-    source = 'if_many',
-    prefix = '●',
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = 'E',
-      [vim.diagnostic.severity.WARN] = 'W',
-      [vim.diagnostic.severity.INFO] = 'I',
-      [vim.diagnostic.severity.HINT] = 'H',
-    },
-  },
+	severity_sort = true,
+	update_in_insert = false,
+	float = {
+		border = "rounded",
+		source = "if_many",
+	},
+	underline = true,
+	virtual_text = {
+		spacing = 2,
+		source = "if_many",
+		prefix = "●",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "E",
+			[vim.diagnostic.severity.WARN] = "W",
+			[vim.diagnostic.severity.INFO] = "I",
+			[vim.diagnostic.severity.HINT] = "H",
+		},
+	},
 })
 
 local function get_diagnostics()
@@ -126,6 +124,9 @@ vim.opt.statusline = table.concat({
 	" [%{mode()}]", -- mode
 	" %m", -- modified flag
 	" %{reg_recording() == '' ? '' : '@' .. reg_recording()}", -- recording macro
+	" %r", -- readonly flag
+	" %q", -- quickfix flag
+	" %h", -- help flag
 	"%=", -- right align
 	"%{%v:lua.get_diagnostics()%}", -- LSP DIAGNOSTICS
 	" %l:%c", -- line:column
