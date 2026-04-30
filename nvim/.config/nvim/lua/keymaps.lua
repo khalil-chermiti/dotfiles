@@ -7,26 +7,12 @@ vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "open oil" })
 
 -- Resize
-vim.keymap.set("n", "<C-up>", "<cmd>resize +2<cr>", { desc = "h +2" })
-vim.keymap.set("n", "<C-down>", "<cmd>resize -2<cr>", { desc = "h -2" })
-vim.keymap.set("n", "<C-left>", "<cmd>vertical resize +2<cr>", { desc = "v +2" })
-vim.keymap.set("n", "<C-right>", "<cmd>vertical resize -2<cr>", { desc = "v -2" })
-
--- Text Movement
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "line down" })
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "line up" })
-vim.keymap.set("i", "<A-j>", "<Esc><cmd>m .+1<cr>==gi", { desc = "line down" })
-vim.keymap.set("i", "<A-k>", "<Esc><cmd>m .-2<cr>==gi", { desc = "line up" })
-vim.keymap.set("v", "<A-j>", ":m'>+<cr>gv=gv", { desc = "line down" })
-vim.keymap.set("v", "<A-k>", ":m-2<cr>gv=gv", { desc = "line up" })
+vim.keymap.set("n", "<A-j>", "<cmd>resize +2<cr>", { desc = "h +2" })
+vim.keymap.set("n", "<A-k>", "<cmd>resize -2<cr>", { desc = "h -2" })
+vim.keymap.set("n", "<A-h>", "<cmd>vertical resize +2<cr>", { desc = "v +2" })
+vim.keymap.set("n", "<A-l>", "<cmd>vertical resize -2<cr>", { desc = "v -2" })
 
 -- Inlay Hints
-vim.keymap.set(
-	"n",
-	"<leader>lH",
-	"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
-	{ desc = "enable inlay hints" }
-)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
@@ -47,12 +33,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Diagnostics
 		vim.keymap.set("n", "<leader>lm", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "<leader>gp", function()
-			vim.diagnostic.jump({ count = -1, float = true })
-		end, opts)
-		vim.keymap.set("n", "<leader>gn", function()
-			vim.diagnostic.jump({ count = 1, float = true })
-		end, opts)
+
+		vim.keymap.set("n", "<leader>lH", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, { desc = "Toggle inlay hints" })
 	end,
 })
 

@@ -39,7 +39,7 @@ require("blink.cmp").setup({
 			draw = {
 				columns = {
 					{ "kind_icon", "label", gap = 1 },
-					{ "kind" },
+					{ "label_description", "kind" },
 				},
 			},
 		},
