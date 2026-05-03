@@ -32,10 +32,10 @@ alias compress="tar -czvf"
 
 alias clip="xclip -sel clip"
 
-# alias ta="tmux attach -t"
-# alias td="tmux detach -s"
-# alias tn="tmux new -s"
-# alias ts="tmux list-sessions"
+alias ta="tmux attach -t"
+alias td="tmux detach -s"
+alias tn="tmux new -s"
+alias ts="tmux list-sessions"
 
 alias v="nvim"
 

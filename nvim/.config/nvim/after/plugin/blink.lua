@@ -18,9 +18,9 @@ require("blink.cmp").setup({
 	},
 
 	completion = {
-		ghost_text = { enabled = true },
+		ghost_text = { enabled = false },
 
-		accept = { auto_brackets = { enabled = true } },
+		accept = { auto_brackets = { enabled = false } },
 
 		list = {
 			selection = {
@@ -38,8 +38,8 @@ require("blink.cmp").setup({
 		menu = {
 			draw = {
 				columns = {
-					{ "kind_icon", "label", gap = 1 },
-					{ "label_description", "kind" },
+					{ "kind_icon", "label", "label_description", gap = 1 },
+					{ "kind" },
 				},
 			},
 		},
