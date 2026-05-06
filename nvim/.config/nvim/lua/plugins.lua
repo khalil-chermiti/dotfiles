@@ -21,6 +21,7 @@ local plugins = {
 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mbbill/undotree" },
@@ -28,11 +29,10 @@ local plugins = {
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 
-	-- { src = "https://github.com/copilotlsp-nvim/copilot-lsp" },
-	-- { src = "https://github.com/giuxtaposition/blink-cmp-copilot" },
 	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 	{ src = "https://github.com/folke/flash.nvim" },
 	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
+  { src = "https://github.com/oribarilan/lensline.nvim" },
 }
 
 vim.pack.add(plugins)

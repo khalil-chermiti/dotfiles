@@ -19,14 +19,15 @@ opt.termguicolors = true
 opt.pumheight = 10
 opt.scrolloff = 8
 opt.numberwidth = 2
-opt.colorcolumn = ""
--- opt.winborder = "rounded"
+opt.colorcolumn = "80"
+opt.winborder = "rounded"
 opt.list = false
 
 -- search
 opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
+opt.smartcase = true
 opt.inccommand = "nosplit"
 
 -- indentation
@@ -56,13 +57,6 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "0"
 
--- fill chars
--- opt.fillchars = {
--- 	eob = " ",
--- 	vert = "│",
--- 	horiz = "─",
--- }
-
 -- system clipboard
 opt.clipboard:append("unnamedplus")
 
@@ -71,9 +65,6 @@ vim.cmd("set cmdheight=0")
 vim.cmd.filetype("plugin indent on")
 
 -- globals
-vim.g.netrw_liststyle = 1
-vim.g.netrw_sort_by = "size"
-
 vim.diagnostic.config({
 	severity_sort = true,
 	update_in_insert = false,

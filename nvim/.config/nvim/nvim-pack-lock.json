@@ -34,6 +34,10 @@
       "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
+    "lensline.nvim": {
+      "rev": "93c14465c742511a645bb454db33ddd96f23bf76",
+      "src": "https://github.com/oribarilan/lensline.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "0c2823e0418f3d9230ff8b201c976e84de1cb401",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
