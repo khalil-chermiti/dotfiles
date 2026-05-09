@@ -48,11 +48,11 @@ require("nvim-treesitter").install({
 require("nvim-treesitter-textobjects").setup({
 	select = {
 		enable = true,
-		lookahead = true,
+		lookahead = false,
 		selection_modes = {
 			["@parameter.outer"] = "v", -- charwise
 			["@function.outer"] = "V", -- linewise
-			["@class.outer"] = "<c-v>", -- blockwise
+			["@class.outer"] = "V", -- linewise 
 		},
 		include_surrounding_whitespace = false,
 	},
@@ -61,7 +61,6 @@ require("nvim-treesitter-textobjects").setup({
 		set_jumps = true,
 	},
 })
-
 
 -- =============================================================================
 -- TEXT OBJECT SELECTIONS

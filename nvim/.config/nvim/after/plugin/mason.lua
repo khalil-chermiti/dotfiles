@@ -1,6 +1,3 @@
--- 1. Ensure Mason binaries are in the system path
--- vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
-
 -- 2. Standard Mason setup
 require("mason").setup({})
 require("mason-lspconfig").setup()

@@ -1,15 +1,6 @@
-# show ASCII ART
-echo "  .---------------.
-  | HAPPY CODING! |
-  '---------------'
-      ^      (\\_(\\
-      |_____ ( *.*) 
-             o_(\")(\")" | lolcat -r
-
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   zsh-autosuggestions
@@ -27,9 +18,6 @@ alias ll="eza -lgh --icons=always"
 
 alias cat="bat"
 
-alias extract='tar -zxvf'
-alias compress="tar -czvf"
-
 alias clip="xclip -sel clip"
 
 alias ta="tmux attach -t"
@@ -38,8 +26,6 @@ alias tn="tmux new -s"
 alias ts="tmux list-sessions"
 
 alias v="nvim"
-
-# source <(kubectl completion zsh)
 
 # zoxide
 eval "$(zoxide init zsh)"

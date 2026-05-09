@@ -29,10 +29,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Documentation & Help
 		vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, opts)
-		vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 
 		-- Diagnostics
 		vim.keymap.set("n", "<leader>lm", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "<leader>lM", vim.diagnostic.setqflist, opts)
 
 		vim.keymap.set("n", "<leader>lH", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -70,15 +71,15 @@ end)
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")
 
 -- trouble
-vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
-vim.keymap.set(
-	"n",
-	"<leader>ti",
-	"<cmd>Trouble lsp_implementations toggle focus=false<cr>",
-	{ desc = "Trouble Implementations" }
-)
-vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics" })
-vim.keymap.set("n", "<leader>tq", "<cmd>Trouble qflist toggle<cr>", { desc = "Trouble Quickfix" })
+-- vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>ti",
+-- 	"<cmd>Trouble lsp_implementations toggle focus=false<cr>",
+-- 	{ desc = "Trouble Implementations" }
+-- )
+-- -- vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics" })
+-- vim.keymap.set("n", "<leader>tq", "<cmd>Trouble qflist toggle<cr>", { desc = "Trouble Quickfix" })
 
 vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Window Left" })
 vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Window Down" })
@@ -115,3 +116,35 @@ require("gitsigns").setup({
 vim.keymap.set("n", "s", function()
 	require("flash").jump()
 end, { desc = "Flash" })
+
+-- qflist navigation
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { desc = "Next Quickfix item" })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "Previous Quickfix item" })
+
+-- toggle quickfix list
+vim.keymap.set("n", "<leader>qq", function()
+	local qf_exists = false
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win["quickfix"] == 1 then
+			qf_exists = true
+		end
+	end
+
+	if qf_exists then
+		vim.cmd("cclose")
+	else
+		vim.cmd("copen")
+	end
+end, { desc = "Toggle Quickfix List" })
+
+vim.keymap.set("n", "<leader>g", ":copen | :silent :grep ")
+
+vim.keymap.set("n", "<leader>qs", function()
+	if vim.o.quickfixtextfunc == "" then
+		vim.o.quickfixtextfunc = "v:lua.qf_filename"
+		print("Quickfix: Short names enabled")
+	else
+		vim.o.quickfixtextfunc = ""
+		print("Quickfix: Full paths enabled")
+	end
+end, { desc = "Toggle Quickfix Short Paths" })

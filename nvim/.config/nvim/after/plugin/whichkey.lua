@@ -17,12 +17,9 @@ wk.add({
 	{ "<leader>li", desc = "implementations" },
 	{ "<leader>lh", desc = "hover" },
 	{ "<leader>lf", desc = "format" },
-	{ "<leader>lm", desc = "diagnostic" },
+	{ "<leader>lm", desc = "diagnostic float" },
+	{ "<leader>lM", desc = "diagnostic qf" },
 	{ "Ctlh", desc = "signature help" },
-
-	{ "<leader>g", group = "diagnostic" },
-	{ "<leader>gn", desc = "next" },
-	{ "<leader>gp", desc = "prev" },
 
 	{ "<leader>f", group = "telescope" },
 	{ "<leader>ff", desc = "find files" },
@@ -31,11 +28,11 @@ wk.add({
 	{ "<leader>fg", desc = "search git" },
 	{ "<leader>fc", desc = "search changes" },
 
-	{ "<leader>t", group = "trouble" },
-	{ "<leader>td", desc = "diagnostics" },
-	{ "<leader>tq", desc = "quickfix" },
-	{ "<leader>tr", desc = "references" },
-	{ "<leader>ti", desc = "implementations" },
+	-- { "<leader>t", group = "trouble" },
+	-- { "<leader>td", desc = "diagnostics" },
+	-- { "<leader>tq", desc = "quickfix" },
+	-- { "<leader>tr", desc = "references" },
+	-- { "<leader>ti", desc = "implementations" },
 
 	{
 		mode = "n",

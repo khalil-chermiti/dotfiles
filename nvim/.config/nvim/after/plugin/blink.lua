@@ -1,4 +1,10 @@
+vim.g.blink_enabled = false
+
 require("blink.cmp").setup({
+	enabled = function()
+		return vim.g.blink_enabled
+	end,
+
 	keymap = {
 		preset = "none",
 
@@ -32,10 +38,11 @@ require("blink.cmp").setup({
 		documentation = {
 			auto_show = false,
 			auto_show_delay_ms = 200,
-			window = { border = "rounded" },
+			window = { border = "none" },
 		},
 
 		menu = {
+			border = "none",
 			draw = {
 				columns = {
 					{ "kind_icon", "label", "label_description", gap = 1 },
@@ -45,9 +52,15 @@ require("blink.cmp").setup({
 		},
 	},
 
-	signature = { enabled = true },
+	signature = { enabled = true, window = { border = "none" } },
 
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 	},
 })
+
+vim.api.nvim_create_user_command("BlinkToggle", function()
+	vim.g.blink_enabled = not vim.g.blink_enabled
+	local enabled = vim.g.blink_enabled and "Enabled" or "Disabled"
+	print("Blink Status: " .. enabled)
+end, {})

@@ -58,7 +58,7 @@ opt.foldlevelstart = 99
 opt.foldcolumn = "0"
 
 -- system clipboard
-opt.clipboard:append("unnamedplus")
+opt.clipboard = "unnamedplus"
 
 -- cmd
 vim.cmd("set cmdheight=0")
@@ -123,5 +123,48 @@ vim.opt.statusline = table.concat({
 	" %l:%c", -- line:column
 	" %p%% ", -- percentage
 })
+
 -- activate quickfix filter
 vim.cmd("packadd cfilter")
+
+-- set search path
+vim.opt.path:append("**")
+
+-- ignore following paths
+vim.opt.wildignore:append({
+	"**/node_modules/**",
+	"**/target/**",
+	"**/dist/**",
+	"**/.git/**",
+	"**/build/**",
+})
+
+vim.opt.suffixesadd:append(".lua,.ts")
+
+-- default is "rg --vimgrep -uu" the uu includes hidden and .gitignore
+vim.opt.grepprg = "rg --vimgrep"
+
+-- Custom function to format the quickfix display
+_G.qf_filename = function(info)
+	local items = vim.fn.getqflist({ id = info.id, items = 0 }).items
+	local l = {}
+
+	for i = info.start_idx, info.end_idx do
+		local e = items[i]
+		local fname = ""
+
+		if e.bufnr ~= 0 then
+			-- Get the full path and then extract just the tail (the filename)
+			local fullpath = vim.api.nvim_buf_get_name(e.bufnr)
+			fname = vim.fn.fnamemodify(fullpath, ":t")
+		end
+
+		-- Format the line: Filename | Line:Col | Text
+		local str = string.format("%s | %d:%d | %s", fname, e.lnum, e.col, e.text:gsub("^%s*", ""))
+
+		table.insert(l, str)
+	end
+	return l
+end
+
+

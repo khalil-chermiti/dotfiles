@@ -32,7 +32,8 @@ local plugins = {
 	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 	{ src = "https://github.com/folke/flash.nvim" },
 	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
-  { src = "https://github.com/oribarilan/lensline.nvim" },
+	{ src = "https://github.com/oribarilan/lensline.nvim" },
+	{ src = "https://github.com/sindrets/diffview.nvim" },
 }
 
 vim.pack.add(plugins)
