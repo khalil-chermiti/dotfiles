@@ -154,17 +154,13 @@ _G.qf_filename = function(info)
 		local fname = ""
 
 		if e.bufnr ~= 0 then
-			-- Get the full path and then extract just the tail (the filename)
 			local fullpath = vim.api.nvim_buf_get_name(e.bufnr)
 			fname = vim.fn.fnamemodify(fullpath, ":t")
 		end
 
-		-- Format the line: Filename | Line:Col | Text
 		local str = string.format("%s | %d:%d | %s", fname, e.lnum, e.col, e.text:gsub("^%s*", ""))
 
 		table.insert(l, str)
 	end
 	return l
 end
-
-
