@@ -142,7 +142,7 @@ vim.opt.wildignore:append({
 vim.opt.suffixesadd:append(".lua,.ts")
 
 -- default is "rg --vimgrep -uu" the uu includes hidden and .gitignore
-vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepprg = "rg --vimgrep --smart-case"
 
 -- Custom function to format the quickfix display
 _G.qf_filename = function(info)

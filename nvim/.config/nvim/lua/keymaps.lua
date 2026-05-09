@@ -6,14 +6,7 @@ vim.keymap.set("i", "jj", "<Esc>", options)
 -- Explorer
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "open oil" })
 
--- Resize
-vim.keymap.set("n", "<A-j>", "<cmd>resize +2<cr>", { desc = "h +2" })
-vim.keymap.set("n", "<A-k>", "<cmd>resize -2<cr>", { desc = "h -2" })
-vim.keymap.set("n", "<A-h>", "<cmd>vertical resize +2<cr>", { desc = "v +2" })
-vim.keymap.set("n", "<A-l>", "<cmd>vertical resize -2<cr>", { desc = "v -2" })
-
 -- Inlay Hints
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local opts = { buffer = event.buf }
@@ -64,23 +57,6 @@ vim.keymap.set("n", "<leader>fc", function()
 	builtin.git_status({ previewer = false })
 end)
 
--- buffers
-vim.keymap.set("n", "<leader>bb", function()
-	builtin.buffers({ previewer = false })
-end)
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")
-
--- trouble
--- vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references toggle focus=false<cr>", { desc = "Trouble References" })
--- vim.keymap.set(
--- 	"n",
--- 	"<leader>ti",
--- 	"<cmd>Trouble lsp_implementations toggle focus=false<cr>",
--- 	{ desc = "Trouble Implementations" }
--- )
--- -- vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics" })
--- vim.keymap.set("n", "<leader>tq", "<cmd>Trouble qflist toggle<cr>", { desc = "Trouble Quickfix" })
-
 vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Window Left" })
 vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Window Down" })
 vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Window Up" })
@@ -88,8 +64,6 @@ vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Window Righ
 vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Window Previous" })
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
-
-vim.keymap.set("n", "<leader>pu", "<cmd>lua vim.pack.update()<cr>", { desc = "Update Plugins" })
 
 require("gitsigns").setup({
 	on_attach = function(bufnr)
@@ -113,13 +87,13 @@ require("gitsigns").setup({
 })
 
 -- flash keympaps
-vim.keymap.set("n", "s", function()
+vim.keymap.set("n", "<leader>s", function()
 	require("flash").jump()
 end, { desc = "Flash" })
 
 -- qflist navigation
-vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { desc = "Next Quickfix item" })
-vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "Previous Quickfix item" })
+vim.keymap.set("n", "<C-n>", "<cmd>silent! cnext<CR>", { desc = "Next Quickfix item" })
+vim.keymap.set("n", "<C-p>", "<cmd>silent! cprev<CR>", { desc = "Previous Quickfix item" })
 
 -- toggle quickfix list
 vim.keymap.set("n", "<leader>qq", function()
@@ -137,8 +111,19 @@ vim.keymap.set("n", "<leader>qq", function()
 	end
 end, { desc = "Toggle Quickfix List" })
 
-vim.keymap.set("n", "<leader>g", ":copen | :silent :grep ")
+-- open grep search
+vim.keymap.set("n", "<leader>g", function()
+	local pattern = vim.trim(vim.fn.input("Grep> "))
 
+	if pattern == "" then
+		return
+	end
+
+	vim.cmd("silent grep! " .. vim.fn.shellescape(pattern))
+	vim.cmd("copen")
+end, { desc = "grep" })
+
+-- toggle quickfix list short names
 vim.keymap.set("n", "<leader>qs", function()
 	if vim.o.quickfixtextfunc == "" then
 		vim.o.quickfixtextfunc = "v:lua.qf_filename"
@@ -148,3 +133,10 @@ vim.keymap.set("n", "<leader>qs", function()
 		print("Quickfix: Full paths enabled")
 	end
 end, { desc = "Toggle Quickfix Short Paths" })
+
+-- toggle blink completion
+vim.keymap.set("n", "<leader>c", function()
+	vim.g.blink_enabled = not vim.g.blink_enabled
+	local enabled = vim.g.blink_enabled and "Enabled" or "Disabled"
+	vim.notify("Blink Status: " .. enabled)
+end, { desc = "Toggle Blink CMP" })

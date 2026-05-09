@@ -19,7 +19,7 @@ wk.add({
 	{ "<leader>lf", desc = "format" },
 	{ "<leader>lm", desc = "diagnostic float" },
 	{ "<leader>lM", desc = "diagnostic qf" },
-	{ "Ctlh", desc = "signature help" },
+	{ "Ctls", desc = "signature help" },
 
 	{ "<leader>f", group = "telescope" },
 	{ "<leader>ff", desc = "find files" },
@@ -27,30 +27,13 @@ wk.add({
 	{ "<leader>fs", desc = "live grep" },
 	{ "<leader>fg", desc = "search git" },
 	{ "<leader>fc", desc = "search changes" },
-
-	-- { "<leader>t", group = "trouble" },
-	-- { "<leader>td", desc = "diagnostics" },
-	-- { "<leader>tq", desc = "quickfix" },
-	-- { "<leader>tr", desc = "references" },
-	-- { "<leader>ti", desc = "implementations" },
-
-	{
-		mode = "n",
-		{ "<leader>p", group = "pack" },
-		{ "<leader>pu", desc = "Update Plugins" },
-	},
+	{ "<leader>fh", desc = "harpoon" },
 
 	{
 		mode = "n",
 		{ "<leader>u", desc = "Toggle Undotree" },
 	},
-
-	{
-		mode = "n",
-		{ "<leader>b", group = "buffers" },
-		{ "<leader>bb", desc = "Buffers" },
-		{ "<leader>bd", desc = "Buffer Delete" },
-	},
+	{ mode = "n", { "<leader>q", group = "quickfix" } },
 
 	{
 		mode = "n",

@@ -58,9 +58,3 @@ require("blink.cmp").setup({
 		default = { "lsp", "path", "snippets", "buffer" },
 	},
 })
-
-vim.api.nvim_create_user_command("BlinkToggle", function()
-	vim.g.blink_enabled = not vim.g.blink_enabled
-	local enabled = vim.g.blink_enabled and "Enabled" or "Disabled"
-	print("Blink Status: " .. enabled)
-end, {})
