@@ -139,12 +139,13 @@ vim.opt.wildignore:append({
 	"**/build/**",
 })
 
-vim.opt.suffixesadd:append(".lua,.ts")
+opt.suffixesadd:append(".lua,.ts")
 
 -- default is "rg --vimgrep -uu" the uu includes hidden and .gitignore
-vim.opt.grepprg = "rg --vimgrep --smart-case"
+opt.grepprg = "rg --vimgrep --smart-case"
 
 -- Custom function to format the quickfix display
+---@diagnostic disable-next-line: duplicate-set-field
 _G.qf_filename = function(info)
 	local items = vim.fn.getqflist({ id = info.id, items = 0 }).items
 	local l = {}
@@ -164,3 +165,23 @@ _G.qf_filename = function(info)
 	end
 	return l
 end
+
+-- file search --
+function UseFd(cmdarg, _)
+	local param = vim.fn.getcwd() .. ".*" .. tostring(cmdarg)
+	local fdout = vim.system({
+		"fd",
+		"--type",
+		"f",
+		"--hidden",
+		"--exclude",
+		".git",
+		"--full-path",
+		param,
+	}):wait()
+
+	local matches = vim.split(fdout.stdout, "\n", { trimempty = true })
+	return matches
+end
+
+opt.findfunc = "v:lua.UseFd"
