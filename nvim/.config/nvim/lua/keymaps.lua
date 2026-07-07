@@ -25,8 +25,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 
 		-- Diagnostics
-		vim.keymap.set("n", "<leader>lm", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "<leader>lM", vim.diagnostic.setqflist, opts)
+		vim.keymap.set("n", "<leader>dn", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, { desc = "diagnostic" })
+
+		vim.keymap.set("n", "<leader>dp", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, { desc = "revious" })
+
+		vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "float" })
+
+		vim.keymap.set("n", "<leader>dt", function()
+			vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+		end, { desc = "virtual text" })
+
+		vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "qflist" })
 
 		vim.keymap.set("n", "<leader>lH", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -96,43 +109,43 @@ vim.keymap.set("n", "<C-n>", "<cmd>silent! cnext<CR>", { desc = "Next Quickfix i
 vim.keymap.set("n", "<C-p>", "<cmd>silent! cprev<CR>", { desc = "Previous Quickfix item" })
 
 -- toggle quickfix list
-vim.keymap.set("n", "<leader>qq", function()
-	local qf_exists = false
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win["quickfix"] == 1 then
-			qf_exists = true
-		end
-	end
-
-	if qf_exists then
-		vim.cmd("cclose")
-	else
-		vim.cmd("copen")
-	end
-end, { desc = "Toggle Quickfix List" })
+-- vim.keymap.set("n", "<leader>qq", function()
+-- 	local qf_exists = false
+-- 	for _, win in pairs(vim.fn.getwininfo()) do
+-- 		if win["quickfix"] == 1 then
+-- 			qf_exists = true
+-- 		end
+-- 	end
+--
+-- 	if qf_exists then
+-- 		vim.cmd("cclose")
+-- 	else
+-- 		vim.cmd("copen")
+-- 	end
+-- end, { desc = "Toggle Quickfix List" })
 
 -- open grep search
-vim.keymap.set("n", "<leader>g", function()
-	local pattern = vim.trim(vim.fn.input("Grep> "))
-
-	if pattern == "" then
-		return
-	end
-
-	vim.cmd("silent grep! " .. vim.fn.shellescape(pattern))
-	vim.cmd("copen")
-end, { desc = "grep" })
+-- vim.keymap.set("n", "<leader>g", function()
+-- 	local pattern = vim.trim(vim.fn.input("Grep> "))
+--
+-- 	if pattern == "" then
+-- 		return
+-- 	end
+--
+-- 	vim.cmd("silent grep! " .. vim.fn.shellescape(pattern))
+-- 	vim.cmd("copen")
+-- end, { desc = "grep" })
 
 -- toggle quickfix list short names
-vim.keymap.set("n", "<leader>qs", function()
-	if vim.o.quickfixtextfunc == "" then
-		vim.o.quickfixtextfunc = "v:lua.qf_filename"
-		print("Quickfix: Short names enabled")
-	else
-		vim.o.quickfixtextfunc = ""
-		print("Quickfix: Full paths enabled")
-	end
-end, { desc = "Toggle Quickfix Short Paths" })
+-- vim.keymap.set("n", "<leader>qs", function()
+-- 	if vim.o.quickfixtextfunc == "" then
+-- 		vim.o.quickfixtextfunc = "v:lua.qf_filename"
+-- 		print("Quickfix: Short names enabled")
+-- 	else
+-- 		vim.o.quickfixtextfunc = ""
+-- 		print("Quickfix: Full paths enabled")
+-- 	end
+-- end, { desc = "Toggle Quickfix Short Paths" })
 
 -- toggle blink completion
 vim.keymap.set("n", "<leader>c", function()

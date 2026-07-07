@@ -1,4 +1,4 @@
-vim.g.blink_enabled = false
+vim.g.blink_enabled = true
 
 require("blink.cmp").setup({
 	enabled = function()

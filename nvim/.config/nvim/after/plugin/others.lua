@@ -18,3 +18,4 @@ vim.notify = require("notify")
 
 require("flash").setup({})
 
+require("auto-session").setup({})

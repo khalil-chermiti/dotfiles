@@ -34,6 +34,7 @@ local plugins = {
 	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 	{ src = "https://github.com/oribarilan/lensline.nvim" },
 	{ src = "https://github.com/sindrets/diffview.nvim" },
+	{ src = "https://github.com/rmagatti/auto-session" },
 }
 
 vim.pack.add(plugins)
