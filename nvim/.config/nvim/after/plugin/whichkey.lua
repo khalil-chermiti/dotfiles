@@ -1,13 +1,13 @@
 local wk = require("which-key")
 
-require("which-key").setup({
+wk.setup({
 	icons = {
 		mappings = false, -- Disable all mapping icons
 	},
 })
 
 wk.add({
-	{ "<leader>e", desc = "toggle explorer" },
+	{ "<leader>o", desc = "oil explorer" },
 
 	{ "<leader>l", group = "lsp" },
 	{ "<leader>ld", desc = "definition" },
@@ -17,9 +17,9 @@ wk.add({
 	{ "<leader>li", desc = "implementations" },
 	{ "<leader>lh", desc = "hover" },
 	{ "<leader>lf", desc = "format" },
-	{ "<leader>lm", desc = "diagnostic float" },
-	{ "<leader>lM", desc = "diagnostic qf" },
-	{ "Ctls", desc = "signature help" },
+	{ "<leader>lH", desc = "inlay hints" },
+
+	{ "<leader>d", group = "diagnostics" },
 
 	{ "<leader>f", group = "telescope" },
 	{ "<leader>ff", desc = "find files" },
@@ -27,27 +27,11 @@ wk.add({
 	{ "<leader>fs", desc = "live grep" },
 	{ "<leader>fg", desc = "search git" },
 	{ "<leader>fc", desc = "search changes" },
-	{ "<leader>fh", desc = "harpoon" },
 
-	{
-		mode = "n",
-		{ "<leader>u", desc = "Toggle Undotree" },
-	},
-	{ mode = "n", { "<leader>q", group = "quickfix" } },
+	{ "<leader>g", group = "git" },
+	{ "<leader>h", group = "harpoon" },
 
-	{
-		mode = "n",
-		{ "<leader>hs", desc = "Stage Hunk" },
-		{ "<leader>h", group = "gitsigns" },
-		{ "<leader>hr", desc = "Reset Hunk" },
-
-		{ "<leader>hp", desc = "Preview Hunk" },
-		{ "<leader>hS", desc = "Stage Buffer" },
-		{ "<leader>hR", desc = "Reset Buffer" },
-	},
-
-	{
-		mode = "n",
-		{ "<leader>s", desc = "Flash" },
-	},
+	{ "<leader>u", desc = "Toggle Undotree" },
+	{ "<leader>s", desc = "Flash" },
+	{ "<leader>c", desc = "Toggle completion" },
 })

@@ -27,23 +27,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Diagnostics
 		vim.keymap.set("n", "<leader>dn", function()
 			vim.diagnostic.jump({ count = 1, float = true })
-		end, { desc = "diagnostic" })
+		end, { desc = "Next" })
 
 		vim.keymap.set("n", "<leader>dp", function()
 			vim.diagnostic.jump({ count = -1, float = true })
-		end, { desc = "revious" })
+		end, { desc = "Previous" })
 
-		vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "float" })
+		vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Float" })
 
 		vim.keymap.set("n", "<leader>dt", function()
 			vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
-		end, { desc = "virtual text" })
+		end, { desc = "Virtual text" })
 
-		vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "qflist" })
+		vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Qflist" })
 
 		vim.keymap.set("n", "<leader>lH", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, { desc = "Toggle inlay hints" })
+		end, { desc = "Inlay hints" })
 	end,
 })
 
@@ -78,76 +78,55 @@ vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Window 
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
 
-require("gitsigns").setup({
-	on_attach = function(bufnr)
-		local gitsigns = require("gitsigns")
+-- gitsigns
+local gitsigns = require("gitsigns")
 
-		local function map(mode, l, r, opts)
-			opts = opts or {}
-			opts.buffer = bufnr
-			vim.keymap.set(mode, l, r, opts)
-		end
+-- Hunk navigation
+vim.keymap.set("n", "]h", function()
+	gitsigns.nav_hunk("next")
+end, { desc = "Next hunk" })
 
-		-- Hunk actions
-		map("n", "<leader>hs", gitsigns.stage_hunk)
-		map("n", "<leader>hr", gitsigns.reset_hunk)
-		map("n", "<leader>hp", gitsigns.preview_hunk)
+vim.keymap.set("n", "[h", function()
+	gitsigns.nav_hunk("prev")
+end, { desc = "Previous hunk" })
 
-		-- Buffer actions
-		map("n", "<leader>hS", gitsigns.stage_buffer)
-		map("n", "<leader>hR", gitsigns.reset_buffer)
-	end,
-})
+-- Hunk actions (stage_hunk toggles: staging a staged hunk unstages it)
+vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage/unstage hunk" })
+vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
+
+vim.keymap.set("v", "<leader>gs", function()
+	gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "Stage selection" })
+
+vim.keymap.set("v", "<leader>gr", function()
+	gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "Reset selection" })
+
+vim.keymap.set("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
+
+-- Buffer actions
+vim.keymap.set("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage buffer" })
+vim.keymap.set("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset buffer" })
+
+-- Blame / diff
+vim.keymap.set("n", "<leader>gb", function()
+	gitsigns.blame_line({ full = true })
+end, { desc = "Blame line" })
+
+vim.keymap.set("n", "<leader>gB", gitsigns.toggle_current_line_blame, { desc = "Toggle line blame" })
+vim.keymap.set("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this" })
+
+-- All hunks -> quickfix
+vim.keymap.set("n", "<leader>gq", gitsigns.setqflist, { desc = "Hunks to quickfix" })
+
+-- Hunk text object (e.g. `vih`, `dih`)
+vim.keymap.set({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "Select hunk" })
 
 -- flash keympaps
 vim.keymap.set("n", "<leader>s", function()
 	require("flash").jump()
 end, { desc = "Flash" })
 
--- qflist navigation
-vim.keymap.set("n", "<C-n>", "<cmd>silent! cnext<CR>", { desc = "Next Quickfix item" })
-vim.keymap.set("n", "<C-p>", "<cmd>silent! cprev<CR>", { desc = "Previous Quickfix item" })
-
--- toggle quickfix list
--- vim.keymap.set("n", "<leader>qq", function()
--- 	local qf_exists = false
--- 	for _, win in pairs(vim.fn.getwininfo()) do
--- 		if win["quickfix"] == 1 then
--- 			qf_exists = true
--- 		end
--- 	end
---
--- 	if qf_exists then
--- 		vim.cmd("cclose")
--- 	else
--- 		vim.cmd("copen")
--- 	end
--- end, { desc = "Toggle Quickfix List" })
-
--- open grep search
--- vim.keymap.set("n", "<leader>g", function()
--- 	local pattern = vim.trim(vim.fn.input("Grep> "))
---
--- 	if pattern == "" then
--- 		return
--- 	end
---
--- 	vim.cmd("silent grep! " .. vim.fn.shellescape(pattern))
--- 	vim.cmd("copen")
--- end, { desc = "grep" })
-
--- toggle quickfix list short names
--- vim.keymap.set("n", "<leader>qs", function()
--- 	if vim.o.quickfixtextfunc == "" then
--- 		vim.o.quickfixtextfunc = "v:lua.qf_filename"
--- 		print("Quickfix: Short names enabled")
--- 	else
--- 		vim.o.quickfixtextfunc = ""
--- 		print("Quickfix: Full paths enabled")
--- 	end
--- end, { desc = "Toggle Quickfix Short Paths" })
-
--- toggle blink completion
 vim.keymap.set("n", "<leader>c", function()
 	vim.g.blink_enabled = not vim.g.blink_enabled
 	local enabled = vim.g.blink_enabled and "Enabled" or "Disabled"

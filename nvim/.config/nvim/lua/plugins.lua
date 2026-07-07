@@ -17,7 +17,6 @@ local plugins = {
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/numToStr/Comment.nvim" },
-	{ src = "https://github.com/folke/trouble.nvim" },
 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
@@ -29,11 +28,9 @@ local plugins = {
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 
-	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 	{ src = "https://github.com/folke/flash.nvim" },
 	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 	{ src = "https://github.com/oribarilan/lensline.nvim" },
-	{ src = "https://github.com/sindrets/diffview.nvim" },
 	{ src = "https://github.com/rmagatti/auto-session" },
 }
 
