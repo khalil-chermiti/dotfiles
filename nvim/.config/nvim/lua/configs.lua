@@ -61,7 +61,7 @@ opt.foldcolumn = "0"
 opt.clipboard = "unnamedplus"
 
 -- cmd
-vim.cmd("set cmdheight=0")
+-- vim.cmd("set cmdheight=0")
 vim.cmd.filetype("plugin indent on")
 
 -- globals
@@ -90,10 +90,10 @@ vim.diagnostic.config({
 
 local function get_diagnostics()
 	local diagnostics = {
-		{ severity = vim.diagnostic.severity.ERROR, sign = "✘ " },
-		{ severity = vim.diagnostic.severity.WARN, sign = " " },
-		{ severity = vim.diagnostic.severity.INFO, sign = "󰋽 " },
-		{ severity = vim.diagnostic.severity.HINT, sign = "󰌵 " },
+		{ severity = vim.diagnostic.severity.ERROR, sign = "E " },
+		{ severity = vim.diagnostic.severity.WARN, sign = "W " },
+		{ severity = vim.diagnostic.severity.INFO, sign = "I " },
+		{ severity = vim.diagnostic.severity.HINT, sign = "H " },
 	}
 
 	local parts = {}

@@ -81,15 +81,6 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotr
 -- gitsigns
 local gitsigns = require("gitsigns")
 
--- Hunk navigation
-vim.keymap.set("n", "]h", function()
-	gitsigns.nav_hunk("next")
-end, { desc = "Next hunk" })
-
-vim.keymap.set("n", "[h", function()
-	gitsigns.nav_hunk("prev")
-end, { desc = "Previous hunk" })
-
 -- Hunk actions (stage_hunk toggles: staging a staged hunk unstages it)
 vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage/unstage hunk" })
 vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })

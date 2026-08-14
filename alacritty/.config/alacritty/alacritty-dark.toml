@@ -24,7 +24,7 @@ style = "Italic"
 style = "Bold Italic"
 
 [font.offset]
-y = 3 
+y = 4
 
 # Kanagawa Dark (Dragon/Wave)
 [colors.primary]

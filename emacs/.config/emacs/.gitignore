@@ -1,0 +1,40 @@
+# Auto-save files & recovery lock files
+# (Emacs creates #filename# and .#filename while editing)
+#
+\#*\#
+.\#*
+
+# Backup files (Emacs trailing tildes)
+*~
+
+# Native Elisp compilation cache (Emacs 28+)
+eln-cache/
+native-comp-eln-cache/
+
+# Package manager installations & caches
+elpa/
+straight/
+quelpa/
+url/
+
+# Built-in state & cache directories
+auto-save-list/
+eshell/
+tramp
+bookmarks
+request/
+recentf
+
+# Undo history (undo-tree, undo-fu, etc.)
+.undo-tree-history/
+undo/
+undo-tree-history/
+
+# Custom & runtime state files
+custom.el
+.extension-sound
+*.elc
+
+# Doom Emacs / Spacemacs specific build/cache paths (if applicable)
+.local/
+.cache/
