@@ -2,4 +2,5 @@
   ("--verbose"))
  (magit-dispatch nil)
  (magit-log
-  ("--decorate" "--graph" "-n256")))
+  ("--decorate" "--graph" "-n256"))
+ (magit-push nil))

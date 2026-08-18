@@ -43,3 +43,6 @@ custom.el
 .lsp-session-v1
 ielm-history.eld
 lsp-session/
+
+history
+transient/
