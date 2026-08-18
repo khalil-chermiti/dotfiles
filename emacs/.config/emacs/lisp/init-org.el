@@ -4,6 +4,25 @@
   :ensure nil
   :hook ((org-mode . org-indent-mode)
          (org-mode . visual-line-mode))
+  :config
+  (setq org-directory "~/org"
+        org-agenda-files '("~/org")
+
+        ;; TODO workflow
+        org-todo-keywords '((sequence "TODO(t)" "DONE(d)"))
+
+        ;; Better editing
+        org-startup-indented t
+        org-startup-folded 'content
+
+        ;; Tables
+        org-table-auto-align t
+
+        ;; Images
+        org-startup-with-inline-images t
+
+        ;; Don't add extra indentation to source blocks
+        org-src-preserve-indentation t)
 
   :custom-face
   (org-level-1 ((t (:height 1.0 :weight bold))))

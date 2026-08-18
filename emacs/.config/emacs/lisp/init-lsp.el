@@ -1,7 +1,6 @@
-;;; init-lsp.el --- Web Development LSP & Completion Setup -*- lexical-binding: t; -*-
+;;; init-lsp.el --- LSP-mode setup for Emacs IDE -*- lexical-binding: t; -*-
 
-;; 1. Environment Handling
-;; Inherits PATH and NVM environment variables from Zsh for GUI Emacs on Fedora
+;; Environment Handling
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -9,84 +8,75 @@
     (exec-path-from-shell-copy-env "NVM_DIR")
     (exec-path-from-shell-initialize)))
 
-;; 2. Autocompletion Engine (Corfu)
-(use-package corfu
+(setq auto-mode-alist
+      (append '(("\\.java\\'" . java-mode)
+                ("\\.js\\'"   . js-mode)
+                ("\\.ts\\'"   . typescript-ts-mode)
+                ("\\.tsx\\'"  . tsx-ts-mode)
+                ("\\.html\\'" . web-mode)
+                ("\\.css\\'"  . web-mode))
+              auto-mode-alist))
+
+(use-package company
   :ensure t
   :custom
-  (corfu-auto t)               ; Enable instant completion popups
-  (corfu-cycle t)              ; Enable cycling through candidates
-  (corfu-auto-delay 0.05)      ; Minimal delay (50ms) for snappy popups
-  (corfu-auto-prefix 1)        ; Trigger completion after 1 character
-  (corfu-preselect 'first)     ; Preselect top suggestion
-  :init
-  (global-corfu-mode))
-
-;; Optional: File path completion support inside buffers
-(use-package cape
-  :ensure t
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-file))
-
-;; 3. Language Server Integration (Eglot)
-(use-package eglot
-  :ensure nil
+  (company-minimum-prefix-length 1)      ; Trigger autocomplete after 1 character
+  (company-idle-delay 0.1)               ; Show completions almost instantly
+  (company-selection-wrap-around t)      ; Wrap from bottom to top
+  (company-tooltip-align-annotations t)  ; Align documentation hints on the right
   :hook
-  ;; Hook Eglot into JS, TS, HTML, CSS, and JSON major modes
-  (((js-mode js-ts-mode
-    typescript-mode typescript-ts-mode tsx-ts-mode
-    html-mode html-ts-mode
-    css-mode css-ts-mode
-    json-mode json-ts-mode) . eglot-ensure))
+  (prog-mode . company-mode))            ; Enable company globally in all programming modes
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+
+  :hook
+  ((java-mode
+    js-mode typescript-mode typescript-ts-mode tsx-ts-mode
+    web-mode) . lsp-deferred)
+
+  :config
+
+  (setq-default indent-tabs-mode t)       ;; Use Tabs 
+  (setq-default tab-width 2)              ;; Visual width of a tab
+  
+  ;; Force Language Servers (TypeScript, etc.) to use 2 spaces for formatting
+  (setq lsp-formatting-indent-size 2)
+
+
+  (setq lsp-auto-guess-root t)
+  (setq lsp-log-io nil)
+  (setq lsp-restart 'auto-restart)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-signature-auto-activate nil)
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-modeline-code-actions-enable nil)
+  (setq lsp-modeline-diagnostics-enable nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-semantic-tokens-enable nil)
+  (setq lsp-enable-folding nil)
+  (setq lsp-enable-imenu nil)
+  (setq lsp-enable-snippet nil)
+  (setq read-process-output-max (* 1024 1024)) ;; 1MB
+  (setq lsp-idle-delay 0.5))
+
+
+(use-package lsp-java
+  :after lsp)
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
   
   :config
-  ;; Explicitly assign the best language servers per mode
-  (setq eglot-server-programs
-        '(;; JS & TS -> vtsls (fast, reliable root handling)
-          (((js-mode js-ts-mode)
-            (typescript-mode typescript-ts-mode tsx-ts-mode))
-           . ("vtsls" "--stdio"))
-          
-          ;; HTML -> VS Code extracted HTML server
-          (((html-mode html-ts-mode))
-           . ("vscode-html-language-server" "--stdio"))
-          
-          ;; CSS & Tailwind CSS
-          (((css-mode css-ts-mode))
-           . ("tailwindcss-language-server" "--stdio"))
-          
-          ;; JSON -> VS Code extracted JSON server
-          (((json-mode json-ts-mode))
-           . ("vscode-json-language-server" "--stdio"))))
-
-  ;; Performance Tweaks
-
-  (setq eglot-events-buffer-size 0)           ; Disable event logging for higher speed
-  (setq eglot-autoshutdown t)                 ; Auto shutdown server when buffer is killed
-  (setq eglot-ignored-server-capabilities '(:documentHighlightProvider)))
-
-;; Auto-associate file extensions with Tree-sitter major modes
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
-
-;; Remap legacy modes to Tree-sitter equivalents globally
-(setq major-mode-remap-alist
-      '((typescript-mode . typescript-ts-mode)
-        (js-mode . js-ts-mode)
-        (json-mode . json-ts-mode)
-        (css-mode . css-ts-mode)
-        (html-mode . html-ts-mode)))
-
-;; 4. UI Adjustments
-;; Route Eldoc docs away from minibuffer echo area
-(setq eldoc-display-functions '(eldoc-display-in-buffer))
-
-;; Remove Flymake moving fringe arrow
-(use-package flymake
-  :ensure nil
-  :custom
-  (flymake-fringe-indicator-position nil))
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-ui-sideline-delay 0.05))
 
 (provide 'init-lsp)

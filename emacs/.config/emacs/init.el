@@ -6,9 +6,9 @@
 
 (require 'package)
 
-(setq package-archives '(("melpa"  . "https://melpa.org/packages/")
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("elpa"   . "https://elpa.gnu.org/packages/")))
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 
@@ -35,11 +35,11 @@
 ;; -----------------------------------------------------------------------------
 
 (require 'init-ui)
+(require 'init-magit)
 (require 'init-evil)
 (require 'init-files)
 (require 'init-completion)
 (require 'init-org)
 (require 'init-lsp)
 ;;(require 'init-dashboard)
-
 ;;; init.el ends here

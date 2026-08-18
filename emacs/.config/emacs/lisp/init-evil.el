@@ -51,14 +51,13 @@
     :prefix "SPC"
     :global-prefix "C-SPC")
 
-  ;; Root Quick Access
+  ;; root Quick Access
   (my/leader-keys
     "u"   'undo-tree-visualize
     "o"   'dired-jump
     "f"   'find-file
     "x"   'execute-extended-command
     "p" '(:keymap project-prefix-map :which-key "project"))
-
   ;; ------------------------------------------------------------------
   ;; Window Management (SPC w)
   ;; ------------------------------------------------------------------
@@ -90,10 +89,10 @@
   ;; ------------------------------------------------------------------
   ;; Terminal / Shell Management (SPC t) 
   ;; ------------------------------------------------------------------
-  ;; (my/leader-keys
-  ;;   "t"   '(:ignore t :which-key "terminal")
-  ;;   "t t" 'ansi-term;
-  ;;   "t e" 'eshell)
+  (my/leader-keys
+    "t"   '(:ignore t :which-key "terminal")
+    "t t" 'ansi-term
+    "t e" 'eshell)
 
   ;; ------------------------------------------------------------------
   ;; Search (SPC s) - Powered by Consult
@@ -104,31 +103,38 @@
     "s s" 'consult-line           ; Search lines in buffer with live jump previews
     "s f" 'consult-fd))           ; Consult find files (fd) 
 
+;; ------------------------------------------------------------------
+;; LSP / Code Actions (SPC l) - Powered by lsp-mode
+;; ------------------------------------------------------------------
+(my/leader-keys
+  "l"   '(:ignore t :which-key "lsp")
+  "l d" 'lsp-find-definition          ; Go to definition
+  "l r" 'lsp-find-references          ; Find references
+  "l i" 'lsp-find-implementation      ; Find implementation
+  "l a" 'lsp-execute-code-action      ; Code actions / quick fixes
+  "l R" 'lsp-rename                   ; Rename symbol
+  "l h" 'lsp-ui-doc-glance            ; Open documentation / hover popup manually
+  "l f" 'lsp-format-buffer           ; Format code manually via lsp-mode
+  "l H" 'lsp-describe-thing-at-point)  ; Open docs in a separate buffer window
 
-  ;; ------------------------------------------------------------------
-  ;; LSP / Code Actions (SPC l) - Powered by Eglot
-  ;; ------------------------------------------------------------------
-  (my/leader-keys
-    "l"   '(:ignore t :which-key "lsp")
-    "l d" 'xref-find-definitions        ; Go to definition
-    "l r" 'xref-find-references         ; Find references
-    "l i" 'eglot-find-implementation    ; Find implementation
-    "l a" 'eglot-code-actions          ; Code actions / quick fixes
-    "l R" 'eglot-rename                ; Rename symbol
-    "l h" 'eldoc-doc-buffer             ; Open documentation / hover buffer
-    "l H" 'eglot-inlay-hints-mode)      ; Toggle inlay hints (Emacs 30 native)
+;; ------------------------------------------------------------------
+;; Diagnostics (SPC d) - Powered by Flymake (lsp-mode default)
+;; ------------------------------------------------------------------
+(my/leader-keys
+  "d"   '(:ignore t :which-key "diagnostics")
+  "d n" 'flymake-goto-next-error      ; Jump to next error/warning
+  "d p" 'flymake-goto-prev-error      ; Jump to previous error/warning
+  "d f" 'display-local-help           ; Display error text at point in echo area
+  "d l" 'flymake-show-buffer-diagnostics ; Open error list (like quickfix)
+  "d t" 'flymake-mode)                ; Toggle diagnostics on/off
 
-  (my/leader-keys
-    "d"   '(:ignore t :which-key "diagnostics")
-    "d n" 'flymake-goto-next-error      ; Jump to next error/warning
-    "d p" 'flymake-goto-prev-error      ; Jump to previous error/warning
-    "d f" 'display-local-help           ; Display error float at point
-    "d q" 'flymake-show-buffer-diagnostics ; Open error list (like quickfix)
-    "d t" 'flymake-mode)                ; Toggle diagnostics on/off
-
-  (general-def :states 'insert
-    "C-s" 'eldoc)                         ; Trigger signature help in insert mode
+;; ------------------------------------------------------------------
+;; Code Commenting (SPC c)
+;; ------------------------------------------------------------------
+(my/leader-keys
+    "c"   '(:ignore t :which-key "comment")
+    "c c" 'comment-line              ; Toggle comment on current line / region
+    "c r" 'comment-or-uncomment-region) ; Toggle comment on active region
 
 (provide 'init-evil)
-
-;; INIT-EVIL.EL ENDS HERE
+;;; init-evil.el ends here

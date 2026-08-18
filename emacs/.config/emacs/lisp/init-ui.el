@@ -5,24 +5,23 @@
   :custom
   (echo-keystrokes 0.01)
   (truncate-lines t)
-  
+
+  (line-number-mode t)
+  (column-number-mode t)
+
   ;; Silence truncation/continuation arrows in fringe
   (fringe-indicator-alist (assoc-delete-all 'truncation
                                             (assoc-delete-all 'continuation fringe-indicator-alist)))
   
   :config
-  (setq line-number-mode t)
-  (setq column-number-mode t)
   (size-indication-mode 1)
   (recentf-mode 1)
   (savehist-mode 1)
 
-  ;; Font Configuration (Height in 1/10th pt -> 130 = 13pt)
-  (set-face-attribute 'default nil :font "JetBrainsMono NF" :height 130)
+  (set-face-attribute 'default nil :font "JetBrainsMono NF" :height 120)
   (setq-default line-spacing 0.2)
 
-
-  ;; Keybinding Help Highlight Color
+  ;; change the keybindings suggestions to a better color (orange)
   (set-face-attribute 'help-key-binding nil
                       :inherit 'default
                       :background 'unspecified
@@ -43,30 +42,41 @@
   :config
   (global-hl-line-mode 1))
 
+(use-package nerd-icons
+  :ensure t)
+
 ;; 3. Themes & Auto-Dark Sync
 (use-package kanagawa-themes
   :ensure t)
 
 (use-package auto-dark
   :ensure t
+
   :custom
   (auto-dark-themes '((kanagawa-wave) (kanagawa-lotus)))
+
   :config
   (auto-dark-mode 1))
 
 (use-package doom-modeline
   :ensure t
+
   :custom
-  (doom-modeline-height 25)
+  (doom-modeline-height 28)
   (doom-modeline-mouse nil)
-  (doom-modeline-bar-width 0)
+  (doom-modeline-bar-width 4)
   (doom-modeline-icon t)
   (doom-modeline-major-mode-icon nil)
   (doom-modeline-major-mode-color-icon nil)
-  ;;(doom-modeline-buffer-file-name-style 'relative-from-project)
   (doom-modeline-buffer-file-name-style 'file-name)
   (doom-modeline-minor-modes nil)
-  (doom-modeline-buffer-encoding nil)      ; <-- Hides "LF UTF-8" completely
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-icon t)
+  (doom-modeline-major-mode-icon t)
+  (doom-modeline-check nil)
+  (doom-modeline-lsp t)
+
+
   :init
   (doom-modeline-mode 1))
 

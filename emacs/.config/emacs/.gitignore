@@ -38,3 +38,8 @@ custom.el
 # Doom Emacs / Spacemacs specific build/cache paths (if applicable)
 .local/
 .cache/
+
+.dap-breakpoints
+.lsp-session-v1
+ielm-history.eld
+lsp-session/

@@ -1,6 +1,3 @@
-(use-package nerd-icons
-  :ensure t)
-
 (use-package dashboard
   :ensure t
   :init
