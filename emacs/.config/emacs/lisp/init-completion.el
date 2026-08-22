@@ -2,14 +2,20 @@
 
 (require 'use-package)
 
-;; =============================================================================
-;; 1. VERTICO (Interactive Minibuffer UI)
-;; =============================================================================
 (use-package vertico
   :init
   (vertico-mode 1)
   :custom
   (vertico-cycle t))
+
+
+;; Remove Vertico group background highlight
+(custom-set-faces
+ '(vertico-group-title ((t (:background unspecified :box nil)))))
+
+;; Bind Ctrl-j and Ctrl-k for smooth selection scrolling
+(define-key minibuffer-local-map (kbd "C-j") 'vertico-next)
+(define-key minibuffer-local-map (kbd "C-k") 'vertico-previous)
 
 ;; Persist minibuffer history across Emacs sessions
 (use-package savehist
@@ -17,25 +23,16 @@
   :init
   (savehist-mode 1))
 
-;; =============================================================================
-;; 2. ORDERLESS (Fuzzy/Pattern Matching Style)
-;; =============================================================================
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
 
-;; =============================================================================
-;; 3. MARGINALIA (Rich Annotations in Minibuffer)
-;; =============================================================================
 (use-package marginalia
   :init
   (marginalia-mode 1))
 
-;; =============================================================================
-;; 4. CONSULT (Search, Navigation, and Buffers)
-;; =============================================================================
 (use-package consult
   :ensure t
   :init
@@ -54,22 +51,12 @@
   (consult-narrow-key "<")
 
   :config
-  ;; Live Preview Rules
+  (setopt consult-ripgrep-args (concat consult-ripgrep-args " --hidden "))
+  (setq consult-fd-args "fd --color=never --hidden --type f") 
   (consult-customize
-   ;; Live preview with 0.2s debounce for fast searching
    consult-line consult-imenu
-   :preview-key '(:debounce 0.2 any)
+   :preview-key '(:debounce 0.2 any)))
 
-   ;; Heavy file/project searches: preview manually with M-. to avoid lag
-   consult-ripgrep consult-git-grep consult-grep
-   :preview-key "M-."
-
-   ;; Disable preview for themes
-   consult-theme :preview-key nil))
-
-;; =============================================================================
-;; 5. ISEARCH (Built-in Incremental Search)
-;; =============================================================================
 (use-package isearch
   :ensure nil
   :custom

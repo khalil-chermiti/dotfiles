@@ -1,12 +1,20 @@
 ;;; init-lsp.el --- LSP-mode setup for Emacs IDE -*- lexical-binding: t; -*-
 
 ;; Environment Handling
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(x pgtk pg wayland))
-    (exec-path-from-shell-copy-env "NVM_DIR")
-    (exec-path-from-shell-initialize)))
+;; (use-package exec-path-from-shell
+;;   :ensure t
+;;   :config
+;;   (when (memq window-system '(x pgtk pg wayland))
+;;     (exec-path-from-shell-copy-env "NVM_DIR")
+;;     (exec-path-from-shell-initialize)))
+
+;; Manually adding executable to exec-path and path
+(dolist (path '("~/.local/bin"
+                "~/.nvm/versions/node/v24.14.1/bin"))
+  (let ((path (expand-file-name path)))
+    (add-to-list 'exec-path path)
+    (setenv "PATH"
+            (concat path ":" (getenv "PATH")))))
 
 (setq auto-mode-alist
       (append '(("\\.java\\'" . java-mode)

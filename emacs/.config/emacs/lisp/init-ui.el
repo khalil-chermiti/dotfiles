@@ -10,26 +10,32 @@
   (column-number-mode t)
 
   ;; Silence truncation/continuation arrows in fringe
-  (fringe-indicator-alist (assoc-delete-all 'truncation
-                                            (assoc-delete-all 'continuation fringe-indicator-alist)))
-  
+  (fringe-indicator-alist
+   (assoc-delete-all 'truncation
+                     (assoc-delete-all 'continuation fringe-indicator-alist)))
+
   :config
   (size-indication-mode 1)
   (recentf-mode 1)
   (savehist-mode 1)
+  (winner-mode 1)
 
-  (set-face-attribute 'default nil :font "JetBrainsMono NF" :height 120)
+  (set-face-attribute 'default nil
+                      :font "JetBrainsMono NF"
+                      :height 120)
+
   (setq-default line-spacing 0.2)
 
-  ;; change the keybindings suggestions to a better color (orange)
+  ;; Better color for keybinding hints
   (set-face-attribute 'help-key-binding nil
                       :inherit 'default
                       :background 'unspecified
                       :foreground "#fca103"
                       :box nil)
 
-  ;; Do not automatically turn on visual line mode in text modes
-  (remove-hook 'text-mode-hook 'turn-on-visual-line-mode))
+  ;; Writing
+  (add-hook 'text-mode-hook #'visual-line-mode)
+  (add-hook 'text-mode-hook #'flyspell-mode))
 
 ;; 2. Line Numbers & Cursor Line
 (use-package display-line-numbers
@@ -51,16 +57,13 @@
 
 (use-package auto-dark
   :ensure t
-
   :custom
   (auto-dark-themes '((kanagawa-wave) (kanagawa-lotus)))
-
   :config
   (auto-dark-mode 1))
 
 (use-package doom-modeline
   :ensure t
-
   :custom
   (doom-modeline-height 28)
   (doom-modeline-mouse nil)
@@ -75,8 +78,6 @@
   (doom-modeline-major-mode-icon t)
   (doom-modeline-check nil)
   (doom-modeline-lsp t)
-
-
   :init
   (doom-modeline-mode 1))
 
