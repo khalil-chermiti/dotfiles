@@ -5,7 +5,7 @@
 
   :custom
   (minimal-dashboard-buffer-name "Dashboard")
-  (minimal-dashboard-text "Welcome to Emacs")
+  (minimal-dashboard-text "You don't use Emacs. You live in Emacs.")
 
   (minimal-dashboard-image-scale 1)
   (minimal-dashboard-enable-resize-handling t)

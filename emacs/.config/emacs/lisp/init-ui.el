@@ -22,7 +22,7 @@
 
   (set-face-attribute 'default nil
                       :font "JetBrainsMono NF"
-                      :height 120)
+                      :height 110)
 
   (setq-default line-spacing 0.2)
 

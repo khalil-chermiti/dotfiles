@@ -1,7 +1,13 @@
 ;;; init-magit.el --- Magit Configuration -*- lexical-binding: t; -*-
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :custom
+  ;; Disable built-in VC package for git repositories to speed up Magit operations
+  (vc-handled-backends (delq 'Git vc-handled-backends))
+
+  ;; giving Transient room to arrange items horizontally.
+  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
 (use-package git-gutter
   :hook (prog-mode . git-gutter-mode)

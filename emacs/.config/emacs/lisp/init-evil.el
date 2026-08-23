@@ -86,6 +86,12 @@
     "b r" 'revert-buffer)
 
   (my/leader-keys
+   "g"   '(:ignore t :which-key "git")
+   "g s"  '(magit-status :which-key "status")
+   "g d"  '(magit-dispatch      :which-key "magit dispatch")
+   "g f"  '(magit-file-dispatch :which-key "file dispatch"))
+
+  (my/leader-keys
     "t"   '(:ignore t :which-key "terminal")
     "t t" 'ansi-term
     "t e" 'eshell)
