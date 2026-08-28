@@ -8,6 +8,7 @@
 
   (line-number-mode t)
   (column-number-mode t)
+  (fringe-mode '(8 . 8))
 
   ;; Silence truncation/continuation arrows in fringe
   (fringe-indicator-alist
@@ -67,7 +68,7 @@
   :custom
   (doom-modeline-height 28)
   (doom-modeline-mouse nil)
-  (doom-modeline-bar-width 4)
+  (doom-modeline-bar-width 8)
   (doom-modeline-icon t)
   (doom-modeline-major-mode-icon nil)
   (doom-modeline-major-mode-color-icon nil)
@@ -80,6 +81,10 @@
   (doom-modeline-lsp t)
   :init
   (doom-modeline-mode 1))
+
+(custom-set-faces
+ ;; Match Kanagawa's classic autumn/sakura purple/pink accent
+ '(doom-modeline-bar ((t (:background "#d27e99")))))
 
 ;; 5. Mouse Invalidation
 (use-package inhibit-mouse

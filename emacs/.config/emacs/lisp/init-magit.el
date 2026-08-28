@@ -1,33 +1,21 @@
-;;; init-magit.el --- Magit Configuration -*- lexical-binding: t; -*-
+;;; init-magit.el --- Magit and Diff-HL Configuration -*- lexical-binding: t; -*-
 
 (use-package magit
   :ensure t
   :custom
-  ;; Disable built-in VC package for git repositories to speed up Magit operations
-  (vc-handled-backends (delq 'Git vc-handled-backends))
+  ;; Magit status in full buffer buffer
+  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
-  ;; giving Transient room to arrange items horizontally.
-  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-
-(use-package git-gutter
-  :hook (prog-mode . git-gutter-mode)
-  :config
-  (setq git-gutter:update-interval 0.02))
-
-(use-package git-gutter-fringe
-  :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
-
-;; Explicitly set the colors for the fringe bars here:
-(custom-set-faces
- '(git-gutter-fr:added    ((t (:foreground "#98be65" :box nil))))  ; Soft green
- '(git-gutter-fr:modified ((t (:foreground "#51afef" :box nil))))  ; Soft blue
- '(git-gutter-fr:deleted  ((t (:foreground "#ff6c6b" :box nil)))))  ; Soft red
+(use-package diff-hl
+  :ensure t
+  :init
+  (global-diff-hl-mode 1)
+  (add-hook 'prog-mode-hook #'diff-hl-flydiff-mode)
+  (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
 (use-package blamer
-  :bind (("C-c g" . blamer-mode))
   :config
   (setq blamer-idle-time 0.05)
   (setq blamer-author-formatter "%s ")
