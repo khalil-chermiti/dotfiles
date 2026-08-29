@@ -17,9 +17,17 @@
   :config
   (repeat-mode 1))
 
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+
 (use-package evil
   :ensure t
   :init
+  (setq evil-undo-system 'undo-tree)
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-i-jump t)
@@ -33,12 +41,8 @@
   :config
   (evil-collection-init))
 
-(use-package undo-tree
-  :ensure t
-  :init
-  (global-undo-tree-mode)
-  :config
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+(use-package avy
+  :ensure t)
 
 (use-package general
   :ensure t
@@ -50,100 +54,92 @@
     :global-prefix "C-SPC")
 
   (my/leader-keys
-    "u"   'undo-tree-visualize
-    "e"   'find-file
-    "o"   'dired-jump
-    "x"   'execute-extended-command
-    "p" '(:keymap project-prefix-map :which-key "project"))
+    "a"   '(avy-goto-char :which-key "avy char")
+    "u"   '(undo-tree-visualize :which-key "undo tree")
+    "e"   '(find-file :which-key "find file")
+    "o"   '(dired-jump :which-key "dired jump")
+    "x"   '(execute-extended-command :which-key "M-x")
+    "p"   '(:keymap project-prefix-map :which-key "project"))
 
   (my/leader-keys
-    "w"   '(:ignore t :which-key "windows")
-    "w |" 'split-window-right
-    "w -" 'split-window-below
-    "w d" 'delete-window
-    "w m" 'delete-other-windows
-    "w u" 'winner-undo
-    "w o" 'other-window
-    "w =" 'balance-windows
+    "w"   '(:ignore t :which-key "window")
+    "w |" '(split-window-right :which-key "split right")
+    "w -" '(split-window-below :which-key "split below")
+    "w d" '(delete-window :which-key "delete")
+    "w m" '(delete-other-windows :which-key "maximize")
+    "w u" '(winner-undo :which-key "undo layout")
+    "w o" '(other-window :which-key "other")
+    "w =" '(balance-windows :which-key "balance")
     ;; Movement (lowercase)
-    "w h" 'windmove-left
-    "w j" 'windmove-down
-    "w k" 'windmove-up
-    "w l" 'windmove-right
+    "w h" '(windmove-left :which-key "left")
+    "w j" '(windmove-down :which-key "down")
+    "w k" '(windmove-up :which-key "up")
+    "w l" '(windmove-right :which-key "right")
     ;; Swapping (uppercase HJKL)
-    "w H" 'windmove-swap-states-left
-    "w J" 'windmove-swap-states-down
-    "w K" 'windmove-swap-states-up
-    "w L" 'windmove-swap-states-right)
+    "w H" '(windmove-swap-states-left :which-key "swap left")
+    "w J" '(windmove-swap-states-down :which-key "swap down")
+    "w K" '(windmove-swap-states-up :which-key "swap up")
+    "w L" '(windmove-swap-states-right :which-key "swap right"))
 
   (my/leader-keys
-    "b"   '(:ignore t :which-key "buffers")
-    "b b" 'consult-buffer
-    "b d" 'kill-current-buffer
-    "b n" 'next-buffer
-    "b p" 'previous-buffer
-    "b s" 'scratch-buffer
-    "b r" 'revert-buffer)
+    "b"   '(:ignore t :which-key "buffer")
+    "b b" '(consult-buffer :which-key "switch")
+    "b d" '(kill-current-buffer :which-key "kill")
+    "b n" '(next-buffer :which-key "next")
+    "b p" '(previous-buffer :which-key "prev")
+    "b s" '(scratch-buffer :which-key "scratch")
+    "b r" '(revert-buffer :which-key "revert"))
 
   (my/leader-keys
-   "g"   '(:ignore t :which-key "git")
-   "g s"  '(magit-status :which-key "status")
-   "g d"  '(magit-dispatch      :which-key "magit dispatch")
-   "g f"  '(magit-file-dispatch :which-key "file dispatch"))
+    "g"   '(:ignore t :which-key "git")
+    "g s" '(magit-status :which-key "status")
+    "g d" '(magit-dispatch :which-key "dispatch")
+    "g f" '(magit-file-dispatch :which-key "file dispatch"))
 
   (my/leader-keys
     "t"   '(:ignore t :which-key "terminal")
-    "t t" 'ansi-term
-    "t e" 'eshell)
+    "t t" '(ansi-term :which-key "ansi term")
+    "t e" '(eshell :which-key "eshell"))
 
   (my/leader-keys
-    "m"   '(:ignore t :which-key "org mode")
-
-
-    ;; Org Capture
-    "m c" 'org-capture 
-    
-    ;; Exporting
+    "m"   '(:ignore t :which-key "org")
+    "m c" '(org-capture :which-key "capture")
     "m e" '(org-export-dispatch :which-key "export")
-
-    ;; Toggles
     "m t" '(:ignore t :which-key "toggle")
-    "m t i" '(org-indent-mode :which-key "toggle indentation mode")
-    "m t l" '(org-toggle-link-display :which-key "toggle link view")
-
-    "m a" '(org-agenda :which-key "agenda")
-    "m c" '(org-capture :which-key "capture"))
+    "m t i" '(org-indent-mode :which-key "indent")
+    "m t l" '(org-toggle-link-display :which-key "links")
+    "m a" '(org-agenda :which-key "agenda"))
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "find")
-    "f f" 'consult-fd 
-    "f w" 'consult-ripgrep
-    "f r" 'consult-recent-file
-    "f l" 'consult-line)
+    "f f" '(consult-fd :which-key "file")
+    "f w" '(consult-ripgrep :which-key "grep")
+    "f r" '(consult-recent-file :which-key "recent")
+    "f l" '(consult-line :which-key "line"))
 
   (my/leader-keys
     "l"   '(:ignore t :which-key "lsp")
-    "l d" 'lsp-find-definition          
-    "l r" 'lsp-find-references          
-    "l i" 'lsp-find-implementation      
-    "l a" 'lsp-execute-code-action      
-    "l R" 'lsp-rename                   
-    "l h" 'lsp-ui-doc-glance            
-    "l f" 'lsp-format-buffer           
-    "l H" 'lsp-describe-thing-at-point)  
+    "l d" '(lsp-find-definition :which-key "definition")
+    "l r" '(lsp-find-references :which-key "references")
+    "l i" '(lsp-find-implementation :which-key "implementation")
+    "l a" '(lsp-execute-code-action :which-key "action")
+    "l R" '(lsp-rename :which-key "rename")
+    "l h" '(lsp-ui-doc-glance :which-key "glance doc")
+    "l f" '(lsp-format-buffer :which-key "format")
+    "l H" '(lsp-describe-thing-at-point :which-key "help at point"))
 
   (my/leader-keys
     "d"   '(:ignore t :which-key "diagnostics")
-    "d n" 'flymake-goto-next-error      
-    "d p" 'flymake-goto-prev-error      
-    "d m" 'display-local-help           
-    "d d" 'flymake-show-buffer-diagnostics 
-    "d t" 'flymake-mode)                
+    "d n" '(flymake-goto-next-error :which-key "next error")
+    "d p" '(flymake-goto-prev-error :which-key "prev error")
+    "d m" '(display-local-help :which-key "local help")
+    "d d" '(flymake-show-buffer-diagnostics :which-key "buffer list")
+    "d t" '(flymake-mode :which-key "toggle mode"))
 
   (my/leader-keys
     "c"   '(:ignore t :which-key "comment")
-    "c c" 'comment-line              
-    "c r" 'comment-or-uncomment-region))
+    "c c" '(comment-line :which-key "line")
+    "c r" '(comment-or-uncomment-region :which-key "region")))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
