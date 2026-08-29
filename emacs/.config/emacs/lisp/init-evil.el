@@ -6,11 +6,28 @@
   (which-key-idle-delay 0.3)
   (which-key-side-window-max-height 0.4)
   (which-key-side-window-location 'bottom)
-  (which-key-deny-regex '("digit-argument"))
+  (which-key-sort-order 'which-key-local-then-key-order)
+  ;; (which-key-allow-multiple-replacements t)
   :config
-  ;; Keep push and mode functions in :config
-  (push '((nil . "Prefix Command") . (nil . "prefix")) which-key-replacement-alist)
+  ;; Turn dashes into spaces cleanly
+  (push '((nil . "-") . (nil . " ")) which-key-replacement-alist)
   (which-key-mode 1))
+
+(with-eval-after-load 'which-key
+  (which-key-add-key-based-replacements
+    "C-x v" "Version Control"
+    "C-x w" "Window"
+    "C-x t" "Tab"
+    "C-x p" "Project"
+    "C-x a" "Abbrevs"
+    "C-x n" "Narrowing"
+    "C-x r" "Reg & Rect"
+    "C-x x" "Buffer"
+    "C-x 8" "Unicodes"
+    "C-x RET" "Coding Systems"
+    "C-x 4" "Other Window"
+    "C-x 5" "Frames"
+    "C-x 6" "Two-Column"))
 
 (use-package repeat
   :ensure nil
