@@ -1,14 +1,6 @@
-;;; init-lsp.el --- LSP-mode setup for Emacs IDE -*- lexical-binding: t; -*-
+;;; init-lsp.el --- LSP-mode and Corfu setup for Emacs IDE -*- lexical-binding: t; -*-
 
-;; Environment Handling
-;; (use-package exec-path-from-shell
-;;   :ensure t
-;;   :config
-;;   (when (memq window-system '(x pgtk pg wayland))
-;;     (exec-path-from-shell-copy-env "NVM_DIR")
-;;     (exec-path-from-shell-initialize)))
-
-;; Manually adding executable to exec-path and path
+;; Manually adding executable to exec-path and path (else use exec-path-from-shell)
 (dolist (path '("~/.local/bin"
                 "~/.nvm/versions/node/v24.14.1/bin"))
   (let ((path (expand-file-name path)))
@@ -18,33 +10,40 @@
 
 (setq auto-mode-alist
       (append '(("\\.java\\'" . java-mode)
-                ("\\.js\\'"   . js-mode)
-                ("\\.ts\\'"   . typescript-ts-mode)
-                ("\\.tsx\\'"  . tsx-ts-mode)
-                ("\\.html\\'" . web-mode)
-                ("\\.css\\'"  . web-mode))
+                ("\\.js\\'"    . js-mode)
+                ("\\.ts\\'"    . typescript-ts-mode)
+                ("\\.tsx\\'"   . tsx-ts-mode)
+                ("\\.html\\'"  . web-mode)
+                ("\\.css\\'"   . web-mode))
               auto-mode-alist))
 
-(use-package company
+;; Corfu In-Buffer Completion Setup
+(use-package corfu
   :ensure t
   :custom
-  (company-minimum-prefix-length 1)     
-  (company-idle-delay 0.0)              
-  (company-echo-delay 0)
-  (company-selection-wrap-around t)     
-  (company-tooltip-align-annotations t)  ; Aligns descriptions/types on the right
-  (company-tooltip-limit 6)            
-  (company-show-numbers nil)
-  (company-dabbrev-downcase nil)
-  (company-search-freely-indicator t)   
+  (corfu-cycle t)                ;; Enable cycling for candidates
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto-prefix 1)          ;; Minimum length for auto completion
+  (corfu-auto-delay 0.0)         ;; Delay for auto completion
+  (corfu-popupinfo-mode t)       ;; Enable documentation popup
+  (corfu-popupinfo-delay '(0.5 . 0.2))
+  :init
+  (global-corfu-mode))
 
+(use-package cape
+  :ensure t
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
+
+(use-package kind-icon
+  :ensure t
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
   :config
-  ;; Ensure quick documentation display style matches a popup framework if available
-  (setq company-backends '(company-capf
-                           company-files
-                           company-keywords))
-  :hook
-  (prog-mode . company-mode))
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package lsp-mode
   :ensure t
