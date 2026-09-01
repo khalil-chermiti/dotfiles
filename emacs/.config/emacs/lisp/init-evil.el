@@ -11,6 +11,7 @@
   :config
   ;; Turn dashes into spaces cleanly
   (push '((nil . "-") . (nil . " ")) which-key-replacement-alist)
+  (push '((nil . "^org-") . (nil . "")) which-key-replacement-alist)
   (which-key-mode 1))
 
 (with-eval-after-load 'which-key
@@ -115,8 +116,8 @@
 
   (my/leader-keys
     "t"   '(:ignore t :which-key "terminal")
-    "t t" '(ansi-term :which-key "ansi term")
-    "t e" '(eshell :which-key "eshell"))
+    "t t" '(my/open-ansi-term-split :which-key "ansi term")
+    "t e" '(my/open-eshell-split :which-key "eshell"))
 
   (my/leader-keys
     "m"   '(:ignore t :which-key "org")

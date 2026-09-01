@@ -34,13 +34,14 @@
 ;; 2. Load Custom Modules
 ;; -----------------------------------------------------------------------------
 
-(require 'init-dashboard)
 (require 'init-ui)
-(require 'init-magit)
-(require 'init-evil)
+(require 'init-dashboard)
 (require 'init-files)
-(require 'init-completion)
+(require 'init-magit)
 (require 'init-org)
 (require 'init-lsp)
+(require 'init-term)
+(require 'init-completion)
+(require 'init-evil)
 
 ;;; init.el ends here

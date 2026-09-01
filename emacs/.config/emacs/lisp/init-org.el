@@ -43,7 +43,7 @@
         org-src-preserve-indentation t)
 
   :custom-face
-  (org-level-1 ((t (:height 1.2 :weight bold))))
+  (org-level-1 ((t (:height 1.15 :weight bold))))
   (org-level-2 ((t (:height 1.1 :weight bold))))
   (org-level-3 ((t (:height 1.05 :weight bold))))
   (org-level-4 ((t (:height 1.0 :weight bold))))

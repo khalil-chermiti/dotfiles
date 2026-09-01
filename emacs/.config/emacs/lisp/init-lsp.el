@@ -28,12 +28,23 @@
 (use-package company
   :ensure t
   :custom
-  (company-minimum-prefix-length 1)      ; Trigger autocomplete after 1 character
-  (company-idle-delay 0.1)               ; Show completions almost instantly
-  (company-selection-wrap-around t)      ; Wrap from bottom to top
-  (company-tooltip-align-annotations t)  ; Align documentation hints on the right
+  (company-minimum-prefix-length 1)     
+  (company-idle-delay 0.0)              
+  (company-echo-delay 0)
+  (company-selection-wrap-around t)     
+  (company-tooltip-align-annotations t)  ; Aligns descriptions/types on the right
+  (company-tooltip-limit 6)            
+  (company-show-numbers nil)
+  (company-dabbrev-downcase nil)
+  (company-search-freely-indicator t)   
+
+  :config
+  ;; Ensure quick documentation display style matches a popup framework if available
+  (setq company-backends '(company-capf
+                           company-files
+                           company-keywords))
   :hook
-  (prog-mode . company-mode))            ; Enable company globally in all programming modes
+  (prog-mode . company-mode))
 
 (use-package lsp-mode
   :ensure t
@@ -51,7 +62,6 @@
   
   ;; Force Language Servers (TypeScript, etc.) to use 2 spaces for formatting
   (setq lsp-formatting-indent-size 2)
-
 
   (setq lsp-auto-guess-root t)
   (setq lsp-log-io nil)

@@ -9,6 +9,7 @@
   (line-number-mode t)
   (column-number-mode t)
   (fringe-mode '(8 . 8))
+  (confirm-kill-emacs 'y-or-n-p)
 
   ;; Silence truncation/continuation arrows in fringe
   (fringe-indicator-alist
