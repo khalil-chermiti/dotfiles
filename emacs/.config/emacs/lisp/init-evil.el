@@ -101,6 +101,7 @@
 
   (my/leader-keys
     "b"   '(:ignore t :which-key "buffer")
+    "b l" '(list-buffers :which-key "list")
     "b b" '(consult-buffer :which-key "switch")
     "b d" '(kill-current-buffer :which-key "kill")
     "b n" '(next-buffer :which-key "next")
