@@ -26,6 +26,10 @@
                       :font "JetBrainsMono NF"
                       :height 110)
 
+  (set-fontset-font t 'arabic "Noto Kufi Arabic")
+
+  (setq default-input-method "arabic-azerty-olpc")
+
   (setq-default line-spacing 0.2)
 
   ;; Better color for keybinding hints

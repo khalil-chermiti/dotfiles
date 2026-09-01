@@ -34,6 +34,7 @@
 ;; 2. Load Custom Modules
 ;; -----------------------------------------------------------------------------
 
+(require 'init-arabic-azerty-olpc)
 (require 'init-ui)
 (require 'init-dashboard)
 (require 'init-files)
