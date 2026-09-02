@@ -1,6 +1,5 @@
 ;;; init-ui.el --- Frame, Theme, and Modeline Settings -*- lexical-binding: t; -*-
 
-;; 1. Core Emacs UI & Typography
 (use-package emacs
   :custom
   (echo-keystrokes 0.01)
@@ -11,10 +10,9 @@
   (fringe-mode '(8 . 8))
   (confirm-kill-emacs 'y-or-n-p)
 
-  ;; Silence truncation/continuation arrows in fringe
   (fringe-indicator-alist
    (assoc-delete-all 'truncation
-                     (assoc-delete-all 'continuation fringe-indicator-alist)))
+		     (assoc-delete-all 'continuation fringe-indicator-alist)))
 
   :config
   (size-indication-mode 1)
@@ -26,24 +24,21 @@
                       :font "JetBrainsMono NF"
                       :height 110)
 
-  (set-fontset-font t 'arabic "Noto Kufi Arabic")
-
-  (setq default-input-method "arabic-azerty-olpc")
-
-  (setq-default line-spacing 0.2)
-
-  ;; Better color for keybinding hints
   (set-face-attribute 'help-key-binding nil
                       :inherit 'default
                       :background 'unspecified
                       :foreground "#fca103"
                       :box nil)
 
-  ;; Writing
+  (set-fontset-font t 'arabic "Noto Kufi Arabic")
+  (setq default-input-method "arabic-azerty-olpc")
+
+  (setq-default line-spacing 0.2)
+
+
   (add-hook 'text-mode-hook #'visual-line-mode)
   (add-hook 'text-mode-hook #'flyspell-mode))
 
-;; 2. Line Numbers & Cursor Line
 (use-package display-line-numbers
   :ensure nil
   :config
@@ -57,7 +52,6 @@
 (use-package nerd-icons
   :ensure t)
 
-;; 3. Themes & Auto-Dark Sync
 (use-package kanagawa-themes
   :ensure t)
 
@@ -84,14 +78,13 @@
   (doom-modeline-major-mode-icon t)
   (doom-modeline-check nil)
   (doom-modeline-lsp t)
+
+  (custom-set-faces
+   '(doom-modeline-bar ((t (:background "#d27e99")))))
   :init
   (doom-modeline-mode 1))
 
-(custom-set-faces
- ;; Match Kanagawa's classic autumn/sakura purple/pink accent
- '(doom-modeline-bar ((t (:background "#d27e99")))))
 
-;; 5. Mouse Invalidation
 (use-package inhibit-mouse
   :ensure t
   :custom

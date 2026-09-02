@@ -27,3 +27,7 @@
 ;; 4. UI/UX polish
 (setq ring-bell-function 'ignore)       ; Silence audio/visual bell
 (setq use-dialog-box nil)               ; Force prompts into minibuffer instead of popups
+
+
+;; 5. Set gc threshold to 100mb
+(setq gc-cons-threshold (* 100 1024 1024)) ; 100mb 

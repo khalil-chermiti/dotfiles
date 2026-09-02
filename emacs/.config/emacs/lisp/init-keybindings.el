@@ -7,9 +7,7 @@
   (which-key-side-window-max-height 0.4)
   (which-key-side-window-location 'bottom)
   (which-key-sort-order 'which-key-local-then-key-order)
-  ;; (which-key-allow-multiple-replacements t)
   :config
-  ;; Turn dashes into spaces cleanly
   (push '((nil . "-") . (nil . " ")) which-key-replacement-alist)
   (push '((nil . "^org-") . (nil . "")) which-key-replacement-alist)
   (which-key-mode 1))
@@ -160,5 +158,5 @@
     "c c" '(comment-line :which-key "line")
     "c r" '(comment-or-uncomment-region :which-key "region")))
 
-(provide 'init-evil)
+(provide 'init-keybindings)
 ;;; init-evil.el ends here

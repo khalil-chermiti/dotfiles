@@ -36,5 +36,5 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
-(provide 'init-files)
+(provide 'init-dired)
 ;;; init-files.el ends here

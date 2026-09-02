@@ -37,12 +37,12 @@
 (require 'init-arabic-azerty-olpc)
 (require 'init-ui)
 (require 'init-dashboard)
-(require 'init-files)
+(require 'init-dired)
 (require 'init-magit)
 (require 'init-org)
 (require 'init-lsp)
 (require 'init-term)
-(require 'init-completion)
-(require 'init-evil)
+(require 'init-search)
+(require 'init-keybindings)
 
 ;;; init.el ends here
