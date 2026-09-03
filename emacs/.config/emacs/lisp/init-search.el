@@ -55,7 +55,21 @@
   (isearch-allow-scroll t)
   (search-upper-case t)
   (case-fold-search t)
-  (lazy-count-prefix-format "%s/%s "))
+  (lazy-count-prefix-format "%s/%s ")
+  :config
+  (defun my-occur-from-isearch ()
+    (interactive)
+    (let ((query (if isearch-regexp
+               isearch-string
+             (regexp-quote isearch-string))))
+      (isearch-update-ring isearch-string isearch-regexp)
+      (let (search-nonincremental-instead)
+        (ignore-errors (isearch-done t t)))
+      (occur query)))
+  :bind
+  (:map isearch-mode-map
+        ("C-o" . my-occur-from-isearch))
+  )
 
 (provide 'init-search)
 ;;; init-completion.el ends here
