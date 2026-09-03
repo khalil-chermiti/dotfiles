@@ -71,6 +71,7 @@
 
   (my/leader-keys
     "a"   '(avy-goto-char :which-key "avy char")
+    "c"   '(my/toggle-corfu :which-key "toggle corfu")
     "u"   '(undo-tree-visualize :which-key "undo tree")
     "e"   '(find-file :which-key "find file")
     "o"   '(dired-jump :which-key "dired jump")
@@ -143,7 +144,10 @@
     "l R" '(lsp-rename :which-key "rename")
     "l h" '(lsp-ui-doc-glance :which-key "glance doc")
     "l f" '(lsp-format-buffer :which-key "format")
-    "l H" '(lsp-describe-thing-at-point :which-key "help at point"))
+    "l H" '(lsp-describe-thing-at-point :which-key "help at point")
+    "l c" '(comment-line :which-key "line")
+    "l C" '(comment-or-uncomment-region :which-key "region")
+    )
 
   (my/leader-keys
     "d"   '(:ignore t :which-key "diagnostics")
@@ -152,11 +156,7 @@
     "d m" '(display-local-help :which-key "local help")
     "d d" '(flymake-show-buffer-diagnostics :which-key "buffer list")
     "d t" '(flymake-mode :which-key "toggle mode"))
-
-  (my/leader-keys
-    "c"   '(:ignore t :which-key "comment")
-    "c c" '(comment-line :which-key "line")
-    "c r" '(comment-or-uncomment-region :which-key "region")))
+)
 
 (provide 'init-keybindings)
 ;;; init-evil.el ends here

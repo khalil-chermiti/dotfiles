@@ -45,6 +45,16 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
+(defun my/toggle-corfu ()
+  "Toggle Corfu completion mode on or off and display status in the minibuffer."
+  (interactive)
+  (if (bound-and-true-p corfu-mode)
+      (progn
+        (corfu-mode -1)
+        (message "Corfu mode disabled"))
+    (corfu-mode 1)
+    (message "Corfu mode enabled")))
+
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)

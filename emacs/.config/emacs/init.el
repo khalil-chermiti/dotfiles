@@ -35,6 +35,7 @@
 ;; -----------------------------------------------------------------------------
 
 (require 'init-arabic-azerty-olpc)
+(require 'init-arabic-azerty)
 (require 'init-ui)
 (require 'init-dashboard)
 (require 'init-dired)

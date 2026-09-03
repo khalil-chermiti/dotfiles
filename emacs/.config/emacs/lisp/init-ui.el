@@ -31,7 +31,7 @@
                       :box nil)
 
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (setq default-input-method "arabic-azerty-olpc")
+  (setq default-input-method "arabic-azerty")
 
   (setq-default line-spacing 0.2)
 
