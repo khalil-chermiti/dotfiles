@@ -71,5 +71,21 @@
         ("C-o" . my-occur-from-isearch))
   )
 
+(use-package embark
+  :ensure t
+  :bind
+  (("C-;" . embark-act)
+   ("C-," . embark-dwim))
+
+  :config
+  (setq embark-mixed-indicator-delay 0.0)
+  (setq embark-cycle-key "<tab>")
+  (setq embark-prompter #'embark-completing-read-prompter) 
+
+  (setq embark-indicators
+        '(embark-minimal-indicator
+          embark-highlight-indicator
+          embark-isearch-highlight-indicator)))
+
 (provide 'init-search)
 ;;; init-completion.el ends here

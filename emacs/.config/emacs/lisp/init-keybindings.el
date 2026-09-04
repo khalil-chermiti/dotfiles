@@ -70,10 +70,9 @@
     :global-prefix "C-SPC")
 
   (my/leader-keys
-    "a"   '(avy-goto-char :which-key "avy char")
+    "a"   '(embark-act :which-key "embark act")
     "c"   '(my/toggle-corfu :which-key "toggle corfu")
     "u"   '(undo-tree-visualize :which-key "undo tree")
-    "e"   '(find-file :which-key "find file")
     "o"   '(dired-jump :which-key "dired jump")
     "x"   '(execute-extended-command :which-key "M-x")
     "p"   '(:keymap project-prefix-map :which-key "project"))
@@ -130,7 +129,8 @@
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "find")
-    "f f" '(consult-fd :which-key "file")
+    "f a" '(avy-goto-char :which-key "avy char")
+    "f f" '(consult-fd :which-key "consult file")
     "f w" '(consult-ripgrep :which-key "grep")
     "f r" '(consult-recent-file :which-key "recent")
     "f l" '(consult-line :which-key "line"))
