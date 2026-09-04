@@ -72,6 +72,7 @@
   (my/leader-keys
     "a"   '(embark-act :which-key "embark act")
     "c"   '(my/toggle-corfu :which-key "toggle corfu")
+    "i"   '(toggle-input-method :which-key "toggle input method")
     "u"   '(undo-tree-visualize :which-key "undo tree")
     "o"   '(dired-jump :which-key "dired jump")
     "x"   '(execute-extended-command :which-key "M-x")
