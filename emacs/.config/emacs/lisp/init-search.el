@@ -87,5 +87,8 @@
           embark-highlight-indicator
           embark-isearch-highlight-indicator)))
 
+(use-package wgrep
+  :ensure t)
+
 (provide 'init-search)
 ;;; init-completion.el ends here
