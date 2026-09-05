@@ -71,10 +71,7 @@
 
   (my/leader-keys
     "a"   '(embark-act :which-key "embark act")
-    "c"   '(my/toggle-corfu :which-key "toggle corfu")
-    "i"   '(toggle-input-method :which-key "toggle input method")
     "u"   '(undo-tree-visualize :which-key "undo tree")
-    "o"   '(dired-jump :which-key "dired jump")
     "x"   '(execute-extended-command :which-key "M-x")
     "p"   '(:keymap project-prefix-map :which-key "project"))
 
@@ -115,18 +112,19 @@
     "g f" '(magit-file-dispatch :which-key "file dispatch"))
 
   (my/leader-keys
-    "t"   '(:ignore t :which-key "terminal")
+    "t"   '(:ignore t :which-key "toggle")
+    "t i" '(toggle-input-method :which-key "input method")
+    "t I" '(org-indent-mode :which-key "org indent")
+    "t o" '(dired-jump :which-key "dired jump")
+    "t c" '(my/toggle-corfu :which-key "corfu")
     "t t" '(my/open-ansi-term-split :which-key "ansi term")
-    "t e" '(my/open-eshell-split :which-key "eshell"))
+    "t E" '(my/open-eshell-split :which-key "eshell"))
 
   (my/leader-keys
-    "m"   '(:ignore t :which-key "org")
-    "m c" '(org-capture :which-key "capture")
-    "m e" '(org-export-dispatch :which-key "export")
-    "m t" '(:ignore t :which-key "toggle")
-    "m t i" '(org-indent-mode :which-key "indent")
-    "m t l" '(org-toggle-link-display :which-key "links")
-    "m a" '(org-agenda :which-key "agenda"))
+    "o"   '(:ignore t :which-key "org")
+    "o c" '(org-capture :which-key "capture")
+    "o e" '(org-export-dispatch :which-key "export")
+    "o a" '(org-agenda :which-key "agenda"))
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "find")
