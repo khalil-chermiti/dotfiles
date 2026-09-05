@@ -41,8 +41,8 @@
 
   :config
   ;; include hidden files
-  (setopt consult-ripgrep-args (concat consult-ripgrep-args " --hidden "))
-  (setq consult-fd-args "fd --color=never --hidden --type f")
+  (setopt consult-ripgrep-args (concat consult-ripgrep-args " --hidden --glob !.git/* --glob !node_modules/*"))
+  (setq consult-fd-args "fd --color=never --hidden --type f --exclude .git --exclude node_modules")
 
   ;; add debounce when searching for a line
   (consult-customize consult-line :preview-key '(:debounce 0.2 any)))

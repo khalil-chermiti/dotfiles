@@ -53,3 +53,4 @@ lsp-session
 projects
 history
 /company-statistics-cache.el
+/project-list.cache
