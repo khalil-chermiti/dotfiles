@@ -39,6 +39,7 @@
 (require 'init-ui)
 (require 'init-dashboard)
 (require 'init-dired)
+(require 'init-project)
 (require 'init-magit)
 (require 'init-org)
 (require 'init-lsp)
