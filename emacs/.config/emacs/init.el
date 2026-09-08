@@ -45,6 +45,7 @@
 (require 'init-lsp)
 (require 'init-term)
 (require 'init-search)
+(require 'init-gptel)
 (require 'init-keybindings)
 
 ;;; init.el ends here

@@ -119,6 +119,7 @@
     "t c" '(my/toggle-corfu :which-key "corfu")
     "t t" '(my/open-ansi-term-split :which-key "ansi term")
     "t E" '(my/open-eshell-split :which-key "eshell"))
+    "t a" '(gptel :which-key "Gemini")
 
   (my/leader-keys
     "o"   '(:ignore t :which-key "org")
