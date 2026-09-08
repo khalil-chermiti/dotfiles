@@ -88,6 +88,11 @@
   :init
   (doom-modeline-mode 1))
 
+(use-package markdown-mode
+  :ensure t
+  :config
+  (custom-set-faces '(markdown-list-face ((t (:background nil)))))
+  (add-hook 'markdown-mode-hook #'markdown-toggle-markup-hiding))
 
 (use-package inhibit-mouse
   :ensure t
