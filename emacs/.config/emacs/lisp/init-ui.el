@@ -24,6 +24,10 @@
                       :font "JetBrainsMono NF"
                       :height 110)
 
+  ;; (set-face-attribute 'default nil
+  ;;                     :font "Iosevka Fixed Medium Extended"
+  ;;                     :height 110)
+
   (set-face-attribute 'help-key-binding nil
                       :inherit 'default
                       :background 'unspecified
