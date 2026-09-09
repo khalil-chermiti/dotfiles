@@ -4,41 +4,34 @@
   :custom
   (echo-keystrokes 0.01)
   (truncate-lines t)
-
   (line-number-mode t)
   (column-number-mode t)
   (fringe-mode '(8 . 8))
   (confirm-kill-emacs 'y-or-n-p)
-
-  (fringe-indicator-alist
-   (assoc-delete-all 'truncation
-		     (assoc-delete-all 'continuation fringe-indicator-alist)))
+  (window-divider-default-right-width 1)
+  (window-divider-default-places 'right-only)
+  (default-input-method "arabic-azerty")
+  (line-spacing 0.2)
+  (use-short-answers t)
+  (fringe-indicator-alist (assoc-delete-all 'truncation
+                                           (assoc-delete-all 'continuation fringe-indicator-alist)))
 
   :config
   (size-indication-mode 1)
   (recentf-mode 1)
   (savehist-mode 1)
   (winner-mode 1)
+  (window-divider-mode 1)
 
-  (set-face-attribute 'default nil
-                      :font "JetBrainsMono NF"
-                      :height 110)
-
-  ;; (set-face-attribute 'default nil
-  ;;                     :font "Iosevka Fixed Medium Extended"
-  ;;                     :height 110)
-
+  (set-face-attribute 'default nil :font "JetBrainsMono NF" :height 110)
+  
   (set-face-attribute 'help-key-binding nil
                       :inherit 'default
                       :background 'unspecified
                       :foreground "#fca103"
                       :box nil)
-
+  
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (setq default-input-method "arabic-azerty")
-
-  (setq-default line-spacing 0.2)
-
 
   (add-hook 'text-mode-hook #'visual-line-mode)
   (add-hook 'text-mode-hook #'flyspell-mode))
@@ -64,7 +57,17 @@
   :custom
   (auto-dark-themes '((kanagawa-wave) (kanagawa-lotus)))
   :config
-  (auto-dark-mode 1))
+  (auto-dark-mode 1)
+  (set-face-attribute 'window-divider nil 
+		      :foreground "gray" 
+		      :background "gray")
+
+  ;; reset divider bg after theme changes
+  (add-hook 'enable-theme-functions
+	    (lambda (&rest _) ;; _ is new theme
+	      (set-face-attribute 'window-divider nil 
+				  :foreground "gray" 
+				  :background "gray"))))
 
 (use-package doom-modeline
   :ensure t
@@ -83,8 +86,12 @@
   (doom-modeline-check nil)
   (doom-modeline-lsp t)
 
+  :config
   (custom-set-faces
+   '(mode-line ((t (:box (:line-width 1 :color "gray")))))
+   '(mode-line-inactive ((t (:box (:line-width 1 :color "gray")))))
    '(doom-modeline-bar ((t (:background "#d27e99")))))
+  
   :init
   (doom-modeline-mode 1))
 
