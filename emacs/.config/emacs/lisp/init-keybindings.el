@@ -84,16 +84,11 @@
     "w u" '(winner-undo :which-key "Undo layout")
     "w o" '(other-window :which-key "Other")
     "w =" '(balance-windows :which-key "Balance")
-    ;; Movement (lowercase)
+    ;; Movements
     "w h" '(windmove-left :which-key "Left")
     "w j" '(windmove-down :which-key "Down")
     "w k" '(windmove-up :which-key "Up")
-    "w l" '(windmove-right :which-key "Right")
-    ;; Swapping (uppercase HJKL)
-    "w H" '(windmove-swap-states-left :which-key "Swap left")
-    "w J" '(windmove-swap-states-down :which-key "Swap down")
-    "w K" '(windmove-swap-states-up :which-key "Swap up")
-    "w L" '(windmove-swap-states-right :which-key "Swap right"))
+    "w l" '(windmove-right :which-key "Right"))
 
   (my/leader-keys
     "b"   '(:ignore t :which-key "Buffer")
