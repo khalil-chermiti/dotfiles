@@ -15,6 +15,8 @@
         ;; Startup
         org-startup-folded 'content
         org-startup-indented nil
+				org-adapt-indentation nil
+				;; org-indent-indentation-per-level 2
 
         ;; Show Org syntax
         org-hide-leading-stars nil

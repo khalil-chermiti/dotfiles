@@ -13,6 +13,8 @@
   (default-input-method "azerty-to-arabic")
   (line-spacing 0.2)
   (use-short-answers t)
+	(tab-width 2)
+  (indent-tabs-mode nil)
   (fringe-indicator-alist (assoc-delete-all 'truncation
                                            (assoc-delete-all 'continuation fringe-indicator-alist)))
 
