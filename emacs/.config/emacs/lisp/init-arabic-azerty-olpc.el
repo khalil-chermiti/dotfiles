@@ -37,7 +37,7 @@
 (require 'quail)
 
 (quail-define-package
- "arabic-azerty-olpc" "Arabic" "AR-OLPC" t
+ "azerty-to-arabic-olpc" "Arabic OLPC" "AR-OLPC" t
  "Arabic OLPC layout mapped for physical French AZERTY."
  nil t nil nil nil nil nil nil nil nil t)
 

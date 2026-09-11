@@ -1,13 +1,13 @@
-;;; arabic-azerty.el --- Quail package for Standard Arabic on French AZERTY
+;;; arabic-standard-azerty.el --- Quail package for Standard PC Arabic on French AZERTY
 
 ;; =====================================================================
-;; VISUAL REFERENCE: STANDARD ARABIC MAPPING ON PHYSICAL FRENCH AZERTY
+;; VISUAL REFERENCE: STANDARD ARABIC 101/102 MAPPED TO PHYSICAL AZERTY
 ;; =====================================================================
 ;;
-;; Unshifted Layer:
+;; Unshifted Layer (Numbers on top row, standard Arabic PC layout):
 ;;
 ;;   AZERTY: [²] [&] [é] ["] ['] [(] [-] [è] [_] [ç] [à] [)] [=]
-;;   ARABIC: [ذ] [&] [é] ["] ['] [(] [-] [è] [_] [ç] [à] [)] [=]
+;;   ARABIC: [ذ] [1] [2] [3] [4] [5] [6] [7] [8] [9] [0] [-] [=]
 ;;
 ;;   AZERTY: [a] [z] [e] [r] [t] [y] [u] [i] [o] [p] [^] [$]
 ;;   ARABIC: [ض] [ص] [ث] [ق] [ف] [غ] [ع] [ه] [خ] [ح] [ج] [د]
@@ -18,10 +18,10 @@
 ;;   AZERTY: [<] [w] [x] [c] [v] [b] [n] [,] [;] [:] [!]
 ;;   ARABIC: [|] [ئ] [ء] [ؤ] [ر] [لا] [ى] [ة] [و] [ز] [ظ]
 ;;
-;; Shifted Layer:
+;; Shifted Layer (Symbols on top row, standard Arabic PC layout):
 ;;
-;;   AZERTY: [1] [2] [3] [4] [5] [6] [7] [8] [9] [0] [°] [+]
-;;   ARABIC: [1] [2] [3] [4] [5] [6] [7] [8] [9] [0] [°] [+]
+;;   AZERTY: [~] [1] [2] [3] [4] [5] [6] [7] [8] [9] [0] [°] [+]
+;;   ARABIC: [ّ]  [!] [@] [#] [$] [%] [^] [&] [*] [)] [(] [_] [+]
 ;;
 ;;   AZERTY: [A] [Z] [E] [R] [T]  [Y] [U] [I] [O] [P] [¨] [£]
 ;;   ARABIC: [َ]  [ً]  [ُ]  [ٌ]  [لإ] [إ] [‘] [÷] [×] [؛] [<] [>]
@@ -30,45 +30,45 @@
 ;;   ARABIC: [ِ]  [ٍ]  []] [[] [لأ] [أ] [ـ] [،] [/] [:] ["] [|]
 ;;
 ;;   AZERTY: [>] [W] [X] [C] [V] [B]  [N] [?] [.] [/] [§]
-;;   ARABIC: […] [ّ]  [ْ]  [}] [{] [لآ] [آ] ['] [,] [.] [؟]
+;;   ARABIC: […] [~] [ْ]  [}] [{] [لآ] [آ] ['] [,] [.] [؟]
 ;;
 ;; =====================================================================
 
 (require 'quail)
 
 (quail-define-package
- "azerty-to-arabic-azerty" "Arabic" "AR-AZ" t
- "Standard Arabic PC layout mapped for physical French AZERTY (with AZERTY numbers)."
+ "azerty-to-arabic" "Azerty to Arabic mapping" "AR" t
+ "Standard Arabic PC layout (101 keys) mapped for physical French AZERTY."
  nil t nil nil nil nil nil nil nil nil t)
 
 (quail-define-rules
- ;; Top row (Unshifted AZERTY -> AZERTY Unshifted, except Thal)
+ ;; Top row (Unshifted AZERTY -> Standard Arabic Numbers/Symbols)
  ("²" ?ذ)
- ("&" ?&)
- ("é" ?é)
- ("\"" ?\")
- ("'" ?')
- ("(" ?\()
- ("-" ?-)
- ("è" ?è)
- ("_" ?_)
- ("ç" ?ç)
- ("à" ?à)
- (")" ?\))
+ ("&" ?1)
+ ("é" ?2)
+ ("\"" ?3)
+ ("'" ?4)
+ ("(" ?5)
+ ("-" ?6)
+ ("è" ?7)
+ ("_" ?8)
+ ("ç" ?9)
+ ("à" ?0)
+ (")" ?-)
  ("=" ?=)
 
- ;; Top row (Shifted AZERTY -> AZERTY Shifted)
- ("1" ?1)
- ("2" ?2)
- ("3" ?3)
- ("4" ?4)
- ("5" ?5)
- ("6" ?6)
- ("7" ?7)
- ("8" ?8)
- ("9" ?9)
- ("0" ?0)
- ("°" ?°)
+ ;; Top row (Shifted AZERTY -> Standard Arabic Symbols)
+ ("1" ?!)
+ ("2" ?@)
+ ("3" ?#)
+ ("4" ?$)
+ ("5" ?%)
+ ("6" ?^)
+ ("7" ?&)
+ ("8" ?*)
+ ("9" ?\)) ;; Reversed parenthesis logically due to RTL standard
+ ("0" ?\()
+ ("°" ?_)
  ("+" ?+)
 
  ;; First letter row (Unshifted AZERTY -> Arabic Unshifted)
@@ -106,14 +106,14 @@
  ("x" ?ء)
  ("c" ?ؤ)
  ("v" ?ر)
- ("b" "لا")
+ ("b" ["لا"])
  ("n" ?ى)
  ("," ?ة)
  (";" ?و)
  (":" ?ز)
  ("!" ?ظ)
 
- ;; Top letter row shifted (A Z E R T Y U I O P ^ $)
+ ;; Top letter row shifted
  ("A" ?َ)
  ("Z" ?ً)
  ("E" ?ُ)
@@ -127,7 +127,7 @@
  ("¨" ?<)
  ("£" ?>)
 
- ;; Middle letter row shifted (Q S D F G H J K L M % µ)
+ ;; Middle letter row shifted
  ("Q" ?ِ)
  ("S" ?ٍ)
  ("D" ?])
@@ -141,9 +141,9 @@
  ("%" ?\")
  ("µ" ?|)
 
- ;; Bottom letter row shifted (W X C V B N , ; : !)
+ ;; Bottom letter row shifted
  (">" ?…)
- ("W" ?ّ) 
+ ("W" ?~)  ;; Standard Arabic Shift+Z maps to Tilde
  ("X" ?ْ)
  ("C" ?})
  ("V" ?{)
@@ -155,8 +155,9 @@
  ("§" ?؟)
  
  ;; Fallback for Shadda if typed via standard tilde (AltGr + é)
+ ;; On Standard Arabic, Shadda is Shift+` (the key next to 1).
  ("~" ?ّ)
  )
 
-(provide 'init-arabic-azerty)
-;;; arabic-azerty.el ends here
+(provide 'init-arabic)
+;;; arabic-standard-azerty.el ends here

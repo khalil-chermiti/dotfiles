@@ -10,7 +10,7 @@
   (confirm-kill-emacs 'y-or-n-p)
   (window-divider-default-right-width 1)
   (window-divider-default-places 'right-only)
-  (default-input-method "arabic-azerty")
+  (default-input-method "azerty-to-arabic")
   (line-spacing 0.2)
   (use-short-answers t)
   (fringe-indicator-alist (assoc-delete-all 'truncation

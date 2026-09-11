@@ -52,5 +52,15 @@
   (org-level-7 ((t (:height 1.0 :weight bold))))
   (org-level-8 ((t (:height 1.0 :weight bold)))))
 
+(defun my/toggle-bidi ()
+  "Toggle the buffer's paragraph direction between right-to-left and left-to-right."
+  (interactive)
+  (if (eq bidi-paragraph-direction 'right-to-left)
+      (setq bidi-paragraph-direction 'left-to-right)
+    (setq bidi-paragraph-direction 'right-to-left))
+  (message "Direction set to %s" bidi-paragraph-direction))
+
+;; writing abbreviations
+(setq-default abbrev-mode t)
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -110,6 +110,7 @@
     "t"   '(:ignore t :which-key "Toggle")
     "t a" '(gptel :which-key "Gemini")
     "t i" '(toggle-input-method :which-key "Input method")
+    "t r" '(my/toggle-bidi :which-key "RTL")
     "t I" '(org-indent-mode :which-key "Org indent")
     "t o" '(dired-jump :which-key "Dired jump")
     "t c" '(my/toggle-corfu :which-key "Corfu")
