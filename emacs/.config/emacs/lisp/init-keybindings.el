@@ -55,7 +55,8 @@
   :ensure t
   :after evil
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  (evil-collection-define-key 'normal 'dired-mode-map "g" 'revert-buffer))
 
 (use-package avy
   :ensure t)
