@@ -3,8 +3,8 @@
 (use-package org
   :ensure nil
   :hook (
-	 ;; (org-mode . org-indent-mode)
-	 (org-mode . visual-line-mode))
+				 ;; (org-mode . org-indent-mode)
+				 (org-mode . visual-line-mode))
   :config
   (setq org-directory "~/org"
         org-agenda-files '("~/org")
@@ -22,24 +22,24 @@
         org-hide-leading-stars nil
         org-hide-emphasis-markers nil
 
-	;; Org Capture Templates
-	org-capture-templates
-	'(("t" "Todo" entry (file+headline "tasks.org" "Tasks")
-	   "* TODO  %?\n  %U\n")
-	  ("n" "Note" entry (file+datetree "notes.org")
+				;; Org Capture Templates
+				org-capture-templates
+				'(("t" "Todo" entry (file+headline "tasks.org" "Tasks")
+					 "* TODO  %?\n  %U\n")
+					("n" "Note" entry (file+datetree "notes.org")
            "* %?\n  %U\n  %i")
-	  ("j" "Journal" entry (file+datetree "journal.org")
+					("j" "Journal" entry (file+datetree "journal.org")
            "* %U\n  %?"))
 
         ;; Keep the default "..." when folded
         org-ellipsis "..."
-	;; org-ellipsis " ▾"
+				;; org-ellipsis " ▾"
 
         ;; Tables
         org-table-auto-align t
 
         ;; Images
-        org-startup-with-inline-images t
+        org-startup-with-inline-images nil
 
         ;; Source blocks
         org-src-preserve-indentation t)
