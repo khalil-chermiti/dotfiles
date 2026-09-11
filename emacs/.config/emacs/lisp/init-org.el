@@ -62,5 +62,17 @@
 
 ;; writing abbreviations
 (setq-default abbrev-mode t)
+
+(define-abbrev-table 'global-abbrev-table
+  '(
+    ("peer" "Point:\nEvidence:\nExplanation:\nRefinement:" nil :system t)
+    ("teel" "Topic sentence:\nEvidence:\nExplanation:\nLink:" nil :system t)
+    ("oreo" "Opinion:\nReason:\nExample:\nOpinion:" nil :system t)
+
+    ("peera" "الفكرة:\nالدليل:\nالشرح:\nالتطوير:" nil :system t)
+    ("teela" "الجملة المفتاحية:\nالدليل:\nالشرح:\nالرابط:" nil :system t)
+    ("areoa"  "الرأي:\nالسبب:\nالمثال:\nالرأي:" nil :system t)
+    ))
+
 (provide 'init-org)
 ;;; init-org.el ends here
