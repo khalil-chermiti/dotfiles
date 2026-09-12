@@ -40,8 +40,11 @@
 
 (use-package display-line-numbers
   :ensure nil
-  :config
-  (global-display-line-numbers-mode 1))
+  ;; :config
+  ;; (global-display-line-numbers-mode 1)
+  :hook ((prog-mode . display-line-numbers-mode)
+         (org-mode . display-line-numbers-mode)
+         (fundamental-mode . display-line-numbers-mode)))
 
 (use-package hl-line
   :ensure nil
