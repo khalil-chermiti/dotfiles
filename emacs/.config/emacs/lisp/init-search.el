@@ -73,10 +73,6 @@
 
 (use-package embark
   :ensure t
-  :bind
-  (("C-;" . embark-act)
-   ("C-," . embark-dwim))
-
   :config
   (setq embark-mixed-indicator-delay 0.0)
   (setq embark-cycle-key "<tab>")
