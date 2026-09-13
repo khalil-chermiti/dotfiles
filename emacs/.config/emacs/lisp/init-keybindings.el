@@ -51,12 +51,17 @@
   :config
   (evil-mode 1))
 
+(use-package evil-nerd-commenter
+  :ensure t
+  :after evil
+  :config
+  (global-evil-nerd-commenter-mode 1))
+
 (use-package evil-collection
   :ensure t
   :after evil
   :config
-  (evil-collection-init)
-  (evil-collection-define-key 'normal 'dired-mode-map "g" 'revert-buffer))
+  (evil-collection-init))
 
 (use-package avy
   :ensure t)
@@ -64,6 +69,14 @@
 (use-package general
   :ensure t
   :config
+
+  (general-def
+    :keymaps 'override
+    "C-," 'consult-line
+    "C-;" 'avy-goto-char-timer
+    "C-:" 'execute-extended-command
+    "C-!" 'my/toggle-arabic)
+
   (general-create-definer my/leader-keys
     :states '(normal visual motion emacs)
     :keymaps 'override
@@ -71,6 +84,7 @@
     :global-prefix "C-SPC")
 
   (my/leader-keys
+    "SPC" '(find-file :which-key "Find file")
     "a"   '(embark-act :which-key "Embark act")
     "u"   '(undo-tree-visualize :which-key "Undo tree")
     "x"   '(execute-extended-command :which-key "M-x")
@@ -105,14 +119,12 @@
     "g"   '(:ignore t :which-key "Git")
     "g s" '(magit-status :which-key "Status")
     "g d" '(magit-dispatch :which-key "Dispatch")
-    "g f" '(magit-file-dispatch :which-key "File dispatch"))
+    "g f" '(magit-file-dispatch :which-key "File dispatch")
+    "g h" '(diff-hl-show-hunk :which-key "Show hunk"))
 
   (my/leader-keys
     "t"   '(:ignore t :which-key "Toggle")
     "t a" '(gptel :which-key "Gemini")
-    "t r" '(my/toggle-bidi :which-key "RTL")
-    "t I" '(org-indent-mode :which-key "Org indent")
-    "t o" '(dired-jump :which-key "Dired jump")
     "t c" '(my/toggle-corfu :which-key "Corfu")
     "t t" '(my/open-ansi-term-split :which-key "Ansi term")
     "t E" '(my/open-eshell-split :which-key "Eshell"))
@@ -125,7 +137,7 @@
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "Find")
-    "f a" '(avy-goto-char :which-key "Avy char")
+    "f a" '(avy-goto-char-timer :which-key "Avy char")
     "f f" '(consult-fd :which-key "Consult file")
     "f w" '(consult-ripgrep :which-key "Grep")
     "f r" '(consult-recent-file :which-key "Recent")
@@ -140,19 +152,22 @@
     "l R" '(lsp-rename :which-key "Rename")
     "l h" '(lsp-ui-doc-glance :which-key "Glance doc")
     "l f" '(lsp-format-buffer :which-key "Format")
-    "l H" '(lsp-describe-thing-at-point :which-key "Help at point")
-    "l c" '(comment-line :which-key "Line")
-    "l C" '(comment-or-uncomment-region :which-key "Region")
-    )
+    "l H" '(lsp-describe-thing-at-point :which-key "Help at point"))
 
   (my/leader-keys
-    "d"   '(:ignore t :which-key "Diagnostics")
-    "d n" '(flymake-goto-next-error :which-key "Next error")
-    "d p" '(flymake-goto-prev-error :which-key "Prev error")
-    "d m" '(display-local-help :which-key "Local help")
-    "d d" '(flymake-show-buffer-diagnostics :which-key "Buffer list")
-    "d t" '(flymake-mode :which-key "Toggle mode"))
-)
+    "e"   '(:ignore t :which-key "Errors/Diagnostics")
+    "e n" '(flymake-goto-next-error :which-key "Next error")
+    "e p" '(flymake-goto-prev-error :which-key "Prev error")
+    "e d" '(flymake-show-buffer-diagnostics :which-key "Buffer list")
+    "e t" '(flymake-mode :which-key "Toggle mode")
+    "e l" '(display-local-help :which-key "Local help"))
+
+  (my/leader-keys
+    "c"   '(:ignore t :which-key "Comment")
+    "c c" '(evilnc-comment-or-uncomment-lines :which-key "Comment line")
+    "c l" '(evilnc-quick-comment-or-uncomment-to-the-line :which-key "Comment to line")
+    "c y" '(evilnc-copy-and-comment-lines :which-key "Copy and comment")
+    "c p" '(evilnc-comment-or-uncomment-paragraphs :which-key "Comment paragraph")))
 
 (provide 'init-keybindings)
 ;;; init-evil.el ends here

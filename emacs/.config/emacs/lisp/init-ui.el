@@ -34,7 +34,6 @@
                       :box nil)
   
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (global-set-key (kbd "C-,") #'toggle-input-method)
   (add-hook 'text-mode-hook #'visual-line-mode)
   (add-hook 'text-mode-hook #'flyspell-mode))
 
