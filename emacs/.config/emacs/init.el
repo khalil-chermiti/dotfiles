@@ -41,7 +41,7 @@
 (require 'init-dired)
 (require 'init-project)
 (require 'init-magit)
-(require 'init-org)
+(require 'init-writing)
 (require 'init-lsp)
 (require 'init-term)
 (require 'init-search)
