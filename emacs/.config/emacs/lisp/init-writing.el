@@ -27,7 +27,7 @@
      ("n" "Note" entry (file+datetree "notes.org")
       "* %?\n  %U\n  %i")
      ("j" "Journal" entry (file+datetree "journal.org")
-      "* %U\n  %?")))
+      "* %U\n%?")))
 
   :custom-face
   (org-level-1 ((t (:height 1.15 :weight bold))))
@@ -68,17 +68,84 @@
 ;; Writing Abbreviations (PEER, TEEL, OREO)
 ;; =================================================================
 
-(setq-default abbrev-mode t)
+(use-package dabbrev
+  :ensure nil
+  :config
+  (setq-default abbrev-mode t)
 
-(define-abbrev-table 'global-abbrev-table
-  '(
-    ("peer" "Point:\nEvidence:\nExplanation:\nRefinement:" nil :system t)
-    ("teel" "Topic sentence:\nEvidence:\nExplanation:\nLink:" nil :system t)
-    ("oreo" "Opinion:\nReason:\nExample:\nOpinion:" nil :system t)
+  (define-abbrev-table 'global-abbrev-table
+    '(
+      ("peer" "Point:\nEvidence:\nExplanation:\nRefinement:" nil :system t)
+      ("teel" "Topic sentence:\nEvidence:\nExplanation:\nLink:" nil :system t)
+      ("oreo" "Opinion:\nReason:\nExample:\nOpinion:" nil :system t)
 
-    ("peera" "الفكرة:\nالدليل:\nالشرح:\nالتطوير:" nil :system t)
-    ("teela" "الجملة المفتاحية:\nالدليل:\nالشرح:\nالرابط:" nil :system t)
-    ("areoa" "الرأي:\nالسبب:\nالمثال:\nالرأي:" nil :system t)))
+      ("peera" "الفكرة:\nالدليل:\nالشرح:\nالتطوير:" nil :system t)
+      ("teela" "الجملة المفتاحية:\nالدليل:\nالشرح:\nالرابط:" nil :system t)
+      ("areoa" "الرأي:\nالسبب:\nالمثال:\nالرأي:" nil :system t))))
+
+;; =================================================================
+;; Dictionary Search 
+;; =================================================================
+
+(use-package dictionary
+  :ensure nil
+  :init
+  (setq dictionary-server "dict.org")
+
+  :config
+  (defun my/dict-fr ()
+    "Search dict.org using the French-to-English database (fd-fra-eng)."
+    (interactive)
+    (setq dictionary-default-dictionary "fd-fra-eng")
+    (call-interactively 'dictionary-search))
+
+  (defun my/dict-en ()
+    "Search dict.org using the standard English database."
+    (interactive)
+    (setq dictionary-default-dictionary "wn")
+    (call-interactively 'dictionary-search))
+
+  (defun my/dictionary ()
+    "Prompt to choose dictionary to find definition."
+    (let* ((choice (completing-read "Dictionary: " '("French -> English" "English -> French") nil t))
+           (direction (intern choice)))
+      (pcase choice
+        ("French -> English" (my/dict-fr))
+        ("English -> French" (my/dict-en))))))
+
+;; =================================================================
+;; Dictionary Search 
+;; =================================================================
+(use-package gt
+  :ensure t
+  :bind
+  :config
+  (defun my/gt-fr-to-en ()
+    "Prompt for a French phrase and translate to English."
+    (interactive)
+    (gt-start
+     (gt-translator
+      :taker (gt-taker :prompt t :langs '(fr en))
+      :engines (gt-google-engine)
+      :render (gt-buffer-render))))
+
+  (defun my/gt-en-to-fr ()
+    "Prompt for an English phrase and translate to French."
+    (interactive)
+    (gt-start
+     (gt-translator
+      :taker (gt-taker :prompt t :langs '(en fr))
+      :engines (gt-google-engine)
+      :render (gt-buffer-render)))) ;; you can use gt-postframe-pop-render to render a pop window at current cursor position
+
+  (defun my/translate ()
+    "Prompt to choose a translation direction, then execute it."
+    (interactive)
+    (let* ((choice (completing-read "Translation direction: " '("French -> English" "English -> French") nil t))
+           (direction (intern choice)))
+      (pcase choice
+        ("French -> English" (my/gt-fr-to-en))
+        ("English -> French" (my/gt-en-to-fr))))))
 
 (provide 'init-writing)
 ;;; init-org.el ends here

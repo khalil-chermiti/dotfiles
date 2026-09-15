@@ -126,8 +126,15 @@
     "t"   '(:ignore t :which-key "Toggle")
     "t a" '(gptel :which-key "Gemini")
     "t c" '(my/toggle-corfu :which-key "Corfu")
+    "t d" '(my/translate :which-key "Translate")
+    "t D" '(my/dictionary :which-key "Dictionary")
     "t t" '(my/open-ansi-term-split :which-key "Ansi term")
-    "t E" '(my/open-eshell-split :which-key "Eshell"))
+    "t e" '(my/open-eshell-split :which-key "Eshell"))
+
+  (my/leader-keys
+    "v" '(:ignore t :which-key "Dict/trans")
+    "v f" '(my/dict-fr :which-key "French")
+    "v e" '(my/dict-en :which-key "English"))
 
   (my/leader-keys
     "o"   '(:ignore t :which-key "Org")
