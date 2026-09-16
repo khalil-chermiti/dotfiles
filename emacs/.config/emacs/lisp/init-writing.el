@@ -107,6 +107,7 @@
 
   (defun my/dictionary ()
     "Prompt to choose dictionary to find definition."
+    (interactive)
     (let* ((choice (completing-read "Dictionary: " '("French -> English" "English -> French") nil t))
            (direction (intern choice)))
       (pcase choice
