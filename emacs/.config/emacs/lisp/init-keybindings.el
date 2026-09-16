@@ -130,7 +130,8 @@
     "t d" '(my/translate :which-key "Translate")
     "t D" '(my/dictionary :which-key "Dictionary")
     "t t" '(my/open-ansi-term-split :which-key "Ansi term")
-    "t e" '(my/open-eshell-split :which-key "Eshell"))
+    "t e" '(my/open-eshell-split :which-key "Eshell")
+    "t b" '(my/eww-open :which-key "Open Url"))
 
   (my/leader-keys
     "v" '(:ignore t :which-key "Dict/trans")

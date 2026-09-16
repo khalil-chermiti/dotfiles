@@ -80,18 +80,14 @@
       (eww-open-file temp-file)))
 
 
-  (defun my/eww-open-ahewar-at-point ()
-    "Extract and open the URL at point using `my/parse-ahewar-article`."
+  (defun my/eww-open ()
+    "Extract URL at point and process accordingly."
     (interactive)
     (let ((url (thing-at-point-url-at-point)))
-      (if url
-          (my/parse-ahewar-article url)
-        (message "No URL found at point!")))))
-
-;; (use-package elfeed-goodies
-;;   :ensure t
-;;   :config
-;;   (elfeed-goodies/setup))
+      (cond
+       ((and url (string-search "ahewar" url)) (my/parse-ahewar-article url)) ;; if url is ahewar.org
+       (url  (eww url)) ;; open url
+       (t (call-interactively 'eww)))))) ;; prompt for url
 
 (provide 'init-elfeed)
 ;;; my-elfeed.el ends here
