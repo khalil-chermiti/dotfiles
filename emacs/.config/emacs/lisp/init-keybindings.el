@@ -75,7 +75,8 @@
     "C-," 'consult-line
     "C-;" 'avy-goto-char-timer
     "C-:" 'execute-extended-command
-    "C-!" 'my/toggle-arabic)
+    "C-!" 'my/toggle-arabic
+    "C-§" 'toggle-input-method)
 
   (general-create-definer my/leader-keys
     :states '(normal visual motion emacs)
