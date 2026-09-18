@@ -148,5 +148,30 @@
         ("French -> English" (my/gt-fr-to-en))
         ("English -> French" (my/gt-en-to-fr))))))
 
+(use-package flyspell
+  :ensure nil
+  :config
+  (setq-default flyspell-mode nil
+                ispell-program-name "aspell"
+                ispell-extra-args '("--sug-mode=ultra"))
+
+  (defun my/toggle-flyspell ()
+    "Toggle flyspell mode, set dictionary, and ensure corfu is active."
+    (interactive)
+    (if flyspell-mode
+        (progn
+          (flyspell-mode -1)
+          (message "Flyspell disabled."))
+      (let* ((lang-map '(("english" . "/usr/share/dict/words")
+                         ("francais" . "/usr/share/dict/french")))
+             (lang (completing-read "Select dictionary: " (mapcar #'car lang-map))))
+        (ispell-change-dictionary lang)
+        (setq ispell-alternate-dictionary (cdr (assoc lang lang-map)))
+        (flyspell-mode 1)
+        (unless (bound-and-true-p corfu-mode)
+          (corfu-mode 1)
+          (message "Corfu enabled."))
+        (message "Flyspell enabled with %s dictionary." lang)))))
+
 (provide 'init-writing)
 ;;; init-org.el ends here

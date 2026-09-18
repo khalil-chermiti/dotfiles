@@ -34,8 +34,7 @@
                       :box nil)
   
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (add-hook 'text-mode-hook #'visual-line-mode)
-  (add-hook 'text-mode-hook #'flyspell-mode))
+  (add-hook 'text-mode-hook #'visual-line-mode));
 
 (use-package display-line-numbers
   :ensure nil
