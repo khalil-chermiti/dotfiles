@@ -148,30 +148,56 @@
         ("French -> English" (my/gt-fr-to-en))
         ("English -> French" (my/gt-en-to-fr))))))
 
+;; I externally use aspell program to get suggestions and corrections
+;; aspell takes a list of command line args to tweak it. url of the options: http://aspell.net/man-html/The-Options.html
 (use-package flyspell
   :ensure nil
   :config
-  (setq-default flyspell-mode nil
-                ispell-program-name "aspell"
-                ispell-extra-args '("--sug-mode=ultra"))
+  (setq
+   flyspell-mode nil
+   ispell-program-name "aspell"
+   ispell-extra-args '("--run-together"
+                       "--run-together-limit=5"
+                       "--ignore-case"
+                       "--sug-mode=ultra" ;; Suggestion mode = ‘ultra’ | ‘fast’ | ‘normal’ | ‘slow’ | ‘bad-spellers’
+                       "--ignore-accents"))
 
   (defun my/toggle-flyspell ()
-    "Toggle flyspell mode, set dictionary, and ensure corfu is active."
+    "Toggle Flyspell and select a dictionary. Uses prog-mode to avoid checking code."
     (interactive)
     (if flyspell-mode
         (progn
           (flyspell-mode -1)
           (message "Flyspell disabled."))
-      (let* ((lang-map '(("english" . "/usr/share/dict/words")
-                         ("francais" . "/usr/share/dict/french")))
-             (lang (completing-read "Select dictionary: " (mapcar #'car lang-map))))
-        (ispell-change-dictionary lang)
-        (setq ispell-alternate-dictionary (cdr (assoc lang lang-map)))
+        
+        (call-interactively #'ispell-change-dictionary)
+        
         (flyspell-mode 1)
+        
         (unless (bound-and-true-p corfu-mode)
-          (corfu-mode 1)
-          (message "Corfu enabled."))
-        (message "Flyspell enabled with %s dictionary." lang)))))
+          (corfu-mode 1))
+        (message "Flyspell enabled with %s." ispell-current-dictionary)))
+
+
+  ;; completion for accents
+  (defun orderless-regexp-accent-insensitive (component)
+    "Convert a component into a regex that ignores accents."
+    (let ((chars '(("a" . "[aàâ]")
+                   ("e" . "[eéèêë]")
+                   ("i" . "[iîï]")
+                   ("o" . "[oôö]")
+                   ("u" . "[uûüù]")
+                   ("c" . "[cç]"))))
+      (let ((pattern (orderless-regexp component)))
+        (dolist (pair chars)
+          (setq pattern (replace-regexp-in-string (car pair) (cdr pair) pattern)))
+        pattern)))
+
+  (setq orderless-matching-styles 
+        '(orderless-regexp-accent-insensitive)))
+
+(use-package flyspell-correct
+  :after flyspell)
 
 (provide 'init-writing)
 ;;; init-org.el ends here

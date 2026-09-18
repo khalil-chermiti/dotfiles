@@ -132,6 +132,7 @@
     "t t" '(my/open-ansi-term-split :which-key "Ansi term")
     "t e" '(my/open-eshell-split :which-key "Eshell")
     "t s" '(my/toggle-flyspell :which-key "Flyspell")
+    "t S" '(flyspell-correct-wrapper :which-key "Flyspell correct")
     "t b" '(my/eww-open :which-key "Open Url"))
 
   (my/leader-keys
