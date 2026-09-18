@@ -21,9 +21,12 @@
   (dired-isearch-filenames 'dwim)
   (global-auto-revert-non-file-buffers t)
   (dired-hide-details-hide-symlink-targets t)
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-guess-shell-alist-user
+   '((".*" "xdg-open"))) ;; For Linux
+
   :config
-  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
-  (setq dired-kill-when-opening-new-dired-buffer t))
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode))
 
 (use-package dired-hide-dotfiles
   :hook (dired-mode . dired-hide-dotfiles-mode)
