@@ -11,6 +11,8 @@
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=139" علمانية دين)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=141" فلسطين)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=142" حقوق-إنسان)
+          ("https://www.ahewar.org/rss/default.asp?lt=4&i=241" صحة-نفسية-جسدية)
+          ("https://www.ahewar.org/rss/default.asp?lt=4&i=274" قضايا-ثقافية)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=226" نسوية عنف-منزل حقوق-المرأة)))
 
   (defface my/elfeed-small-title-face
