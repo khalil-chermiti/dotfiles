@@ -144,7 +144,8 @@
     "o"   '(:ignore t :which-key "Org")
     "o c" '(org-capture :which-key "Capture")
     "o e" '(org-export-dispatch :which-key "Export")
-    "o a" '(org-agenda :which-key "Agenda"))
+    "o a" '((lambda () (interactive) (org-agenda nil "n")) :which-key "Agenda")
+    "o t" '((lambda () (interactive) (org-agenda nil "t")) :which-key "TODOs"))
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "Find")

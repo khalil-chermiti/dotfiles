@@ -10,7 +10,10 @@
   :custom
   (org-directory "~/org")
   (org-agenda-files '("~/org"))
-  (org-todo-keywords '((sequence "TODO(t)" "DONE(d)")))
+  (org-todo-keywords '((sequence "TODO(t)" "PROGRESS(p)" "DONE(d)")))
+  (org-priority-highest ?A)
+  (org-priority-lowest ?E)
+  (org-priority-default ?A)
   (org-startup-folded 'content)
   (org-startup-indented nil)
   (org-adapt-indentation nil)
