@@ -20,7 +20,7 @@
   (dired-recursive-deletes 'always)
   (dired-isearch-filenames 'dwim)
   (global-auto-revert-non-file-buffers t)
-  (dired-hide-details-hide-symlink-targets t)
+  (dired-hide-details-hide-symlink-targets nil)
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-guess-shell-alist-user
    '((".*" "xdg-open"))) ;; For Linux
