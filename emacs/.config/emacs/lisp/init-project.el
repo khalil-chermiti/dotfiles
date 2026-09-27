@@ -6,14 +6,19 @@
   (project-vc-extra-root-markers '(".env" "package.json"))
 
   (project-switch-commands 
-   '((project-find-file "Find file" ?f)
-     (project-find-dir "Find directory" ?D)
-     (project-dired "dired" ?d)
-     (project-find-regexp "Find regexp" ?g)
-     (consult-project-buffer "Find buffer" ?b)
-     (magit-project-status "Magit" ?m)
-     (project-eshell "Eshell" ?e)))
+   '((consult-fd "Find file" ?f)
+     (consult-ripgrep "Find regexp" ?g)
+     (project-find-dir "Find directory" ?d)
+     (magit-project-status "Magit" ?m)))
+
   :config
+  (dolist (key '("!" "&" "c" "o" "F" "G" "C-b" "D" "x"))
+    (keymap-unset project-prefix-map key))
+
+  (keymap-set project-prefix-map "f" #'consult-fd)
+  (keymap-set project-prefix-map "b" #'project-buffers)
+  (keymap-set project-prefix-map "d" #'project-dired)
+  (keymap-set project-prefix-map "g" #'consult-ripgrep)
   (keymap-set project-prefix-map "m" #'magit-project-status))
 
 (provide 'init-project)
