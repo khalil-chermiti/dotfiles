@@ -34,15 +34,40 @@
                       :box nil)
   
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (add-hook 'text-mode-hook #'visual-line-mode));
+  (add-hook 'text-mode-hook #'visual-line-mode)
+
+  ;; (dolist (hook '(org-mode-hook
+  ;;                 markdown-mode-hook
+  ;;                 message-mode-hook
+  ;;                 git-commit-mode-hook
+  ;;                 text-mode-hook))
+  ;;   (add-hook hook #'turn-on-auto-fill))
+
+  (setq display-buffer-alist
+        '(
+
+          ("\\`\\*Org Agenda\\*\\'"
+           (display-buffer-full-frame))
+
+          ("\\`gem.*"
+           (display-buffer-at-bottom)
+           (window-height. 0.4))
+
+          ("\\*undo-tree\\*"
+           (display-buffer-in-side-window)
+           (side . right)
+           (window-width . 0.3))
+
+          ))
+  );
 
 (use-package display-line-numbers
   :ensure nil
   ;; :config
   ;; (global-display-line-numbers-mode 1)
-  :hook ((prog-mode . display-line-numbers-mode)
-         (org-mode . display-line-numbers-mode)
-         (fundamental-mode . display-line-numbers-mode)))
+  :hook ((prog-mode . display-line-numbers-mode)))
+         ;; (org-mode . display-line-numbers-mode)
+         ;; (fundamental-mode . display-line-numbers-mode)))
 
 (use-package hl-line
   :ensure nil
@@ -58,7 +83,7 @@
 (use-package auto-dark
   :ensure t
   :custom
-  (auto-dark-themes '((kanagawa-wave) (kanagawa-lotus)))
+  (auto-dark-themes '((ef-autumn) (ef-eagle)))
   :config
   (auto-dark-mode 1)
   (set-face-attribute 'window-divider nil 
@@ -101,7 +126,7 @@
 (use-package markdown-mode
   :ensure t
   :config
-  (custom-set-faces '(markdown-list-face ((t (:background nil)))))
+  ;; (custom-set-faces '(markdown-list-face ((t (:background nil)))))
   (add-hook 'markdown-mode-hook #'markdown-toggle-markup-hiding))
 
 (use-package inhibit-mouse

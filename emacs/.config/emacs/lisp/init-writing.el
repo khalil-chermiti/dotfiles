@@ -8,8 +8,8 @@
   :ensure nil
   :hook (org-mode . visual-line-mode)
   :custom
-  (org-directory "~/org")
-  (org-agenda-files '("~/org"))
+  (org-directory "~/Org")
+  (org-agenda-files '("~/Org/tasks.org"))
   (org-todo-keywords '((sequence "TODO(t)" "PROGRESS(p)" "DONE(d)")))
   (org-priority-highest ?A)
   (org-priority-lowest ?E)

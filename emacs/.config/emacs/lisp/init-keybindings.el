@@ -46,6 +46,7 @@
   (setq evil-undo-system 'undo-tree)
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
+  (setq evil-want-minibuffer nil)
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
   :config
@@ -53,9 +54,7 @@
 
 (use-package evil-nerd-commenter
   :ensure t
-  :after evil
-  :config
-  (global-evil-nerd-commenter-mode 1))
+  :after evil)
 
 (use-package evil-collection
   :ensure t
@@ -134,11 +133,6 @@
     "t s" '(my/toggle-flyspell :which-key "Flyspell")
     "t S" '(flyspell-correct-wrapper :which-key "Flyspell correct")
     "t b" '(my/eww-open :which-key "Open Url"))
-
-  (my/leader-keys
-    "v" '(:ignore t :which-key "Dict/trans")
-    "v f" '(my/dict-fr :which-key "French")
-    "v e" '(my/dict-en :which-key "English"))
 
   (my/leader-keys
     "o"   '(:ignore t :which-key "Org")
