@@ -8,6 +8,7 @@
   (which-key-side-window-location 'bottom)
   (which-key-sort-order 'which-key-local-then-key-order)
   :config
+  (push '((nil . "digit-argument") . "") which-key-replacement-alist)
   (push '((nil . "-") . (nil . " ")) which-key-replacement-alist)
   (push '((nil . "^org-") . (nil . "")) which-key-replacement-alist)
   (which-key-mode 1))
@@ -72,8 +73,8 @@
   (general-def
     :keymaps 'override
     "C-," 'consult-line
-    "C-;" 'avy-goto-char-timer
-    "C-:" 'execute-extended-command
+    "C-;" 'embark-act
+    "C-:" 'avy-goto-char-timer
     "C-!" 'my/toggle-arabic
     "C-§" 'toggle-input-method)
 
@@ -85,7 +86,6 @@
 
   (my/leader-keys
     "SPC" '(find-file :which-key "Find file")
-    "a"   '(embark-act :which-key "Embark act")
     "u"   '(undo-tree-visualize :which-key "Undo tree")
     "x"   '(execute-extended-command :which-key "M-x")
     "p"   '(:keymap project-prefix-map :which-key "Project"))
@@ -145,9 +145,8 @@
     "f"   '(:ignore t :which-key "Find")
     "f a" '(avy-goto-char-timer :which-key "Avy char")
     "f f" '(consult-fd :which-key "Consult file")
-    "f w" '(consult-ripgrep :which-key "Grep")
-    "f r" '(consult-recent-file :which-key "Recent")
-    "f l" '(consult-line :which-key "Line"))
+    "f g" '(consult-ripgrep :which-key "Grep")
+    "f r" '(consult-recent-file :which-key "Recent"))
 
   (my/leader-keys
     "l"   '(:ignore t :which-key "Lsp")
