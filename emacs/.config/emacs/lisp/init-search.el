@@ -8,9 +8,7 @@
   
   :custom
   (vertico-cycle t)
-
-  :custom-face
-  (vertico-group-title ((t (:background unspecified :box nil)))); remove vertico grouping highlight
+  (vertico-resize nil)
 
   :bind
   (:map minibuffer-local-map
@@ -31,7 +29,7 @@
   :ensure t
   :init
   ;; preview selection with consult
-  (setq register-preview-delay 0.5)
+  (setq register-preview-delay 0)
   (setq register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
 
@@ -45,7 +43,8 @@
   (setq consult-fd-args "fd --color=never --hidden --type f --exclude .git --exclude node_modules")
 
   ;; add debounce when searching for a line
-  (consult-customize consult-line :preview-key '(:debounce 0.2 any)))
+  ;; (consult-customize consult-line :preview-key '(:debounce 0.2 any))
+  )
 
 (use-package isearch
   :ensure nil
