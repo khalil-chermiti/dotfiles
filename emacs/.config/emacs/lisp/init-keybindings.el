@@ -11,6 +11,7 @@
   (push '((nil . "digit-argument") . "") which-key-replacement-alist)
   (push '((nil . "-") . (nil . " ")) which-key-replacement-alist)
   (push '((nil . "^org-") . (nil . "")) which-key-replacement-alist)
+  (push '((nil . "^project\\W") . (nil . "")) which-key-replacement-alist)
   (which-key-mode 1))
 
 (with-eval-after-load 'which-key

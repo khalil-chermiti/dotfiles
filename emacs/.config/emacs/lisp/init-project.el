@@ -12,7 +12,7 @@
      (magit-project-status "Magit" ?m)))
 
   :config
-  (dolist (key '("!" "&" "c" "o" "F" "G" "C-b" "D" "x"))
+  (dolist (key '("!" "&" "c" "o" "v" "F" "G" "C-b" "D" "x"))
     (keymap-unset project-prefix-map key))
 
   (keymap-set project-prefix-map "f" #'consult-fd)
