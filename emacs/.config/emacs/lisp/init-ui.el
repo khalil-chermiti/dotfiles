@@ -125,9 +125,10 @@
 
 (use-package markdown-mode
   :ensure t
-  :config
+  ;; :config
   ;; (custom-set-faces '(markdown-list-face ((t (:background nil)))))
-  (add-hook 'markdown-mode-hook #'markdown-toggle-markup-hiding))
+  ;; (add-hook 'markdown-mode-hook #'markdown-toggle-markup-hiding)
+  )
 
 (use-package inhibit-mouse
   :ensure t
@@ -135,9 +136,29 @@
   (inhibit-mouse-adjust-mouse-highlight t)
   (inhibit-mouse-adjust-show-help-function t)
   :init
-  (if (daemonp)
-      (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
-    (inhibit-mouse-mode 1)))
+  ;; (if (daemonp)
+  ;;     (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
+  ;;   (inhibit-mouse-mode 1))
+  )
+
+;; more on https://www.rahuljuliato.com/posts/emacs-tab-bar-groups#
+(use-package tab-bar
+  :ensure nil
+  :defer t
+  :custom
+  (tab-bar-close-button-show t)
+  (tab-bar-new-button-show t)
+  (tab-bar-tab-hints nil)
+  (tab-bar-auto-width t)
+  (tab-bar-separator " ")
+  (tab-bar-format '(tab-bar-format-tabs
+                    tab-bar-separator
+                    tab-bar-format-add-tab))
+
+  :hook (tab-bar-mode . (lambda ()
+                          (setq keycast-tab-bar-minimal-width 20)
+                          (keycast-tab-bar-mode 1)
+                          )))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
