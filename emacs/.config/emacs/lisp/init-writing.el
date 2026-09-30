@@ -30,7 +30,10 @@
      ("n" "Note" entry (file+datetree "notes.org")
       "* %?\n  %U\n  %i")
      ("j" "Journal" entry (file+datetree "journal.org")
-      "* %U\n%?")))
+      "* %U\n%?")
+     ("p" "Poetry" entry (file+headline "poetry.org" "Poems")
+      "* \n- الشاعر: \n- النوع: \n\n%i%?")
+     ))
 
   :custom-face
   (org-level-1 ((t (:height 1.15 :weight bold))))
@@ -84,7 +87,7 @@
 
       ("peera" "الفكرة:\nالدليل:\nالشرح:\nالتطوير:" nil :system t)
       ("teela" "الجملة المفتاحية:\nالدليل:\nالشرح:\nالرابط:" nil :system t)
-      ("areoa" "الرأي:\nالسبب:\nالمثال:\nالرأي:" nil :system t))))
+      ("oreoa" "الرأي:\nالسبب:\nالمثال:\nالرأي:" nil :system t))))
 
 ;; =================================================================
 ;; Dictionary Search 
