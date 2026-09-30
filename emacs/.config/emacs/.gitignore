@@ -56,3 +56,5 @@ history
 /project-list.cache
 /elfeed/
 /games/
+/.emacs.desktop
+/.emacs.desktop.lock

@@ -2,6 +2,7 @@
 
 (use-package emacs
   :custom
+  (desktop-save-mode t)
   (echo-keystrokes 0.01)
   (truncate-lines t)
   (line-number-mode t)
