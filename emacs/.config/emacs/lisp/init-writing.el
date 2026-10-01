@@ -95,30 +95,16 @@
 
 (use-package dictionary
   :ensure nil
-  :init
-  (setq dictionary-server "dict.org")
-
+  :init (setq dictionary-server "dict.org")
   :config
-  (defun my/dict-fr ()
-    "Search dict.org using the French-to-English database (fd-fra-eng)."
-    (interactive)
-    (setq dictionary-default-dictionary "fd-fra-eng")
-    (call-interactively 'dictionary-search))
-
-  (defun my/dict-en ()
-    "Search dict.org using the standard English database."
-    (interactive)
-    (setq dictionary-default-dictionary "wn")
-    (call-interactively 'dictionary-search))
-
   (defun my/dictionary ()
-    "Prompt to choose dictionary to find definition."
+    "Prompt to choose a dictionary and search via dict.org."
     (interactive)
-    (let* ((choice (completing-read "Dictionary: " '("French -> English" "English -> French") nil t))
-           (direction (intern choice)))
-      (pcase choice
-        ("French -> English" (my/dict-fr))
-        ("English -> French" (my/dict-en))))))
+    (let* ((dicts '(("French -> English" . "fd-fra-eng")
+                    ("English -> French" . "wn")))
+           (choice (completing-read "Select dictionary: " dicts nil t))
+           (dictionary-default-dictionary (alist-get choice dicts nil nil 'string=)))
+      (call-interactively #'dictionary-search))))
 
 ;; =================================================================
 ;; Dictionary Search 
