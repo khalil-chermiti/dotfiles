@@ -1,6 +1,6 @@
 ;;; init-writing.el --- Writing Configuration -*- lexical-binding: t; -*-
 
-;; =================================================================ar
+;; =================================================================
 ;; Org-mode Configuration
 ;; =================================================================
 
@@ -122,7 +122,8 @@
         :render (gt-buffer-render)))))
 
 ;; I externally use aspell program to get suggestions and corrections
-;; aspell takes a list of command line args to tweak it. url of the options: http://aspell.net/man-html/The-Options.html
+;; Aspell takes a list of command line args to tweak it.
+;; Find options here: http://aspell.net/man-html/The-Options.html
 (use-package flyspell
   :ensure nil
   :config
@@ -136,21 +137,33 @@
                        "--ignore-accents"))
 
   (defun my/toggle-flyspell ()
-    "Toggle Flyspell and select a dictionary. Uses prog-mode to avoid checking code."
+    "Toggle Flyspell, set the dictionary, and update cape-dict."
     (interactive)
     (if flyspell-mode
         (progn
           (flyspell-mode -1)
           (message "Flyspell disabled."))
-        
-        (call-interactively #'ispell-change-dictionary)
-        
-        (flyspell-mode 1)
-        
-        (unless (bound-and-true-p corfu-mode)
-          (corfu-mode 1))
-        (message "Flyspell enabled with %s." ispell-current-dictionary)))
+      
+      ;; Select the dictionary
+      (call-interactively #'ispell-change-dictionary)
 
+      ;; Configure cape-dict based on the selected ispell dictionary
+      (setq-local cape-dict-file
+                  (if (string-prefix-p "fr" ispell-current-dictionary)
+                      "/usr/share/dict/french"
+                    "/usr/share/dict/words"))
+
+      ;; Add cape-dict to capf locally if not already there
+      (add-hook 'completion-at-point-functions #'cape-dict nil t)
+
+      (flyspell-mode 1)
+
+      (unless (bound-and-true-p corfu-mode)
+        (corfu-mode 1))
+      
+      (message "Flyspell enabled with %s (Dict: %s)." 
+               ispell-current-dictionary 
+               (file-name-nondirectory cape-dict-file))))
 
   ;; completion for accents
   (defun orderless-regexp-accent-insensitive (component)
@@ -170,7 +183,7 @@
         '(orderless-regexp-accent-insensitive)))
 
 (use-package flyspell-correct
-  :after flyspell)
+  :after flyspell
+  :bind (("M-$" . flyspell-correct-wrapper)))
 
 (provide 'init-writing)
-;;; init-org.el ends here
