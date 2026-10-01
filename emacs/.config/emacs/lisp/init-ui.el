@@ -147,6 +147,7 @@
   :ensure nil
   :defer t
   :custom
+  (tab-bar-show 1)
   (tab-bar-close-button-show t)
   (tab-bar-new-button-show t)
   (tab-bar-tab-hints nil)
@@ -158,8 +159,7 @@
 
   :hook (tab-bar-mode . (lambda ()
                           (setq keycast-tab-bar-minimal-width 20)
-                          (keycast-tab-bar-mode 1)
-                          )))
+                          (keycast-tab-bar-mode 1))))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
