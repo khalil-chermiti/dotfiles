@@ -106,39 +106,20 @@
            (dictionary-default-dictionary (alist-get choice dicts nil nil 'string=)))
       (call-interactively #'dictionary-search))))
 
-;; =================================================================
-;; Dictionary Search 
-;; =================================================================
+;; translate with Google translate.
 (use-package gt
   :ensure t
-  :bind
+  :custom
+  (gt-polyglot-p t)
   :config
-  (defun my/gt-fr-to-en ()
-    "Prompt for a French phrase and translate to English."
-    (interactive)
-    (gt-start
-     (gt-translator
-      :taker (gt-taker :prompt t :langs '(fr en))
-      :engines (gt-google-engine)
-      :render (gt-buffer-render))))
-
-  (defun my/gt-en-to-fr ()
-    "Prompt for an English phrase and translate to French."
-    (interactive)
-    (gt-start
-     (gt-translator
-      :taker (gt-taker :prompt t :langs '(en fr))
-      :engines (gt-google-engine)
-      :render (gt-buffer-render)))) ;; you can use gt-postframe-pop-render to render a pop window at current cursor position
-
   (defun my/translate ()
-    "Prompt to choose a translation direction, then execute it."
+    "Prompt to choose a translation direction and translate."
     (interactive)
-    (let* ((choice (completing-read "Translation direction: " '("French -> English" "English -> French") nil t))
-           (direction (intern choice)))
-      (pcase choice
-        ("French -> English" (my/gt-fr-to-en))
-        ("English -> French" (my/gt-en-to-fr))))))
+      (gt-start
+       (make-instance 'gt-translator
+        :taker (gt-taker :prompt t  :langs '(en fr ar)) ;; when prompted use Ctrl+n or Ctrl+p to change direction of translation
+        :engines (gt-google-engine)
+        :render (gt-buffer-render)))))
 
 ;; I externally use aspell program to get suggestions and corrections
 ;; aspell takes a list of command line args to tweak it. url of the options: http://aspell.net/man-html/The-Options.html
