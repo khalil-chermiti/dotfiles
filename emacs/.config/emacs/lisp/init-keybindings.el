@@ -28,7 +28,17 @@
     "C-x RET" "Coding Systems"
     "C-x 4" "Other Window"
     "C-x 5" "Frames"
-    "C-x 6" "Two-Column"))
+    "C-x 6" "Two-Column"
+    "C-c a" "Toggle Arabic"
+    "C-c i" "Toggle input method"))
+
+(global-set-key (kbd "C-c g") 'gptel)
+(global-set-key (kbd "C-c a") 'my/toggle-arabic)
+(global-set-key (kbd "C-c i") 'toggle-input-method)
+(global-set-key (kbd "C-c t") 'my/open-ansi-term-split)
+(global-set-key (kbd "C-c e") 'my/open-eshell-split)
+(global-set-key (kbd "C-c s") 'my/toggle-flyspell)
+(global-set-key (kbd "C-c b") 'my/eww-open)
 
 (use-package repeat
   :ensure nil
@@ -75,9 +85,7 @@
     :keymaps 'override
     "C-," 'consult-line
     "C-;" 'embark-act
-    "C-:" 'avy-goto-char-timer
-    "C-!" 'my/toggle-arabic
-    "C-§" 'toggle-input-method)
+    "C-:" 'avy-goto-char-timer)
 
   (general-create-definer my/leader-keys
     :states '(normal visual motion emacs)
@@ -100,6 +108,10 @@
     "w u" '(winner-undo :which-key "Undo layout")
     "w o" '(other-window :which-key "Other")
     "w =" '(balance-windows :which-key "Balance")
+    "w a" '(ace-window :which-key "Select")
+    "w t" '(transpose-frame :which-key "Transpose")
+    "w f" '(flop-frame :which-key "Mirror ⇆")
+    "w F" '(flip-frame :which-key "Mirror ⇅")
     ;; Movements
     "w h" '(windmove-left :which-key "Left")
     "w j" '(windmove-down :which-key "Down")
@@ -124,27 +136,30 @@
     "g h" '(diff-hl-show-hunk :which-key "Show hunk"))
 
   (my/leader-keys
-    "t"   '(:ignore t :which-key "Toggle")
-    "t a" '(gptel :which-key "Gemini")
+    "t"   '(:ignore t :which-key "Toggle/Open")
     "t c" '(my/toggle-corfu :which-key "Corfu")
-    "t d" '(my/translate :which-key "Translate")
-    "t D" '(my/dictionary :which-key "Dictionary")
-    "t t" '(my/open-ansi-term-split :which-key "Ansi term")
-    "t e" '(my/open-eshell-split :which-key "Eshell")
     "t s" '(my/toggle-flyspell :which-key "Flyspell")
-    "t S" '(flyspell-correct-wrapper :which-key "Flyspell correct")
-    "t b" '(my/eww-open :which-key "Open Url"))
+    "t t" '(my/open-ansi-term-split :which-key "Ansi term")
+    "t e" '(my/open-eshell-split :which-key "Eshell"))
+
+  (my/leader-keys
+    "a"   '(:ignore t :which-key "Apps")
+    "a g" '(gptel :which-key "Gemini")
+    "a f" '(elfeed :which-key "Elfeed")
+    "a t" '(my/translate :which-key "Translator")
+    "a d" '(my/dictionary :which-key "Dictionary"))
 
   (my/leader-keys
     "o"   '(:ignore t :which-key "Org")
+    "o a" '(org-agenda :which-key "Agenda")
     "o c" '(org-capture :which-key "Capture")
-    "o e" '(org-export-dispatch :which-key "Export")
-    "o a" '((lambda () (interactive) (org-agenda nil "n")) :which-key "Agenda")
-    "o t" '((lambda () (interactive) (org-agenda nil "t")) :which-key "TODOs"))
+    "o r" '(:ignore t :which-key "Roam")
+    "o r f" '(org-roam-node-find :which-key "Find node")
+    "o r i" '(org-roam-node-insert :which-key "Insert node")
+    "o r c" '(org-roam-capture :which-key "Capture"))
 
   (my/leader-keys
     "f"   '(:ignore t :which-key "Find")
-    "f a" '(avy-goto-char-timer :which-key "Avy char")
     "f f" '(consult-fd :which-key "Consult file")
     "f g" '(consult-ripgrep :which-key "Grep")
     "f r" '(consult-recent-file :which-key "Recent"))
@@ -161,7 +176,7 @@
     "l H" '(lsp-describe-thing-at-point :which-key "Help at point"))
 
   (my/leader-keys
-    "e"   '(:ignore t :which-key "Errors/Diagnostics")
+    "e"   '(:ignore t :which-key "Errors")
     "e n" '(flymake-goto-next-error :which-key "Next error")
     "e p" '(flymake-goto-prev-error :which-key "Prev error")
     "e d" '(flymake-show-buffer-diagnostics :which-key "Buffer list")

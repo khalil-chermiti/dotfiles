@@ -161,5 +161,8 @@
                           (setq keycast-tab-bar-minimal-width 20)
                           (keycast-tab-bar-mode 1))))
 
+(use-package transpose-frame
+  :ensure t)
+
 (provide 'init-ui)
 ;;; init-ui.el ends here
