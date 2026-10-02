@@ -8,14 +8,16 @@
   (interactive)
   (split-window-below)
   (other-window 1)
-  (eshell))
+  (eshell)
+  (evil-emacs-state))
 
 ;; Open ansi-term in a split window
 (defun my/open-ansi-term-split ()
   (interactive)
   (split-window-below)
   (other-window 1)
-  (ansi-term ansi-term-shell))
+  (ansi-term ansi-term-shell)
+  (evil-emacs-state))
 
 (provide 'init-term)
 ;;; init-term.el ends here
