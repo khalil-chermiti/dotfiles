@@ -6,14 +6,13 @@
   (setq elfeed-feeds
         '(
           ;; الحور المتمدن
-          ("https://www.ahewar.org/rss/default.asp?lt=4&i=163" علاقات-أسرة)
-          ("https://www.ahewar.org/rss/default.asp?lt=4&i=158" فلسفة علم-نفس علم-اجتماع)
-          ("https://www.ahewar.org/rss/default.asp?lt=4&i=139" علمانية دين)
+          ("https://www.ahewar.org/rss/default.asp?lt=4&i=158" فلسفة)
+          ("https://www.ahewar.org/rss/default.asp?lt=4&i=139" دين)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=141" فلسطين)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=142" حقوق-إنسان)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=241" صحة-نفسية-جسدية)
           ("https://www.ahewar.org/rss/default.asp?lt=4&i=274" قضايا-ثقافية)
-          ("https://www.ahewar.org/rss/default.asp?lt=4&i=226" نسوية عنف-منزل حقوق-المرأة)))
+          ("https://www.ahewar.org/rss/default.asp?lt=4&i=226" حقوق-المرأة)))
 
   (defface my/elfeed-small-title-face
     '((t (:inherit elfeed-search-title-face :height 0.9)))
