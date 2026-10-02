@@ -32,8 +32,7 @@
      ("j" "Journal" entry (file+datetree "journal.org")
       "* %U\n%?")
      ("p" "Poetry" entry (file+headline "poetry.org" "Poems")
-      "* \n- الشاعر: \n- النوع: \n\n%i%?")
-     ))
+      "* \n- الشاعر: \n- النوع: \n\n%i%?")))
 
   :custom-face
   (org-level-1 ((t (:height 1.15 :weight bold))))
@@ -45,6 +44,13 @@
   (org-level-7 ((t (:height 1.0 :weight bold))))
   (org-level-8 ((t (:height 1.0 :weight bold)))))
 
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/Org/Roam")
+  (org-roam-completion-everywhere t)
+  :config
+  (org-roam-db-autosync-mode))
 
 ;; =================================================================
 ;; Arabic Layout & Input Toggle Utility

@@ -58,3 +58,5 @@ history
 /games/
 /.emacs.desktop
 /.emacs.desktop.lock
+/org-roam.db
+/.org-id-locations
