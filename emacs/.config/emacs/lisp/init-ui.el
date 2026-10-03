@@ -15,9 +15,6 @@
   (line-spacing 0.2)
   (use-short-answers t)
 	(tab-width 2)
-  (indent-tabs-mode nil)
-  (fringe-indicator-alist (assoc-delete-all 'truncation
-                                           (assoc-delete-all 'continuation fringe-indicator-alist)))
 
   :config
   (size-indication-mode 1)
@@ -28,26 +25,10 @@
 
   (set-face-attribute 'default nil :font "JetBrainsMono NF" :height 110)
   
-  (set-face-attribute 'help-key-binding nil
-                      :inherit 'default
-                      :background 'unspecified
-                      :foreground "#fca103"
-                      :box nil)
-  
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
-  (add-hook 'text-mode-hook #'visual-line-mode)
-
-  ;; (dolist (hook '(org-mode-hook
-  ;;                 markdown-mode-hook
-  ;;                 message-mode-hook
-  ;;                 git-commit-mode-hook
-  ;;                 text-mode-hook))
-  ;;   (add-hook hook #'turn-on-auto-fill))
 
   (setq display-buffer-alist
-        '(
-
-          ("\\`\\*Org Agenda\\*\\'"
+        '(("\\`\\*Org Agenda\\*\\'"
            (display-buffer-full-frame))
 
           ("\\`gem.*"
@@ -58,17 +39,11 @@
            (display-buffer-in-side-window)
            (side . right)
            (window-width . 0.3))
-
-          ))
-  );
+          )));
 
 (use-package display-line-numbers
   :ensure nil
-  ;; :config
-  ;; (global-display-line-numbers-mode 1)
   :hook ((prog-mode . display-line-numbers-mode)))
-         ;; (org-mode . display-line-numbers-mode)
-         ;; (fundamental-mode . display-line-numbers-mode)))
 
 (use-package hl-line
   :ensure nil
@@ -78,25 +53,12 @@
 (use-package nerd-icons
   :ensure t)
 
-(use-package kanagawa-themes
-  :ensure t)
-
 (use-package auto-dark
   :ensure t
   :custom
   (auto-dark-themes '((ef-autumn) (ef-eagle)))
   :config
-  (auto-dark-mode 1)
-  (set-face-attribute 'window-divider nil 
-		      :foreground "gray" 
-		      :background "gray")
-
-  ;; reset divider bg after theme changes
-  (add-hook 'enable-theme-functions
-	    (lambda (&rest _) ;; _ is new theme
-	      (set-face-attribute 'window-divider nil 
-				  :foreground "gray" 
-				  :background "gray"))))
+  (auto-dark-mode 1))
 
 (use-package doom-modeline
   :ensure t
@@ -114,33 +76,15 @@
   (doom-modeline-major-mode-icon t)
   (doom-modeline-check nil)
   (doom-modeline-lsp t)
-
-  :config
-  (custom-set-faces
-   '(mode-line ((t (:box (:line-width 1 :color "gray")))))
-   '(mode-line-inactive ((t (:box (:line-width 1 :color "gray")))))
-   '(doom-modeline-bar ((t (:background "#d27e99")))))
   
   :init
   (doom-modeline-mode 1))
-
-(use-package markdown-mode
-  :ensure t
-  ;; :config
-  ;; (custom-set-faces '(markdown-list-face ((t (:background nil)))))
-  ;; (add-hook 'markdown-mode-hook #'markdown-toggle-markup-hiding)
-  )
 
 (use-package inhibit-mouse
   :ensure t
   :custom
   (inhibit-mouse-adjust-mouse-highlight t)
-  (inhibit-mouse-adjust-show-help-function t)
-  :init
-  ;; (if (daemonp)
-  ;;     (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
-  ;;   (inhibit-mouse-mode 1))
-  )
+  (inhibit-mouse-adjust-show-help-function t))
 
 ;; more on https://www.rahuljuliato.com/posts/emacs-tab-bar-groups#
 (use-package tab-bar
@@ -155,11 +99,7 @@
   (tab-bar-separator " ")
   (tab-bar-format '(tab-bar-format-tabs
                     tab-bar-separator
-                    tab-bar-format-add-tab))
-
-  :hook (tab-bar-mode . (lambda ()
-                          (setq keycast-tab-bar-minimal-width 20)
-                          (keycast-tab-bar-mode 1))))
+                    tab-bar-format-add-tab)))
 
 (use-package transpose-frame
   :ensure t)
