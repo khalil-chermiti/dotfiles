@@ -68,7 +68,7 @@
       (occur query)))
   :bind
 	(:map isearch-mode-map ("C-o" . my-occur-from-isearch))
-	(:map isearch-mode-map ("M-ù" . isearch-query-replace-regexp))
+	(:map isearch-mode-map ("M-ù" . isearch-query-replace-regexp)))
 
 (use-package embark
   :ensure t
