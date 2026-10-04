@@ -54,6 +54,7 @@
   (isearch-allow-scroll t)
   (search-upper-case t)
   (case-fold-search t)
+  (search-default-mode t)
   (lazy-count-prefix-format "%s/%s ")
   :config
   (defun my-occur-from-isearch ()
@@ -66,9 +67,8 @@
         (ignore-errors (isearch-done t t)))
       (occur query)))
   :bind
-  (:map isearch-mode-map
-        ("C-o" . my-occur-from-isearch))
-  )
+	(:map isearch-mode-map ("C-o" . my-occur-from-isearch))
+	(:map isearch-mode-map ("M-ù" . isearch-query-replace-regexp))
 
 (use-package embark
   :ensure t
