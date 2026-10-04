@@ -28,17 +28,7 @@
     "C-x RET" "Coding Systems"
     "C-x 4" "Other Window"
     "C-x 5" "Frames"
-    "C-x 6" "Two-Column"
-    "C-c a" "Toggle Arabic"
-    "C-c i" "Toggle input method"))
-
-(global-set-key (kbd "C-c g") 'gptel)
-(global-set-key (kbd "C-c a") 'my/toggle-arabic)
-(global-set-key (kbd "C-c i") 'toggle-input-method)
-(global-set-key (kbd "C-c t") 'my/open-ansi-term-split)
-(global-set-key (kbd "C-c e") 'my/open-eshell-split)
-(global-set-key (kbd "C-c s") 'my/toggle-flyspell)
-(global-set-key (kbd "C-c b") 'my/eww-open)
+    "C-x 6" "Two-Column"))
 
 (use-package repeat
   :ensure nil
@@ -135,11 +125,16 @@
     "g f" '(magit-file-dispatch :which-key "File dispatch")
     "g h" '(diff-hl-show-hunk :which-key "Show hunk"))
 
+(global-set-key (kbd "C-c a") 'my/toggle-arabic)
+(global-set-key (kbd "C-c b") 'my/eww-open)
+
   (my/leader-keys
     "t"   '(:ignore t :which-key "Toggle/Open")
     "t c" '(my/toggle-corfu :which-key "Corfu")
     "t s" '(my/toggle-flyspell :which-key "Flyspell")
     "t t" '(my/open-ansi-term-split :which-key "Ansi term")
+    "t a" '(my/toggle-arabic :which-key "Arabic")
+    "t b" '(my/eww-open :which-key "Eww")
     "t e" '(my/open-eshell-split :which-key "Eshell"))
 
   (my/leader-keys

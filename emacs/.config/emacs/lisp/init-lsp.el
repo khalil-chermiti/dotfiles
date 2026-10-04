@@ -27,6 +27,15 @@
   (corfu-auto-delay 0.0)         ;; Delay for auto completion
   (corfu-popupinfo-mode t)       ;; Enable documentation popup
   (corfu-popupinfo-delay '(0.5 . 0.2))
+	(tab-always-indent 'complete)
+	(corfu-preview-current nil)
+	(corfu-min-width 20)
+	:config
+	(with-eval-after-load 'savehist
+		(corfu-history-mode 1)
+		(add-to-list 'savehist-additional-variables 'corfu-history))
+
+  :bind (:map corfu-map ("<tab>" . corfu-complete))
   :init
   (global-corfu-mode))
 

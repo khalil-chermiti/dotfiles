@@ -27,6 +27,8 @@
   
   (set-fontset-font t 'arabic "Noto Kufi Arabic")
 
+	(add-hook 'text-mode-hook #'visual-line-mode)
+
   (setq display-buffer-alist
         '(("\\`\\*Org Agenda\\*\\'"
            (display-buffer-full-frame))
@@ -52,6 +54,18 @@
 
 (use-package nerd-icons
   :ensure t)
+
+(use-package nerd-icons-completion
+	:ensure t
+	:after marginalia
+	:config
+	(add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(use-package nerd-icons-corfu
+  :ensure t
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package auto-dark
   :ensure t
