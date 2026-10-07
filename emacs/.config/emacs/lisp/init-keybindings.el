@@ -132,7 +132,7 @@
     "t"   '(:ignore t :which-key "Toggle/Open")
     "t c" '(my/toggle-corfu :which-key "Corfu")
     "t s" '(my/toggle-flyspell :which-key "Flyspell")
-    "t t" '(my/open-ansi-term-split :which-key "Ansi term")
+    "t t" '(my/open-vterm-split :which-key "Ansi term")
     "t a" '(my/toggle-arabic :which-key "Arabic")
     "t b" '(my/eww-open :which-key "Eww")
     "t e" '(my/open-eshell-split :which-key "Eshell"))

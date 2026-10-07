@@ -48,9 +48,10 @@
   :hook ((prog-mode . display-line-numbers-mode)))
 
 (use-package hl-line
-  :ensure nil
-  :config
-  (global-hl-line-mode 1))
+	:ensure nil
+	:config
+	(add-hook 'prog-mode-hook #'hl-line-mode)
+	(add-hook 'text-mode-hook #'hl-line-mode))
 
 (use-package nerd-icons
   :ensure t)

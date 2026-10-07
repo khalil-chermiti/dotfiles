@@ -33,21 +33,23 @@
   :config
   (eshell-syntax-highlighting-global-mode 1))
 
+
+(use-package vterm
+	:ensure t)
+
 ;; Open eshell in a split window
 (defun my/open-eshell-split ()
   (interactive)
   (split-window-below)
   (other-window 1)
-  (eshell)
-  (evil-emacs-state))
+  (eshell))
 
 ;; Open ansi-term in a split window
-(defun my/open-ansi-term-split ()
+(defun my/open-vterm-split ()
   (interactive)
   (split-window-below)
   (other-window 1)
-  (ansi-term ansi-term-shell)
-  (evil-emacs-state))
+  (vterm))
 
 (provide 'init-term)
 ;;; init-term.el ends here
