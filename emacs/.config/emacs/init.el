@@ -47,6 +47,7 @@
 (require 'init-project)
 (require 'init-gptel)
 (require 'init-elfeed)
+(require 'init-pdf)
 (require 'init-keybindings)
 
 ;;; init.el ends here
